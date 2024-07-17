@@ -1,3 +1,39 @@
 Write down any new tasks to completegit
 
-first thing to do
+1. create .npz file from single_fish.mp4
+    -ibrahim
+
+2. create csv from unzipped .npz
+    -giuliano
+    create a dummy .npz file and write a function to unzip it. 
+    -create 1-d arrays x, y, time
+    -zip into .npz
+    -unzip with function
+    -concatinate into table with pandas
+
+3. get python on everyones computer
+
+4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
+
+outline missing data:
+
+    goal:
+
+    fill in missing data in in one of the files inside the .npz with some strategy for data imputation
+
+    process:
+
+    locate the .npz file: 
+
+    unzip the file:
+
+    combine vectors in unzipped npz into a table 
+
+    *decide how to define a missing segment* 
+
+
+    want:
+
+    argument in function that accepts an imputation strategy
+
+
