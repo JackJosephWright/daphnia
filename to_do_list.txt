@@ -3,15 +3,26 @@ Write down any new tasks to completegit
 1. create .npz file from single_fish.mp4
     -ibrahim
 
-2. create csv from unzipped .npz
-    -giuliano
-    create a dummy .npz file and write a function to unzip it. 
-    -create 1-d arrays x, y, time
-    -zip into .npz
-    -unzip with function
-    -concatinate into table with pandas
 
-3. get python on everyones computer
+
+
+2. add new zip functions to src
+    -modify zip.py for the final src file
+    -install pytest
+    -tutorial on pytest
+    -write 2 normal case tests
+    -write 2 edge case tests
+
+
+3. write function to standardize plotting of the fish df. 
+    -do a tutorial on matplotlib 
+    -do a quick tutorial on pandas dataframes
+    -plot graph 
+
+4. add mirror argument to pandafy function
+    -do the mirroring
+    
+
 
 4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
 
