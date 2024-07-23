@@ -11,3 +11,7 @@ Giuliano
 ibrahim
 
 3. get python on everyones computer
+
+
+1. create .npz file from single_fish.mp4
+    -ibrahim
