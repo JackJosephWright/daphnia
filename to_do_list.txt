@@ -4,8 +4,6 @@ Write down any new tasks to completegit
     -ibrahim
 
 
-
-
 2. add new zip functions to src
     -modify zip.py for the final src file
     -install pytest

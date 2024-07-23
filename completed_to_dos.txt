@@ -1,0 +1,13 @@
+Giuliano
+
+2. create csv from unzipped .npz
+    -giuliano
+    create a dummy .npz file and write a function to unzip it. 
+    -create 1-d arrays x, y, time
+    -zip into .npz
+    -unzip with function
+    -concatinate into table with pandas
+
+ibrahim
+
+3. get python on everyones computer
