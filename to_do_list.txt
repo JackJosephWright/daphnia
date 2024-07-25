@@ -1,5 +1,26 @@
 Write down any new tasks to completegit
 
+<<<<<<< HEAD
+=======
+TODO IDEAS:
+
+
+check if y#wcentroid is the same as Y etc...
+
+
+
+
+
+
+
+
+
+
+
+1. create .npz file from single_fish.mp4
+    -ibrahim
+
+>>>>>>> npz_zip_pytest
 
 
 
