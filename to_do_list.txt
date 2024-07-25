@@ -1,7 +1,5 @@
 Write down any new tasks to completegit
 
-<<<<<<< HEAD
-=======
 TODO IDEAS:
 
 
@@ -20,7 +18,6 @@ check if y#wcentroid is the same as Y etc...
 1. create .npz file from single_fish.mp4
     -ibrahim
 
->>>>>>> npz_zip_pytest
 
 
 
@@ -31,16 +28,11 @@ check if y#wcentroid is the same as Y etc...
     -write 2 normal case tests
     -write 2 edge case tests
 
-X. add a section to the readme.txt on how to merge the main branch changes into another branch
-
 
 3. write function to standardize plotting of the fish df. 
-    -do a tutorial on matplotlib  DONE
+    -do a tutorial on matplotlib 
     -do a quick tutorial on pandas dataframes
-    -use unzipper  to unzip .npz file
-    -plot graph of npz data
-    -write a function that takes in a dataframe and plots the fish
-    -discussion on refactoring this:
+    -plot graph 
 
 4. add mirror argument to pandafy function
     -do the mirroring
