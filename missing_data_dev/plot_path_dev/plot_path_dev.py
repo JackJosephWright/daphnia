@@ -30,13 +30,16 @@ df = pd.DataFrame(
     }
 )
 
-print(df)
+#print(df)
 
 
 def plotDetail(title, xlable, ylabel):
-    plt.title(title)
-    plt.xlabel(xlable)
-    plt.ylabel(ylabel)
+    csfont = {'fontname':'Comic Sans MS', 'color':'blue', 'size':20}
+    hfont = {'fontname':'Helvetica', 'color':'blue', 'size':12}
+    plt.title(title,fontdict=csfont)
+    plt.xlabel(xlable,fontdict=hfont)
+    plt.ylabel(ylabel,fontdict=hfont)
+
 
 plt.plot(X, Y)
 plotDetail("NPZ","X value","Y value")
