@@ -30,9 +30,7 @@ df = pd.DataFrame(
     }
 )
 
-#plt.plot(X, Y)
-#plt.show()
-#print(df)
+print(df)
 
 
 def plotDetail(title, xlable, ylabel):
