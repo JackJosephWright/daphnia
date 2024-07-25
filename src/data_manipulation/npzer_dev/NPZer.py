@@ -24,7 +24,7 @@ class NPZer:
             -----------
                 data: Pandas DataFrame or Numpy Matrix
                     Data to be zipped
-                save_dir: str/path
+                save_dir: str/source_dir
                     File path to save zipped data to
                 params: List, optional
                     Selects which parameters to zip. If not specified, all parameters will be zipped.
@@ -49,7 +49,7 @@ class NPZer:
             
             Parameters:
             -----------
-                source_dir: str/path
+                source_dir: str/source_dir
                     .npz file path to be unzipped
                 params: List, optional
                     Selects which parameters to save. If not specified, all parameters will be saved.
@@ -73,13 +73,15 @@ class NPZer:
             return unzippedArray
 
 
-    def pandafy(data: np.ndarray, invertY: bool = False, params: list = [], tester: TRexDataTester = None) -> pd.DataFrame:
+    def pandafy(data: np.ndarray = None, source_dir: str = None, invertY: bool = False, params: list = [], tester: TRexDataTester = None) -> pd.DataFrame:
         """ Converts unzipped npz data to a Pandas DataFrame
             
             Parameters:
             -----------
                 data: np.ndarray
                     Data to be converted into pandas DataFrame
+                source_dir: str, optional
+                    .npz file to be converted into Pandas DataFrame
                 invertY: bool, optional
                     Invert Y values if true, otherwise false
                 params: List, optional
@@ -87,17 +89,34 @@ class NPZer:
                 tester: TRexDataTester, optional
                     Tests data to check if it is structured correctly
         """
-
-        if isinstance(tester, TRexDataTester):
-            tester.testAll(data)
         
-        if len(params) > 0: pandaDataFrame = pd.DataFrame(data = data, index = [param for param in params])  
-        else: pd.DataFrame(data = data, columns = [i for i in range(len(data))])
+        assert (data is not None) or (source_dir is not None), f"No data source provided. data exists: {data is None}, source_dir exists: {source_dir is None}"
         
-        if invertY:
-            pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
-        
-        return pandaDataFrame.T
+        if source_dir is not None:
+            assert source_dir.endswith('.npz')
+            with np.load(source_dir) as openedData:
+                pandaDataFrame = pd.DataFrame.from_dict(data = {key: openedData[key] for key in openedData.keys() if openedData[key].ndim == 1})
+                
+                if len(params) > 0: pandaDataFrame = pandaDataFrame[params]
+                
+                if isinstance(tester, TRexDataTester):
+                    tester.testAll(pandaDataFrame)
+                
+                if invertY:
+                    pandaDataFrame['Y#wcentroid'] = -pandaDataFrame['Y#wcentroid']
+            
+                return pandaDataFrame
+        else:
+            if isinstance(tester, TRexDataTester):
+                tester.testAll(data)
+            
+            if len(params) > 0: pandaDataFrame = pd.DataFrame(data = data, index = [param for param in params])  
+            else: pandaDataFrame = pd.DataFrame(data = data, columns = [i for i in range(len(data))])
+            
+            if invertY:
+                pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
+            
+            return pandaDataFrame.T
 
 
 
@@ -108,12 +127,15 @@ if __name__ == "__main__":
     tester.testAll(data)
     
     print("Unzipped data:\n", data)
+
+    pandasData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], )
+    print("Pandafied Directly:\n", pandasData)
     
     pandasData = NPZer.pandafy(data = data, invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], tester = tester)
-    print("Pandafied:\n", pandasData)
+    print("Pandafied from Unzipped:\n", pandasData)
 
-    NPZer.npzip(data = pandasData, save_dir = 'missing_data_dev/npzer_dev/zipped.npz', tester = tester, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
-    unzipped = NPZer.unzipNpz(source_dir = 'missing_data_dev/npzer_dev/zipped.npz', params = ['time', 'X#wcentroid', 'Y#wcentroid'])
+    NPZer.npzip(data = pandasData, save_dir = 'src/data_manipulation/npzer_dev/zipped.npz', tester = tester, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
+    unzipped = NPZer.unzipNpz(source_dir = 'src/data_manipulation/npzer_dev/zipped.npz', params = ['time', 'X#wcentroid', 'Y#wcentroid'])
     print("Unzipped again:\n", unzipped)
 
     pandasData = NPZer.pandafy(data = unzipped, invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], tester = tester)
