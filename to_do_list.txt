@@ -10,6 +10,8 @@ Write down any new tasks to completegit
     -write 2 normal case tests
     -write 2 edge case tests
 
+X. add a section to the readme.txt on how to merge the main branch changes into another branch
+
 
 3. write function to standardize plotting of the fish df. 
     -do a tutorial on matplotlib  DONE
