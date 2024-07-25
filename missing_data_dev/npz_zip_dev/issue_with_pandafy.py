@@ -22,6 +22,3 @@ timestamp = data['timestamp']
 X = data['X']
 Y = data['Y']
 
-
-
-#get these all into a dataframe
