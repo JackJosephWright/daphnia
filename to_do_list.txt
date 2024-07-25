@@ -1,8 +1,5 @@
 Write down any new tasks to completegit
 
-1. create .npz file from single_fish.mp4
-    -ibrahim
-
 
 
 
@@ -15,9 +12,12 @@ Write down any new tasks to completegit
 
 
 3. write function to standardize plotting of the fish df. 
-    -do a tutorial on matplotlib 
+    -do a tutorial on matplotlib  DONE
     -do a quick tutorial on pandas dataframes
-    -plot graph 
+    -use unzipper  to unzip .npz file
+    -plot graph of npz data
+    -write a function that takes in a dataframe and plots the fish
+    -discussion on refactoring this:
 
 4. add mirror argument to pandafy function
     -do the mirroring
