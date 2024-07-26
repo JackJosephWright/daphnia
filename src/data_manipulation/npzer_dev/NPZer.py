@@ -55,6 +55,10 @@ class NPZer:
                     Selects which parameters to save. If not specified, all parameters will be saved.
                 tester: TRexDataTester, optional
                     Tests data to check if it is structured correctly
+            
+            Returns:
+            -------- 
+                Numpy Matrix
         """
         
         assert source_dir.endswith('.npz')
@@ -88,6 +92,10 @@ class NPZer:
                     Selects which parameters to save. If not specified, all parameters will be saved.
                 tester: TRexDataTester, optional
                     Tests data to check if it is structured correctly
+            
+            Returns:
+            -------- 
+                Pandas DataFrame
         """
         
         assert (data is not None) or (source_dir is not None), f"No data source provided. data exists: {data is None}, source_dir exists: {source_dir is None}"
