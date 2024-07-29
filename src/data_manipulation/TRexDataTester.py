@@ -13,17 +13,17 @@ class TRexDataTester:
                 Sets classes to check if data is of specified type(s)
         Functions:
         ----------
-        test_datastruct(data):
+        test_datastruct:
             Tests if data is a Numpy ndarray or Pandas DataFrame
-        test_columns(data):
+        test_columns:
             Tests if all columns have data
         test_homogenous
             Tests if all columns are homogenous, i.e., they have the same length
-        test_dtype(data):
+        test_dtype:
             Tests if all data is of specified type(s)
-        test_startZero(data):
+        test_startZero:
             Tests if time parameter starts at zero
-        test_timeOrder(data)
+        test_timeOrder:
             Tests if time data is in order, e.g., 1, 2, 3...
     """
 

@@ -2,21 +2,22 @@ import pandas as pd
 import numpy as np
 import math
 from typing import Union, Tuple
+from NPZer import NPZer
 
 class TRexDataCleaner:
     """ Removes invalid data from TRex data, e.g., sudden jumps, missing data
 
         Functions:
         ----------
-        removeDiscontinuities: 
-            removes discontinuities from TRex data, e.g., jumps, missing data
+        renderDiscontinuities: 
+            Renders discontinuities from TRex data, e.g., jumps, missing data as 'infinity'
         isDiscontinuity:
             checks whether a point is a discontinuity from another
         calculateVelocity:
             calculates velocity between two points
     """    
 
-    def removeDiscontinuities(self, data: pd.DataFrame, vmax: Union[float, np.floating]) -> Tuple[pd.DataFrame, pd.DataFrame]:        
+    def renderDiscontinuities(self, data: pd.DataFrame, vmax: Union[float, np.floating]) -> Tuple[pd.DataFrame, pd.DataFrame]:        
         """ Removes discontinuities from data
         
             Parameters:
@@ -28,7 +29,7 @@ class TRexDataCleaner:
             
             Returns:
             -------- 
-            Tuple of two Pandas DataFrames: (Cleaned DataFrame, Rows Removed from DataFrame)
+            Tuple of two Pandas DataFrames: (Cleaned DataFrame, Faulty rows from DataFrame)
         """
 
         assert all(col in data.columns for col in ['time', 'X#wcentroid', 'Y#wcentroid']), f"Expected columns of ['time', 'X#wcentroid', 'Y#centroid']\nRecieved: {[col for col in data.columns]}"
@@ -46,6 +47,7 @@ class TRexDataCleaner:
             if self.isDiscontinuity(pi, pf, vmax, data['time'][f] - data['time'][validIndex]): 
                 print(f"Faulty row: \nInitial: \n--------\n{data.iloc[validIndex]}\n|\nV\nFinal: \n------\n{data.iloc[f]} \n\n\n")
                 removedData.loc[len(removedData)] = data.iloc[f]
+                cleanedData.loc[len(cleanedData['time'])] = ['infinity', 'infinity', 'infinity']
                 continue
             
             cleanedData.loc[len(cleanedData['time'])] = data.iloc[f]
@@ -105,14 +107,9 @@ class TRexDataCleaner:
 if __name__ == "__main__":
     dataCleaner = TRexDataCleaner()
     
-    faultyData = {
-        'time': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-        'X#wcentroid': [0, 1, 2, 3, 4, 5, 6, 190, 200, 300, 3, 8, 'infinity', 'infinity', 'infinity', 1, 1.1],
-        'Y#wcentroid': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'infinity', 'infinity', 'infinity', 0, 0]
-    }
-    faultyData = pd.DataFrame.from_dict(faultyData)
+    faultyData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
     print(f"Faulty Data: \n {faultyData}")
 
-    cleanedData, removedData = dataCleaner.removeDiscontinuities(data=faultyData, vmax=2)
+    cleanedData, removedData = dataCleaner.renderDiscontinuities(data=faultyData, vmax=50)
     print("Cleaned Data: \n", cleanedData)
     print("Removed Data: \n", removedData)
