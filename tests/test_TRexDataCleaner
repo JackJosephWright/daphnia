@@ -1,0 +1,10 @@
+# tests/test_NPZer.py
+import pytest
+import numpy as np
+# Import classes from src/data_manipulation
+from data_manipulation.TRexDataTester import TRexDataTester
+
+def test_add():
+    assert 5 == 5
+    
+    

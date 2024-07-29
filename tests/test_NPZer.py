@@ -2,8 +2,8 @@
 import pytest
 import numpy as np
 # Import classes from src/data_manipulation
-from src.data_manipulation.NPZer import NPZer
-from src.data_manipulation.TRexDataTester import TRexDataTester
+from data_manipulation.NPZer import NPZer
+from data_manipulation.TRexDataTester import TRexDataTester
 
 print(NPZer, TRexDataTester)
 
