@@ -111,9 +111,10 @@ class NPZer:
                 tester.testAll(data)
             
             if len(params) > 0: pandaDataFrame = pd.DataFrame(data = data, index = [param for param in params])  
-            else: pandaDataFrame = pd.DataFrame(data = data, columns = [i for i in range(len(data))])
+            else: pandaDataFrame = pd.DataFrame(data = data, index = [i for i in range(len(data))])
             
             if invertY:
+                assert 'Y#wcentroid' in params or 'Y' in params, f"No Y parameter in dataset"
                 pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
             
             return pandaDataFrame.T
