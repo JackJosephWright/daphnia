@@ -119,7 +119,7 @@ class NPZer:
                 tester.testAll(data)
             
             if len(params) > 0: pandaDataFrame = pd.DataFrame(data = data, index = [param for param in params])  
-            else: pandaDataFrame = pd.DataFrame(data = data, columns = [i for i in range(len(data))])
+            else: pandaDataFrame = pd.DataFrame(data = data, index = [i for i in range(len(data))])
             
             if invertY:
                 pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
@@ -135,6 +135,8 @@ if __name__ == "__main__":
     tester.testAll(data)
     
     print("Unzipped data:\n", data)
+    
+    print('Pandafied Unzipped data:\n', NPZer.pandafy(data = data, invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid']))
 
     pandasData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], )
     print("Pandafied Directly:\n", pandasData)
