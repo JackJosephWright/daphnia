@@ -1,7 +1,7 @@
 # tests/test_NPZer.py
-import pytest
+
 # Import classes from src/data_manipulation
 from src.data_manipulation.NPZer import NPZer
 
-
-print(NPZer)
+# Now you can use YourClassName and AnotherClassName in your tests
+print(NPZer.unzipNpz)
