@@ -32,6 +32,11 @@ df = pd.DataFrame(
     }
 )
 
+
+missingData = df.isnull()
+print(missingData)
+
+"""
 df_subset = df.loc[3320:]
 print(df_subset)
 #writing csv
@@ -50,3 +55,4 @@ plotDetail("Single Fish Data","X value","Y value")
 plt.show()
 
 #if __name__ == "__main__":
+"""
