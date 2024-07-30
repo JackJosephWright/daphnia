@@ -3,9 +3,6 @@ Write down any new tasks to completegit
 TODO IDEAS:
 
 
-check if y#wcentroid is the same as Y etc...
-
-
 
 
 
@@ -17,12 +14,7 @@ CURRENT MAIN TODO:
 
 
 
-2. add new zip functions to src
-    -modify zip.py for the final src file
-    -install pytest
-    -tutorial on pytest
-    -write 2 normal case tests
-    -write 2 edge case tests
+
 
 
 3. write function to standardize plotting of the fish df. 
@@ -50,42 +42,8 @@ GETTING CLEAN DATA:
     5. come up with a reasonable estimate for the daphnias TOP SPEED
 
 
-CHECK LOGIC OF TRexDataCleaner:
-
-it might be better to return 1 df with <inf> or some NA value instead of two sepearate dataframe for imputation purposes
 
 
-
-IMPUTER_CLASS:
-
-name: DaphniaImputer
-
-this class will handle the imputation of the data from clean dataframes of the proper order (from TRexDataCleaner)
-
-1.
-
-create folder src/data_manipulation/imputers
-
-add "imputer1.py" that replaces all missing data as 9999 (or some constant)
-
-2.
-
-as part of the initialization of the class, have it iterate through the files in src/data_manipulation/imputers and assign the functions to a dictionary:
-
-example:
-
-imputer_dict['imputer1.py'] = <function in imputer1.py>
-
-so it can be called self.imputer_dict['imputer1.py'](data) and it will impute the data
-
-write a .impute method where the arguments are the data and the name of the file of the imputer you want to use (it will be loaded in when the class is initialized)
-
-EX:
-
-f = DaphniaImputer()
-f.impute(data, 'imputer1.py')
-return
-[imputed data]
 
 LARGER GOALS:
 
