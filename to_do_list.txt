@@ -13,7 +13,17 @@ TODO IDEAS:
 CURRENT MAIN TODO:
 
 
+guiliano
 
+create synthetic data to test the imputer. add to a test_TRexImputer file
+
+create simple imputer (add a nonsense value that plots where you can see it)
+
+plot the results to checgik it
+
+start on avg value imputer 
+
+this goes in the imputation strategy folder, it should fill values with an avg velocity to connect two disconnected segments
 
 
 
