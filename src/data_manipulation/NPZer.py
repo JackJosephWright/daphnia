@@ -116,7 +116,7 @@ class NPZer:
             if invertY:
                 pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
             
-            return pandaDataFrame.T
+            return pandaDataFrame.T 
 
 
 
