@@ -21,6 +21,7 @@ timestamp = data['timestamp']
 
 X = data['X']
 Y = data['Y']
+Y = -Y
 
 df = pd.DataFrame(
     {
@@ -30,7 +31,8 @@ df = pd.DataFrame(
     }
 )
 
-#print(df)
+df_subset = df.loc[3320:]
+print(df_subset)
 
 
 def plotDetail(title, xlable, ylabel):
@@ -41,8 +43,8 @@ def plotDetail(title, xlable, ylabel):
     plt.ylabel(ylabel,fontdict=hfont)
 
 
-plt.plot(X, Y)
-plotDetail("NPZ","X value","Y value")
+plt.plot(df_subset['X'], df_subset['Y'])
+plotDetail("Single Fish Data","X value","Y value")
 plt.show()
 
 #if __name__ == "__main__":
