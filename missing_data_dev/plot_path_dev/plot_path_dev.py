@@ -32,11 +32,17 @@ df = pd.DataFrame(
     }
 )
 
+# checks for missing data
+"""miss = df[df.isnull().any(axis=1)]
+df.replace(['', 'NA', 'NaN'], np.nan, inplace=True)
+df['X'] = pd.to_numeric(df['X'], errors='coerce')
+df['Y'] = pd.to_numeric(df['Y'], errors='coerce')
+print(miss)"""
 
-missingData = df.isnull()
-print(missingData)
+"drops missing data"
+# df.dropna(inplace=True)
 
-"""
+
 df_subset = df.loc[3320:]
 print(df_subset)
 #writing csv
@@ -55,4 +61,3 @@ plotDetail("Single Fish Data","X value","Y value")
 plt.show()
 
 #if __name__ == "__main__":
-"""
