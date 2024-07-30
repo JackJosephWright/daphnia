@@ -4,7 +4,8 @@ take a look at the npz file and the subfiles. We need to extract the relevant fi
 """
 
 
-from ..npz_zip_dev import zip
+from src.data_manipulation.NPZer import NPZer
+from src.data_manipulation.TRexDataTester import TRexDataTester
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
@@ -33,7 +34,8 @@ df = pd.DataFrame(
 
 df_subset = df.loc[3320:]
 print(df_subset)
-
+#writing csv
+df_subset.to_csv('fish_data_clean.csv')
 
 def plotDetail(title, xlable, ylabel):
     csfont = {'fontname':'Comic Sans MS', 'color':'blue', 'size':20}
