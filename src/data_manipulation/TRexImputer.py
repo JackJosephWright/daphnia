@@ -1,8 +1,8 @@
 import os
 import numpy as np
 import importlib.util
-from TRexDataTester import TRexDataTester
-from NPZer import NPZer
+from src.data_manipulation.TRexDataTester import TRexDataTester
+from src.data_manipulation.NPZer import NPZer
 import pandas as pd
 
 class TRexImputer:

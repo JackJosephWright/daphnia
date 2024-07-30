@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from typing import Union
-from TRexDataTester import TRexDataTester
+from src.data_manipulation.TRexDataTester import TRexDataTester
 
 class NPZer:
     """ Handles Numpy .npz data and Pandas DataFrames
@@ -71,7 +71,7 @@ class NPZer:
                 unzippedArray = np.array([openedArray[key] for key in openedArray.keys()])
             
             if isinstance(tester, TRexDataTester):
-                tester.testAll(data)
+                tester.testAll(unzippedArray)
             
             return unzippedArray
 

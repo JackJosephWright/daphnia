@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import math
 from typing import Union, Tuple
-from NPZer import NPZer
+from src.data_manipulation.NPZer import NPZer
 
 class TRexDataCleaner:
     """ Removes invalid data from TRex data, e.g., sudden jumps, missing data
