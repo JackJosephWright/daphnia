@@ -1,5 +1,19 @@
 Write down any new tasks to completegit
 
+TODO IDEAS:
+
+
+check if y#wcentroid is the same as Y etc...
+
+
+
+
+
+
+
+
+
+CURRENT MAIN TODO:
 
 
 
@@ -12,19 +26,70 @@ Write down any new tasks to completegit
 
 
 3. write function to standardize plotting of the fish df. 
-    -do a tutorial on matplotlib  DONE
+    -do a tutorial on matplotlib 
     -do a quick tutorial on pandas dataframes
-    -use unzipper  to unzip .npz file
-    -plot graph of npz data
-    -write a function that takes in a dataframe and plots the fish
-    -discussion on refactoring this:
-
-4. add mirror argument to pandafy function
-    -do the mirroring
-    
+    -plot graph 
 
 
-4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
+GETTING CLEAN DATA:
+
+    Ibrahim
+
+
+    GOAL: get a reasonable estimate of the daphnia top speed for our data cleaning function
+
+    1. visual inspection of "C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\single_7_9_fish1.MP4_fish0.npz" to be called "fm1"
+        make sure there arent any obvious jumps and the data looks ok. (missing is fine, no jumps)
+
+    2. cut the data into separate tables (if there is missing data, start a new table)
+
+    3. look at the distribution of lengths (how long each segment is, you could do the last row's t - the first rows t)
+        throw out the tables that are too short
+    4. calculate the velocity (d/t) between every point in the good data. plot this as a distribution
+
+    5. come up with a reasonable estimate for the daphnias TOP SPEED
+
+
+CHECK LOGIC OF TRexDataCleaner:
+
+it might be better to return 1 df with <inf> or some NA value instead of two sepearate dataframe for imputation purposes
+
+
+
+IMPUTER_CLASS:
+
+name: DaphniaImputer
+
+this class will handle the imputation of the data from clean dataframes of the proper order (from TRexDataCleaner)
+
+1.
+
+create folder src/data_manipulation/imputers
+
+add "imputer1.py" that replaces all missing data as 9999 (or some constant)
+
+2.
+
+as part of the initialization of the class, have it iterate through the files in src/data_manipulation/imputers and assign the functions to a dictionary:
+
+example:
+
+imputer_dict['imputer1.py'] = <function in imputer1.py>
+
+so it can be called self.imputer_dict['imputer1.py'](data) and it will impute the data
+
+write a .impute method where the arguments are the data and the name of the file of the imputer you want to use (it will be loaded in when the class is initialized)
+
+EX:
+
+f = DaphniaImputer()
+f.impute(data, 'imputer1.py')
+return
+[imputed data]
+
+LARGER GOALS:
+
+
 
 outline missing data:
 

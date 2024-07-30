@@ -15,3 +15,16 @@ ibrahim
 
 1. create .npz file from single_fish.mp4
     -ibrahim
+
+
+
+1. create .npz file from single_fish.mp4
+    -ibrahim
+
+4. add mirror argument to pandafy function
+    -do the mirroring
+
+
+
+
+4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)

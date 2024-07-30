@@ -1,0 +1,20 @@
+The repo is now set up as a package to make importing stuff easier
+
+
+How to run files:
+
+in order for imports to work properly, you have to run the python 
+file in the terminal as a module.
+
+make sure your current working directory is the root
+
+EXAMPLE:
+
+MAC
+
+python -m tests.test_NPZer (no .py necessary since this is a module)
+
+
+PC:
+
+py -m tests.test_NPZer
