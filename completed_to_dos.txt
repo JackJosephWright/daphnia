@@ -28,6 +28,25 @@ FUNCTION TO REMOVE JUMPS FROM THE DATA:
     -zip into .npz
     -unzip with function
     -concatinate into table with pandas
+    FUNCTION TO REMOVE JUMPS FROM THE DATA:
+
+2. add new zip functions to src
+    -modify zip.py for the final src file
+    -install pytest
+    -tutorial on pytest
+    -write 2 normal case tests
+    -write 2 edge case tests
+
+    
+GOAL: apply a function to a fish df that will remove any discontinuities and give us jumpless data to impute
+function should:
+take in 3 arguments, p_o (the previous validated point) p_n the next unvalidated point and vmax (max fish velocity)
+calculate the velocity by calculating the distance between p_o and p_n divide by the time between the measurements
+return true or false if the data is valuidated
+SECOND FUNCTION:
+apply the validator function to the dataframe. if the point is valid, add it to the output DF, if not Documents
+
+
 
 ibrahim
 
@@ -44,8 +63,6 @@ ibrahim
 
 4. add mirror argument to pandafy function
     -do the mirroring
-
-
 
 
 4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
