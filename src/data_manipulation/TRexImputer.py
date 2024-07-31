@@ -32,7 +32,7 @@ class TRexImputer:
                 if func:
                     self.imputationStrategies[function] = func
         
-    def impute(self, data: pd.DataFrame, function: str = 'slope', tester: TRexDataTester = None) -> pd.DataFrame:
+    def impute(self, data: pd.DataFrame, function: str = 'avgValue', tester: TRexDataTester = None) -> pd.DataFrame:
         """ Imputes data's faulty values
 
             Parameters:
