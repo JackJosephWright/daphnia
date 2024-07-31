@@ -9,6 +9,7 @@ from src.data_manipulation.TRexDataTester import TRexDataTester
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
+from matplotlib.animation import FuncAnimation
 #npz_path = r"C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\small_100_fish0.npz"
 #npz_path = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/npz_file/small_100_fish0.npz"
 npz_path = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/npz_file/single_7_9_fish1.MP4_fish0.npz"
@@ -47,6 +48,11 @@ df_subset = df.loc[3320:]
 print(df_subset)
 #writing csv
 df_subset.to_csv('fish_data_clean.csv')
+
+
+fig, ax = plt.subplots()
+line, = ax.plot([],[],'b-')
+
 
 def plotDetail(title, xlable, ylabel):
     csfont = {'fontname':'Comic Sans MS', 'color':'blue', 'size':20}
