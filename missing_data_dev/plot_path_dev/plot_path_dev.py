@@ -49,9 +49,13 @@ print(df_subset)
 #writing csv
 df_subset.to_csv('fish_data_clean.csv')
 
-
+#set up the plot
 fig, ax = plt.subplots()
 line, = ax.plot([],[],'b-')
+
+#set limits 
+
+
 
 
 def plotDetail(title, xlable, ylabel):
