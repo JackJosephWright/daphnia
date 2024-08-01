@@ -44,7 +44,7 @@ class TRexDataCleaner:
             pi = (data['X#wcentroid'][validIndex], data['Y#wcentroid'][validIndex])
             pf = (data['X#wcentroid'][f], data['Y#wcentroid'][f])
             
-            if self.isDiscontinuity(pi, pf, vmax, data['time'][f] - data['time'][validIndex]): 
+            if self.isDiscontinuity(pi, pf, vmax, data['time'][f], data['time'][validIndex]): 
                 print(f"Faulty row: \nInitial: \n--------\n{data.iloc[validIndex]}\n|\nV\nFinal: \n------\n{data.iloc[f]} \n\n\n")
                 removedData.loc[len(removedData)] = data.iloc[f]
                 cleanedData.loc[len(cleanedData['time'])] = ['infinity', 'infinity', 'infinity']
@@ -55,7 +55,7 @@ class TRexDataCleaner:
 
         return (cleanedData.reset_index(drop = True), removedData.reset_index(drop = True))
 
-    def isDiscontinuity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], vmax: Union[float, np.floating], dtime: Union[float, np.floating] = 1.0) -> bool:
+    def isDiscontinuity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], vmax: Union[float, np.floating], ti: Union[float, np.floating], tf: Union[float, np.floating]) -> bool:
         """ Determines if a jump between two points is a discontinuity
 
             Parameters:
@@ -73,9 +73,13 @@ class TRexDataCleaner:
             --------
             Boolean: Discontinuity or not
         """        
-        if pf[1] in ('infinity', np.inf): return True
-        
-        velocity = self.calculateVelocity(pi, pf, dtime)
+        if pf[1] in ('infinity', np.inf): 
+            return True
+        if ti in ('infinity', np.inf): 
+            return True
+        if tf in ('infinity', np.inf): 
+            return True
+        velocity = self.calculateVelocity(pi, pf, tf - ti)
         return velocity > vmax
 
     def calculateVelocity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], dtime: Union[float, np.floating] = 1.0) -> float:

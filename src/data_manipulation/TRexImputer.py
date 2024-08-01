@@ -17,10 +17,10 @@ class TRexImputer:
     """
     def __init__(self):
         self.imputationStrategies = {}
-        for filename in os.listdir('src/data_manipulation/imputationStrategies'):
+        for filename in os.listdir('imputation_strategies'):
             if filename.endswith('.py'):
                 function = filename[:-3]
-                file_path = os.path.join('src/data_manipulation/imputationStrategies', filename)
+                file_path = os.path.join('imputation_strategies', filename)
                 
                 # Import the function from the file
                 spec = importlib.util.spec_from_file_location(function, file_path)
@@ -32,7 +32,7 @@ class TRexImputer:
                 if func:
                     self.imputationStrategies[function] = func
         
-    def impute(self, data: pd.DataFrame, function: str = 'slope', tester: TRexDataTester = None) -> pd.DataFrame:
+    def impute(self, data: pd.DataFrame, function: str = 'avgValue', tester: TRexDataTester = None) -> pd.DataFrame:
         """ Imputes data's faulty values
 
             Parameters:
