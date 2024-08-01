@@ -17,7 +17,7 @@ for file in all_files:
     # print(file_path)
     df = pd.read_csv(file_path)
     dataframes.append(df)
-
+    
 # first_dataframe = dataframes[0]
 # print(first_dataframe)
 
