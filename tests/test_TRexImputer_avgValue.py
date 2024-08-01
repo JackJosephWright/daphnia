@@ -2,10 +2,8 @@
 import numpy as np
 import pandas as pd
 # Import classes from src/data_manipulation
-from src.data_manipulation.TRexDataTester import TRexDataTester
-from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 from src.data_manipulation.TRexImputer import TRexImputer
-from src.imputation_strategies import avgValue
+from imputation_strategies import avgValue
 
 imputer = TRexImputer()
 

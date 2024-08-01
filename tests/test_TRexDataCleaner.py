@@ -26,7 +26,7 @@ def test_calculateVelocity():
     pf = (3, 4)
     dtime = 5
     velocity = dataCleaner.calculateVelocity(pi, pf, dtime)
-    expectedVelocity = 1.0  # distance of 5 in 5 seconds = velocit of 1
+    expectedVelocity = 1.0  # distance of 5 in 5 seconds = velocity of 1
     assert pytest.approx(velocity, 0.01) == expectedVelocity
 
 def testDiscontinuity():
@@ -40,7 +40,6 @@ def testDiscontinuity():
     dtime = 1
     assert dataCleaner.isDiscontinuity(pi, pf, vmax, dtime)
     
-    # 'infinity' value
     pf = (np.inf, np.inf)
     assert dataCleaner.isDiscontinuity(pi, pf, vmax, dtime)
 
@@ -48,14 +47,12 @@ def test_renderDiscontinuities():
     vmax = 10
     cleanedData, removedData = dataCleaner.renderDiscontinuities(sampleData, vmax)
     
-    # Expected cleaned data
     expected_cleanedData = pd.DataFrame({
         'time': [0, 1, 2, 'infinity', 4, 5],
         'X#wcentroid': [0, 1, 2, 'infinity', 3, 4],
         'Y#wcentroid': [0, 1, 2, 'infinity', 3, 4]
     }).reset_index(drop=True)
     
-    # Expected removed data
     expected_removedData = pd.DataFrame({
         'time': [3],
         'X#wcentroid': [20],
