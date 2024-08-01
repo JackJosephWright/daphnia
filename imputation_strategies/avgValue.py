@@ -19,24 +19,24 @@ def impute(data: pd.DataFrame = None, vmax: float = 1) -> pd.DataFrame:
     for f in range(1, len(data)):
         pi = (data['X#wcentroid'][validIndex], data['Y#wcentroid'][validIndex])
         pf = (data['X#wcentroid'][f], data['Y#wcentroid'][f])  
-        dtime = data['time'][f] - data['time'][validIndex]
+        ti = data['time'][validIndex]
+        tf = data['time'][f]
         
-        if dataCleaner.isDiscontinuity(pi, pf, vmax, dtime): 
+        if dataCleaner.isDiscontinuity(pi, pf, vmax, ti, tf): 
+            print("Discontinuity")
             continue
         
         validIndexTime = data['time'][validIndex]
         
         velocityX = pf[0] - pi[0]
         velocityY = pf[1] - pi[1]
-        timeStep = dtime/(f-validIndex)
+        timeStep = (tf-ti)/(f-validIndex)
         
         for i in range(validIndex + 1, f):
             rate = i - validIndex
             newX = pi[0] + (velocityX * rate)
             newY = pi[1] + (velocityY * rate)
-            data.at[i, 'time'] = validIndexTime + (timeStep * rate)
-            data.at[i, 'X#wcentroid'] = newX
-            data.at[i, 'Y#wcentroid'] = newY
+            data.iloc[i] = [validIndexTime + (timeStep * rate), newX, newY]
         
         validIndex = f
 
