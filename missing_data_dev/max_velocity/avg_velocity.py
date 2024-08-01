@@ -53,11 +53,11 @@ def calc_avg_velocity(df):
 
 
 # calculate average velocities in all dataframes
-avg_velocities = [calc_avg_velocity(df) for df in dataframes]
+total_avg_velocity = [calc_avg_velocity(df) for df in dataframes]
 "wont calculate avg_velocity for tables with one value of data, most likely bc of iloc[1:]"
 
 # loop thru and print it
-# for i, avg_velo in enumerate(avg_velocities):
+# for i, avg_velo in enumerate(total_avg_velocity):
     # print(f"Average Velocity for file {i+1}: {avg_velo:.2f}")
 
 
