@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import numpy as np
 
 # from data import table_data
 
@@ -13,11 +14,21 @@ dataframes = []
 # loop through csv files and read each one 
 for file in all_files:
     file_path = os.path.join(direc_path, file)
-    print(file_path)
+    # print(file_path)
     df = pd.read_csv(file_path)
     dataframes.append(df)
 
-first_dataframe = dataframes[0]
-print(first_dataframe)
+# first_dataframe = dataframes[0]
+# print(first_dataframe)
 
-# for i in 
+x = df['X']
+y = df['Y']
+time = df['time']
+
+
+
+
+
+
+# for i in dataframes:
+
