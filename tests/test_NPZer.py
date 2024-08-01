@@ -7,6 +7,9 @@ from src.data_manipulation.TRexDataTester import TRexDataTester
 
 print(NPZer, TRexDataTester)
 
+def test_dummy():
+    assert 1 == 1
+
 if __name__ == "__main__":
     data = NPZer.unzipNpz(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', params = ['time', 'X#wcentroid', 'Y#wcentroid'])
     
