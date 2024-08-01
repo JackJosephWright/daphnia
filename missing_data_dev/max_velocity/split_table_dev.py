@@ -19,7 +19,7 @@ def split_table(df):
         print(col)
         if col not in ['X','Y','time']:
             df = df.drop(columns = col)
-        #     df = df.drop(col)
+            
     tables = []  #list to store dataframes
     index = 0  #starting index
     temp_table = None
@@ -35,9 +35,9 @@ def split_table(df):
             if temp_table is None:
                 temp_table = row.to_frame().T
             else:
-                
-                
                 temp_table.loc[len(temp_table)] = row.tolist()
+    if temp_table is not None:
+        tables.append(temp_table)
                 
     return tables
         # print(temp_table)
@@ -58,7 +58,4 @@ def save_tables(tables):
 
 
 
-    # for df["X","Y"] in df:
-    #     if df["X","Y"] == pd.isinf(x)
-    #     break
 
