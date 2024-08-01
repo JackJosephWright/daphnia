@@ -5,4 +5,5 @@ Clean_data = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/clean_fish_data
 
 df = pd.read_csv(Clean_data)
 
-print(df)
+
+print(split_table(df))

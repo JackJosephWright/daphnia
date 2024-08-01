@@ -18,6 +18,8 @@ def split_table(df):
     index = 0  #starting index
 
     for i, row in df.iterrows():
+        # print(i)
+        # print(row)
         if np.isinf(row['X']) or np.isinf(row['Y']):
             # creates a df for the current iteration
             new_table = df.iloc[index:i]
@@ -31,11 +33,17 @@ def split_table(df):
     return tables
 
 
-# split_Table(df)
+def save_tables(tables):
+    for index, table in enumerate(tables):
+        table.to_csv(f'table_{index}.csv', index=False)
+
+tables = split_table(df)
+save_tables(tables)
 
 
 
-#     # for df["X","Y"] in df:
-#     #     if df["X","Y"] == pd.isinf(x)
-#     #     break
+
+    # for df["X","Y"] in df:
+    #     if df["X","Y"] == pd.isinf(x)
+    #     break
 
