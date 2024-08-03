@@ -4,7 +4,7 @@ import pandas as pd
 from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 
 
-def impute(data: pd.DataFrame = None, vmax: float = 1) -> pd.DataFrame:
+def impute(data: pd.DataFrame = None) -> pd.DataFrame:
     if data is None:
         return "fill values with an avg velocity to connect two disconnected segments"
     
@@ -14,30 +14,30 @@ def impute(data: pd.DataFrame = None, vmax: float = 1) -> pd.DataFrame:
     
     data.reset_index(drop=True)
     
-    validIndex = 0
+    lastValidIndex = 0
     
     for f in range(1, len(data)):
-        pi = (data['X#wcentroid'][validIndex], data['Y#wcentroid'][validIndex])
-        pf = (data['X#wcentroid'][f], data['Y#wcentroid'][f])  
-        ti = data['time'][validIndex]
-        tf = data['time'][f]
         
-        if dataCleaner.isDiscontinuity(pi, pf, vmax, ti, tf): 
-            print("Discontinuity")
-            continue
-        
-        validIndexTime = data['time'][validIndex]
-        
-        velocityX = pf[0] - pi[0]
-        velocityY = pf[1] - pi[1]
-        timeStep = (tf-ti)/(f-validIndex)
-        
-        for i in range(validIndex + 1, f):
-            rate = i - validIndex
-            newX = pi[0] + (velocityX * rate)
-            newY = pi[1] + (velocityY * rate)
-            data.iloc[i] = [validIndexTime + (timeStep * rate), newX, newY]
-        
-        validIndex = f
+        if data['X#wcentroid'][f] in ('infinity', np.inf): 
+            i = f
+            while(data['X#wcentroid'][i] in ('infinity', np.inf)):
+                i = i + 1
+                continue
+            nextValidIndex = i
+            print(f"\nLastValidRow: \n ({data['X#wcentroid'][lastValidIndex]}, {data['Y#wcentroid'][lastValidIndex]}) \nNextValidRow: \n ({data['X#wcentroid'][nextValidIndex]}, {data['Y#wcentroid'][nextValidIndex]})")
 
+            velocityX = getVelocity(data.loc[lastValidIndex, 'X#wcentroid'], data.loc[nextValidIndex, 'X#wcentroid'], data.loc[lastValidIndex, 'time'], data.loc[nextValidIndex, 'time'])
+            velocityY = getVelocity(data.loc[lastValidIndex, 'Y#wcentroid'], data.loc[nextValidIndex, 'Y#wcentroid'], data.loc[lastValidIndex, 'time'], data.loc[nextValidIndex, 'time'])
+            print("\nVelocityX: ", velocityX, "VelocityY: ", velocityY, "dtime: ", data.loc[nextValidIndex, 'time'], "-", data.loc[lastValidIndex, 'time'], "=", data.loc[nextValidIndex, 'time']-data.loc[lastValidIndex, 'time'])
+            for imputeIndex in range(lastValidIndex + 1, nextValidIndex):
+                data.loc[imputeIndex, 'X#wcentroid'] = data.loc[nextValidIndex, 'X#wcentroid'] + velocityX * (imputeIndex - lastValidIndex)
+                data.loc[imputeIndex, 'Y#wcentroid'] = data.loc[nextValidIndex, 'Y#wcentroid'] + velocityY * (imputeIndex - lastValidIndex)
+                print(f"Imputing: ({(data.loc[imputeIndex, 'X#wcentroid'])}, {data.loc[imputeIndex, 'Y#wcentroid']})")
+        else:
+            lastValidIndex = f
+        
     return data
+    
+def getVelocity(pi, pf, ti, tf) -> float:
+    return (pf - pi)/(tf-ti)
+    

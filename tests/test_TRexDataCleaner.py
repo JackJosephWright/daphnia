@@ -33,15 +33,15 @@ def testDiscontinuity():
     pi = (0, 0)
     pf = (3, 4)
     vmax = 1.0
-    dtime = 5
-    assert not dataCleaner.isDiscontinuity(pi, pf, vmax, dtime)
+    ti = 0
+    tf = 5
+    assert not dataCleaner.isDiscontinuity(pi, pf, vmax, ti, tf)
     
     # higher velocity now, should be a discontinuity
-    dtime = 1
-    assert dataCleaner.isDiscontinuity(pi, pf, vmax, dtime)
+    assert dataCleaner.isDiscontinuity(pi, pf, vmax, ti = 0, tf = 1)
     
     pf = (np.inf, np.inf)
-    assert dataCleaner.isDiscontinuity(pi, pf, vmax, dtime)
+    assert dataCleaner.isDiscontinuity(pi, pf, vmax, ti = 0, tf = 1)
 
 def test_renderDiscontinuities():
     vmax = 10
