@@ -9,8 +9,8 @@ imputer = TRexImputer()
 
 sampleData = pd.DataFrame.from_dict({
     'time': [0, 1, 2, 'infinity', 'infinity', 'infinity', 6, 7],
-    'X#wcentroid': [0, 1, 2, 'infinity', 'infinity', 'infinity', 6, 7],
-    'Y#wcentroid': [0, 1, 2, 'infinity' , 'infinity', 'infinity', 6, 7]
+    'X': [0, 1, 2, 'infinity', 'infinity', 'infinity', 6, 7],
+    'Y': [0, 1, 2, 'infinity' , 'infinity', 'infinity', 6, 7]
 })
 
 print(imputer.impute(sampleData))

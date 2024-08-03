@@ -9,17 +9,11 @@ from src.data_manipulation.NPZer import NPZer
 dataCleaner = TRexDataCleaner()
 
 def test_cleanedDataStructure():
-    data = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
+    data = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X', 'Y'])
     dataCleaner = TRexDataCleaner()
-    cleaned = dataCleaner.renderDiscontinuities(data = data, vmax = 50)
+    cleaned, removed = dataCleaner.renderDiscontinuities(data = data, vmax = 50)
     tester = TRexDataTester(timeTracked = True, dtype = np.floating)
     tester.testAll(cleaned)
-    
-sampleData = pd.DataFrame.from_dict({
-    'time': [0, 1, 2, 3, 4, 5],
-    'X#wcentroid': [0, 1, 2, 20, 3, 4],
-    'Y#wcentroid': [0, 1, 2, 2, 3, 4]
-})
 
 def test_calculateVelocity():
     pi = (0, 0)
@@ -44,23 +38,29 @@ def testDiscontinuity():
     assert dataCleaner.isDiscontinuity(pi, pf, vmax, ti = 0, tf = 1)
 
 def test_renderDiscontinuities():
-    vmax = 10
+    dataCleaner = TRexDataCleaner()
+    vmax = 5
+    sampleData = pd.DataFrame.from_dict({
+        'time': [0.0, 1.0, 2.0, 3.0, 4.0, 5.0],
+        'X': [0.0, 1.0, 2.0, 20.0, 3.0, 4.0],
+        'Y': [0.0, 1.0, 2.0, 2.0, 3.0, 4.0]
+    }).reset_index(drop=True)
+    
     cleanedData, removedData = dataCleaner.renderDiscontinuities(sampleData, vmax)
     
-    expected_cleanedData = pd.DataFrame({
-        'time': [0, 1, 2, 'infinity', 4, 5],
-        'X#wcentroid': [0, 1, 2, 'infinity', 3, 4],
-        'Y#wcentroid': [0, 1, 2, 'infinity', 3, 4]
+    expected_cleanedData = pd.DataFrame.from_dict({
+        'time': [0.0, 1.0, 2.0, 3.0, 4.0, 5.0],
+        'X': [0.0, 1.0, 2.0, np.inf, 3.0, 4.0],
+        'Y': [0.0, 1.0, 2.0, np.inf, 3.0, 4.0]
     }).reset_index(drop=True)
     
-    expected_removedData = pd.DataFrame({
-        'time': [3],
-        'X#wcentroid': [20],
-        'Y#wcentroid': [2]
+    expected_removedData = pd.DataFrame.from_dict({
+        'time': [3.0],
+        'X': [20.0],
+        'Y': [2.0]
     }).reset_index(drop=True)
-    
+
     pd.testing.assert_frame_equal(cleanedData, expected_cleanedData)
     pd.testing.assert_frame_equal(removedData, expected_removedData)
 
-    
-    
+pytest.main()

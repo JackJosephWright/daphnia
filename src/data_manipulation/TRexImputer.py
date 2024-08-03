@@ -67,7 +67,7 @@ class TRexImputer:
 if __name__ == '__main__':
     imputer = TRexImputer()
     
-    data = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
+    data = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X', 'Y'])
     
     imputer.functions()
     

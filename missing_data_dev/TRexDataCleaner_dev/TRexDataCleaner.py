@@ -32,7 +32,7 @@ class TRexDataCleaner:
             Tuple of two Pandas DataFrames: (Cleaned DataFrame, Faulty rows from DataFrame)
         """
 
-        assert all(col in data.columns for col in ['time', 'X#wcentroid', 'Y#wcentroid']), f"Expected columns of ['time', 'X#wcentroid', 'Y#centroid']\nRecieved: {[col for col in data.columns]}"
+        assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nRecieved: {[col for col in data.columns]}"
         assert vmax > 0, f"Expected vmax >0\nRecieved: {vmax}"
         
         cleanedData = pd.DataFrame(data = data.iloc[0], columns = data.columns)
@@ -41,8 +41,8 @@ class TRexDataCleaner:
         validIndex = 0
         
         for f in range(1, len(data)):
-            pi = (data['X#wcentroid'][validIndex], data['Y#wcentroid'][validIndex])
-            pf = (data['X#wcentroid'][f], data['Y#wcentroid'][f])
+            pi = (data['X'][validIndex], data['Y'][validIndex])
+            pf = (data['X'][f], data['Y'][f])
             
             if self.isDiscontinuity(pi, pf, vmax, data['time'][f] - data['time'][validIndex]): 
                 print(f"Faulty row: \nInitial: \n--------\n{data.iloc[validIndex]}\n|\nV\nFinal: \n------\n{data.iloc[f]} \n\n\n")
@@ -107,7 +107,7 @@ class TRexDataCleaner:
 if __name__ == "__main__":
     dataCleaner = TRexDataCleaner()
     
-    faultyData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
+    faultyData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X', 'Y'])
     print(f"Faulty Data: \n {faultyData}")
 
     cleanedData, removedData = dataCleaner.renderDiscontinuities(data=faultyData, vmax=50)
