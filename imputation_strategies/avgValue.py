@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
+from typing import Union
 
 
 def impute(data: pd.DataFrame = None) -> pd.DataFrame:
@@ -23,20 +24,30 @@ def impute(data: pd.DataFrame = None) -> pd.DataFrame:
                 i = i + 1
                 continue
             nextValidIndex = i
-            print(f"\nLastValidRow: \n ({data['X'][lastValidIndex]}, {data['Y'][lastValidIndex]}) \nNextValidRow: \n ({data['X'][nextValidIndex]}, {data['Y'][nextValidIndex]})")
 
-            velocityX = getVelocity(data.loc[lastValidIndex, 'X'], data.loc[nextValidIndex, 'X'], data.loc[lastValidIndex, 'time'], data.loc[nextValidIndex, 'time'])
-            velocityY = getVelocity(data.loc[lastValidIndex, 'Y'], data.loc[nextValidIndex, 'Y'], data.loc[lastValidIndex, 'time'], data.loc[nextValidIndex, 'time'])
-            print("\nVelocityX: ", velocityX, "VelocityY: ", velocityY, "dtime: ", data.loc[nextValidIndex, 'time'], "-", data.loc[lastValidIndex, 'time'], "=", data.loc[nextValidIndex, 'time']-data.loc[lastValidIndex, 'time'])
+            velocityX = calculateVelocity(pi = data.loc[lastValidIndex, 'X'], pf = data.loc[nextValidIndex, 'X'], dtime = data.loc[nextValidIndex, 'time'] - data.loc[lastValidIndex, 'time'])
+            velocityY = calculateVelocity(pi = data.loc[lastValidIndex, 'Y'], pf = data.loc[nextValidIndex, 'Y'], dtime = data.loc[nextValidIndex, 'time'] - data.loc[lastValidIndex, 'time'])
             for imputeIndex in range(lastValidIndex + 1, nextValidIndex):
-                data.loc[imputeIndex, 'X'] = data.loc[nextValidIndex, 'X'] + velocityX * (imputeIndex - lastValidIndex)
-                data.loc[imputeIndex, 'Y'] = data.loc[nextValidIndex, 'Y'] + velocityY * (imputeIndex - lastValidIndex)
-                print(f"Imputing: ({(data.loc[imputeIndex, 'X'])}, {data.loc[imputeIndex, 'Y']})")
+                data.loc[imputeIndex, 'X'] = data.loc[lastValidIndex, 'X'] + (velocityX * (imputeIndex - lastValidIndex))
+                data.loc[imputeIndex, 'Y'] = data.loc[lastValidIndex, 'Y'] + (velocityY * (imputeIndex - lastValidIndex))
         else:
             lastValidIndex = f
         
     return data
     
-def getVelocity(pi, pf, ti, tf) -> float:
-    return (pf - pi)/(tf-ti)
+def calculateVelocity(pi: Union[float, np.floating], pf: Union[float, np.floating], dtime: Union[float, np.floating]) -> float:
+    """Calculates velocity between two points
+            Parameters:
+            -----------
+            pi: (float, float) or (np.floating, np.floating)
+                initial position of entity. Given as (x-coordinate, y-coordinate)
+            pf: (float, float) or (np.floating, np.floating)
+                final position of entity. Given as (x-coordinate, y-coordinate)
+            dtime: float or np.floating, default 1s
+                difference in time between pi and pf
+            Returns:
+            --------
+            Float: calculated velocity
+    """
+    return (pf - pi)/dtime
     
