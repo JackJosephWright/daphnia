@@ -66,3 +66,5 @@ ibrahim
 
 
 4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
+   1. visual inspection of "C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\single_7_9_fish1.MP4_fish0.npz" to be called "fm1"
+        make sure there arent any obvious jumps and the data looks ok. (missing is fine, no jumps)
