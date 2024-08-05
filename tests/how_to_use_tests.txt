@@ -8,6 +8,9 @@ file in the terminal as a module.
 
 make sure your current working directory is the root
 
+
+RUNNING REGULAR FILES
+
 EXAMPLE:
 
 MAC
@@ -18,3 +21,18 @@ python -m tests.test_NPZer (no .py necessary since this is a module)
 PC:
 
 py -m tests.test_NPZer
+
+
+
+
+RUNNING A PYTEST
+
+
+just use the normal slashing stcture for running in the terminal
+
+EXAMPLE:
+
+pytest tests/test_NPZer.py
+
+
+
