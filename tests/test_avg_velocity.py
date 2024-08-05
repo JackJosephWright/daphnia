@@ -27,4 +27,27 @@ first_dataframe = dataframes[0]
 p1 = first_dataframe.iloc[0]
 p2 = first_dataframe.iloc[1]
 print('first df :', first_dataframe)
-print(calc_velocity(p1,p2))
+# print(calc_velocity(p1,p2))
+print(avg_velocity(first_dataframe))
+
+#make synthetic dataframe
+
+#test it check that its right
+
+
+# Generate synthetic data
+# def generate_synthetic_data():
+#     data = {
+#         'X': [0, 1, 2, 3, 4],
+#         'Y': [0, 1, 2, 3, 4],
+#         'time': [0, 1, 2, 3, 4]
+#     }
+#     df = pd.DataFrame(data)
+#     return df
+
+# # Test the avg_velocity function
+# df = generate_synthetic_data()
+# print("Synthetic Data:\n", df)
+
+# velocities = avg_velocity(df)
+# print("Calculated Velocities:\n", velocities)

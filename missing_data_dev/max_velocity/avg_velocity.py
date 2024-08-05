@@ -14,30 +14,42 @@ dataframes = []
 def calc_velocity(point1, point2):
     print("point 1:", point1)
     print("point 2:", point2)
-    # use the pythagorean theorem to calculate the displacement
+
     delta_x = point2["X"] - point1["X"]
     delta_y = point2["Y"] - point1["Y"]
     print("delta_x: ", delta_x, "delta_y: ", delta_y)
     displacement = np.sqrt(delta_x**2 + delta_y**2)
     print("displacement:", displacement)
-    # calculate the difference in time (delta)
+
     delta_time = point2["time"] - point1["time"]
     print("delta_time:", delta_time)
-    # divide the displacement by the difference in time
+
     velocity = displacement / delta_time
     
-    # return the velocity
     return velocity
 
 
-#write a function that 
      
 def avg_velocity(df):
     V = []
-    for i in len(df) + 1:
-    point2 = df(i)
-    point1 = df(i - 1)
-    V.append(calc_velocity(point1, point2))
+    print('length of df:',len(df))
+    for i in range(1, len(df)):
+        # print(i)
+        point2 = df.iloc[i]
+        point1 = df.iloc[i - 1]
+        # print('point 1:', point1)
+        # print('point 2:', point2)
+        V.append(calc_velocity(point1, point2))
+    return V
 
 
+#collect all the velocities and put in one vector
+
+def all_velocity(df):
+    all_v = []
     
+
+#get avg velocity with standard deviation 
+
+
+#plot the velocities as a ccontinuous density function (or histogram)
