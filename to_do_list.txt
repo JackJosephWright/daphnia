@@ -3,6 +3,7 @@ Write down any new tasks to completegit
 TODO IDEAS:
 
 
+check if y#wcentroid is the same as Y etc...
 
 
 
@@ -10,21 +11,22 @@ TODO IDEAS:
 
 
 
-CURRENT MAIN TODO:
 
 
-guiliano
 
-create synthetic data to test the imputer. add to a test_TRexImputer file
 
-create simple imputer (add a nonsense value that plots where you can see it)
+1. create .npz file from single_fish.mp4
+    -ibrahim
 
-plot the results to checgik it
 
-start on avg value imputer 
 
-this goes in the imputation strategy folder, it should fill values with an avg velocity to connect two disconnected segments
 
+2. add new zip functions to src
+    -modify zip.py for the final src file
+    -install pytest
+    -tutorial on pytest
+    -write 2 normal case tests
+    -write 2 edge case tests
 
 
 3. write function to standardize plotting of the fish df. 
@@ -32,32 +34,12 @@ this goes in the imputation strategy folder, it should fill values with an avg v
     -do a quick tutorial on pandas dataframes
     -plot graph 
 
-
-GETTING CLEAN DATA:
-
-    Ibrahim
-
-
-    GOAL: get a reasonable estimate of the daphnia top speed for our data cleaning function
-
-    1. visual inspection of "C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\single_7_9_fish1.MP4_fish0.npz" to be called "fm1"
-        make sure there arent any obvious jumps and the data looks ok. (missing is fine, no jumps)
-
-    2. cut the data into separate tables (if there is missing data, start a new table)
-
-    3. look at the distribution of lengths (how long each segment is, you could do the last row's t - the first rows t)
-        throw out the tables that are too short
-    4. calculate the velocity (d/t) between every point in the good data. plot this as a distribution
-
-    5. come up with a reasonable estimate for the daphnias TOP SPEED
+4. add mirror argument to pandafy function
+    -do the mirroring
+    
 
 
-
-
-
-LARGER GOALS:
-
-
+4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
 
 outline missing data:
 
