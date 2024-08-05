@@ -11,16 +11,14 @@ def impute(data: pd.DataFrame = None) -> pd.DataFrame:
     
     assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nRecieved: {[col for col in data.columns]}"
     
-    dataCleaner = TRexDataCleaner()
-    
     data.reset_index(drop=True)
     
     lastValidIndex = 0
     
     for f in range(1, len(data)):
-        if data['X'][f] in ('infinity', np.inf): 
+        if data.loc[f, 'X'] in ('infinity', np.inf): 
             i = f
-            while(data['X'][i] in ('infinity', np.inf)):
+            while(data.loc[i, 'X'] in ('infinity', np.inf)):
                 i = i + 1
                 continue
             nextValidIndex = i
