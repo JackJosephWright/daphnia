@@ -9,7 +9,7 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
     if data is None:
         return "fill values with an avg velocity to connect two disconnected segments"
     
-    assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nReceived: {[col for col in data.columns]}"
+    assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nReceived: {data.columns}"
     
     data.reset_index(drop=True, inplace=True)
     
@@ -29,8 +29,8 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
             velocityY = calculateVelocity(data.loc[lastValidIndex, 'Y'], data.loc[nextValidIndex, 'Y'], dtime)
             
             for imputeIndex in range(lastValidIndex + 1, nextValidIndex):
-                data.loc[imputeIndex, 'X'] = data.loc[lastValidIndex, 'X'] + velocityX * data.loc[imputeIndex, 'time']
-                data.loc[imputeIndex, 'Y'] = data.loc[lastValidIndex, 'Y'] + velocityY * data.loc[imputeIndex, 'time']#(velocityY * (dtime - (dtime/imputeIndex)))
+                data.loc[imputeIndex, 'X'] = data.loc[lastValidIndex, 'X'] + velocityX * (data.loc[imputeIndex, 'time'] - data.loc[lastValidIndex, 'time'])
+                data.loc[imputeIndex, 'Y'] = data.loc[lastValidIndex, 'Y'] + velocityY * (data.loc[imputeIndex, 'time'] - data.loc[lastValidIndex, 'time'])
         else:
             lastValidIndex = f
         

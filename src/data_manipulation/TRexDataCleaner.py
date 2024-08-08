@@ -45,6 +45,7 @@ class TRexDataCleaner:
             pf = (data.loc[f, 'X'], data.loc[f, 'Y'])
             
             if self.isDiscontinuity(pi = pi, pf= pf, vmax = vmax, ti = data.loc[validIndex, 'time'], tf = data.loc[f, 'time']):
+                print('discontinuous')
                 removedData = pd.concat([removedData, pd.DataFrame([data.iloc[f]])], ignore_index=True)
                 cleanedData = pd.concat([cleanedData, pd.DataFrame({'time': [data.loc[f, 'time']], 'X': [np.inf], 'Y': [np.inf]})], ignore_index=True)
             else:
@@ -73,6 +74,7 @@ class TRexDataCleaner:
             return True
         velocity = self.calculateVelocity(pi=pi, pf=pf, dtime=tf - ti)
         if velocity > vmax:
+            print(f'{pi} to {pf} has velocity {velocity} > {vmax}')
             return velocity > vmax
 
     def calculateVelocity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], dtime: Union[float, np.floating]) -> float:
