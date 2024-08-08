@@ -67,7 +67,7 @@ def animate(i):
     return line,
 
 # Call the animator
-ani = FuncAnimation(fig, animate, init_func=init, frames=len(df_subset), interval=50, blit=True)
+ani = FuncAnimation(fig, animate, init_func=init, frames=len(df_subset), interval=10, blit=True)
 
 
 # plt.plot(df_subset['X'], df_subset['Y'])
