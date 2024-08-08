@@ -7502,8 +7502,8 @@ a.anchor-link {
 <li>Created a class <code>NPZer</code> which unzips and unpacks <code>.npz</code> files, the output from TRex, for imputation and transformation.</li>
 <li>Created a class <code>TRexDataCleaner</code> which removes disjoint data points, such as large jumps in position and missing data.</li>
 <li>Created a class <code>TRexImputer</code> which provides a framework for applying different imputation strategies to missing daphnia tracking data, currently using only an <code>avgValue</code> function.</li>
-<li>Developed easy plotting functions for displaying daphnia tracking.</li>
-<li>Established a framework for estimating maximum daphnia velocity used in data cleaning and imputation.</li>
+<li>Developed <code>plotDetail</code>: an easy to use and standardized plotting function for displaying daphnia tracking.</li>
+<li>Established <code>avgVelocity</code> a framework for estimating maximum daphnia velocity used in data cleaning and imputation.</li>
 </ul>
 <hr/>
 <h2 id="Walkthrough-of-Imputation-Process">Walkthrough of Imputation Process<a class="anchor-link" href="#Walkthrough-of-Imputation-Process">¶</a></h2><p>This process occurs <em>POST</em> TRex animal tracking for a single daphnia:</p>
