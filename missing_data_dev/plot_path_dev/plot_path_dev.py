@@ -1,9 +1,3 @@
-
-"""
-take a look at the npz file and the subfiles. We need to extract the relevant file (maybe timestamp X and Y to create the df)
-"""
-
-
 from src.data_manipulation.NPZer import NPZer
 from src.data_manipulation.TRexDataTester import TRexDataTester
 import pandas as pd
@@ -32,19 +26,13 @@ df = pd.DataFrame(
 )
 
 
-"drops missing data"
+# Drop missing or infinite data
+# df.dropna(inplace=True)
+# df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
 # df.dropna(inplace=True)
 
 
 df_subset = df.loc[3320:]
-# print(df_subset)
-#writing csv
-# df_subset.to_csv('fish_data_clean.csv')
-
-# check how many rows of missing data
-df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
-miss = df_subset[df_subset.isnull().any(axis=1)]
-# print(miss)
 
 
 #set up the plot
@@ -52,8 +40,8 @@ fig, ax = plt.subplots()
 line, = ax.plot([],[],'b-')
 
 #set limits 
-
-
+# ax.set_xlim(df_subset['X'].min(), df_subset['X'].max())
+# ax.set_ylim(df_subset['Y'].min(), df_subset['Y'].max())
 
 
 def plotDetail(title, xlable, ylabel):
@@ -63,9 +51,35 @@ def plotDetail(title, xlable, ylabel):
     plt.xlabel(xlable,fontdict=hfont)
     plt.ylabel(ylabel,fontdict=hfont)
 
-
-plt.plot(df_subset['X'], df_subset['Y'])
 plotDetail("Single Fish Data","X value","Y value")
-#plt.show()
+
+
+# Initialization function: plot the background of each frame
+def init():
+    line.set_data([], [])
+    return line,
+
+# Animation function: this is called sequentially
+def animate(i):
+    x = df_subset['X'][:i]
+    y = df_subset['Y'][:i]
+    line.set_data(x, y)
+    return line,
+
+# Call the animator
+ani = FuncAnimation(fig, animate, init_func=init, frames=len(df_subset), interval=50, blit=True)
+
+
+# plt.plot(df_subset['X'], df_subset['Y'])
+plt.show()
 
 #if __name__ == "__main__":
+
+# print(df_subset)
+#writing csv
+# df_subset.to_csv('fish_data_clean.csv')
+
+# check how many rows of missing data
+# df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
+# miss = df_subset[df_subset.isnull().any(axis=1)]
+# print(miss)
