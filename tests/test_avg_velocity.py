@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 
 from missing_data_dev.max_velocity.avg_velocity import calc_velocity, avg_velocity, all_velocity, plot_histogram
 # directory containing csv table files
-direct_path = "/Users/ibrahimrahat/Documents/GitHub/daphnia/data/table_data"
-
+#direct_path = "/Users/ibrahimrahat/Documents/GitHub/daphnia/data/table_data"
+direct_path = r'data\table_data'
 all_files = os.listdir(direct_path)
 
 dataframes = []
