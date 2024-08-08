@@ -20,7 +20,7 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
             i = f
             while data.loc[i, 'X'] in ('infinity', np.inf):
                 i += 1
-                if i >= len(data):
+                if i == len(data) - 1:
                     break
             nextValidIndex = i
             
