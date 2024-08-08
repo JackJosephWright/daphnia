@@ -1,3 +1,35 @@
+
+
+IBRAHIM:
+
+split out the table maker from avgVelocity to work on its own. Dr Kagan might need this
+-dont save as tables have them as local variables. maybe make a parameter that would save them all into a folder like we do now
+
+
+
+-finish animation. 
+-turn visualization stuff into a class, put in tutorials folder
+-add all visualization functions into a class. 
+-write tests for all methods in `tests` folder
+-finalize class and save in `src`
+
+
+
+tasks:
+
+1- learn about python classes (w3schools)
+2- do a tutorial on building a class 
+
+
+-finish animation. 
+-turn visualization stuff into a class, put in tutorials folder
+-add all visualization functions into a class. 
+-write tests for all methods in `tests` folder
+-finalize class and save in `src`
+
+
+
+
 Macro plan:
 
 SHARING THE REPO
@@ -13,10 +45,20 @@ fork for David and co...
 -package the repo and test it
 
 
+
+
 DOCUMENTATION
+
+
 
 ?sphynx? documentation for the project, if not
 
 use the report structure to create a jupyter notebook FUNCTIONING documentation with 
 
 
+example documentation for a method in a class:
+
+https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
+
+
+other idea: put it in a google colab to make the documentation interactive
