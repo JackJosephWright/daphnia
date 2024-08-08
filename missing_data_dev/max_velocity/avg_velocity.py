@@ -5,10 +5,10 @@ import numpy as np
 # from data import table_data
 
 # directory containing csv table files
-direct_path = "/Users/ibrahimrahat/Documents/GitHub/daphnia/data/table_data"
-
-all_files = os.listdir(direct_path)
-
+#direct_path = "/Users/ibrahimrahat/Documents/GitHub/daphnia/data/table_data"
+relative_path = "data/table_data"
+#all_files = os.listdir(direct_path)
+all_files = os.listdir(relative_path)
 dataframes = []
 
 def calc_velocity(point1, point2):
