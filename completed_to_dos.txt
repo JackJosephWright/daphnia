@@ -68,3 +68,60 @@ ibrahim
 4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
    1. visual inspection of "C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\single_7_9_fish1.MP4_fish0.npz" to be called "fm1"
         make sure there arent any obvious jumps and the data looks ok. (missing is fine, no jumps)
+
+
+
+
+
+Write down any new tasks to completegit
+
+
+
+
+2. add new zip functions to src
+    -modify zip.py for the final src file
+    -install pytest
+    -tutorial on pytest
+    -write 2 normal case tests
+    -write 2 edge case tests
+
+X. add a section to the readme.txt on how to merge the main branch changes into another branch
+
+
+3. write function to standardize plotting of the fish df. 
+    -do a tutorial on matplotlib  DONE
+    -do a quick tutorial on pandas dataframes
+    -use unzipper  to unzip .npz file
+    -plot graph of npz data
+    -write a function that takes in a dataframe and plots the fish
+    -discussion on refactoring this:
+
+4. add mirror argument to pandafy function
+    -do the mirroring
+    
+
+
+4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
+
+outline missing data:
+
+    goal:
+
+    fill in missing data in in one of the files inside the .npz with some strategy for data imputation
+
+    process:
+
+    locate the .npz file: 
+
+    unzip the file:
+
+    combine vectors in unzipped npz into a table 
+
+    *decide how to define a missing segment* 
+
+
+    want:
+
+    argument in function that accepts an imputation strategy
+
+

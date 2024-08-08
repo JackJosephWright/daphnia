@@ -1,52 +1,22 @@
-Write down any new tasks to completegit
+Macro plan:
+
+SHARING THE REPO
+
+get repo documented and build a tutorial
+
+fork for David and co...
+
+-can you compile a package easily 
+
+-do a tutorial
+
+-package the repo and test it
 
 
+DOCUMENTATION
 
+?sphynx? documentation for the project, if not
 
-2. add new zip functions to src
-    -modify zip.py for the final src file
-    -install pytest
-    -tutorial on pytest
-    -write 2 normal case tests
-    -write 2 edge case tests
-
-X. add a section to the readme.txt on how to merge the main branch changes into another branch
-
-
-3. write function to standardize plotting of the fish df. 
-    -do a tutorial on matplotlib  DONE
-    -do a quick tutorial on pandas dataframes
-    -use unzipper  to unzip .npz file
-    -plot graph of npz data
-    -write a function that takes in a dataframe and plots the fish
-    -discussion on refactoring this:
-
-4. add mirror argument to pandafy function
-    -do the mirroring
-    
-
-
-4. get important packages downloaded (pandas, sklearn, matplotlib, numpy)
-
-outline missing data:
-
-    goal:
-
-    fill in missing data in in one of the files inside the .npz with some strategy for data imputation
-
-    process:
-
-    locate the .npz file: 
-
-    unzip the file:
-
-    combine vectors in unzipped npz into a table 
-
-    *decide how to define a missing segment* 
-
-
-    want:
-
-    argument in function that accepts an imputation strategy
+use the report structure to create a jupyter notebook FUNCTIONING documentation with 
 
 
