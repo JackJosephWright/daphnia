@@ -10,7 +10,7 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
         return "fill values with an avg velocity to connect two disconnected segments"
     
     assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nReceived: {data.columns}"
-    
+    data = data.copy(deep=True)
     data.reset_index(drop=True, inplace=True)
     
     lastValidIndex = 0
