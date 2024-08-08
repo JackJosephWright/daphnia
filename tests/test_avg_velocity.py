@@ -3,9 +3,7 @@ import numpy as np
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-# Import classes from src/data_manipulation
-# from src.data_manipulation.NPZer import NPZer
-# from src.data_manipulation.TRexDataTester import TRexDataTester
+
 
 from missing_data_dev.max_velocity.avg_velocity import calc_velocity, avg_velocity, all_velocity, plot_histogram
 # directory containing csv table files
@@ -21,7 +19,6 @@ for file in all_files:
     # print(file_path)
     df = pd.read_csv(file_path)
     dataframes.append(df)
-    # break
 
 first_dataframe = dataframes[0]
 # print(first_dataframe)
