@@ -17,8 +17,6 @@ npz_path = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/npz_file/single_7
 #use np.load to load the npz file
 data = np.load(npz_path)
 
-
-
 timestamp = data['timestamp']
 
 X = data['X']
