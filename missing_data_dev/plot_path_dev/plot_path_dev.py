@@ -73,6 +73,10 @@ ani = FuncAnimation(fig, animate, init_func=init, frames=len(df_subset), interva
 # plt.plot(df_subset['X'], df_subset['Y'])
 plt.show()
 
+
+
+
+
 #if __name__ == "__main__":
 
 # print(df_subset)
