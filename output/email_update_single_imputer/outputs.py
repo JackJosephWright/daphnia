@@ -2,6 +2,8 @@
 import pandas as pd
 import numpy as np
 from src.data_manipulation.NPZer import NPZer
+import matplotlib.pyplot as plt
+
 
 NPZer = NPZer()
 
@@ -24,10 +26,10 @@ from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 dataCleaner = TRexDataCleaner()
 
 # Set desired parameters
-VMAX = 1.4 * 10**-5
+VMAX = 3
 
 # Set sample of original data
-originalData = unzippedData[:25].reset_index(drop=True)
+originalData = unzippedData.reset_index(drop=True)
 
 # Print sample of original data
 print('Original Data:\n', originalData)
@@ -55,3 +57,5 @@ imputedData = imputer.impute(data=DATA, function=FUNCTION)
 
 # Print imputed data
 print('Imputed Data:\n', imputedData)
+plt.plot(imputedData['X'], imputedData['Y'])
+plt.show()

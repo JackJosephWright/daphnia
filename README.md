@@ -1,0 +1,1 @@
+This project contains classes that aid in the manipulation of TRex animal tracking data

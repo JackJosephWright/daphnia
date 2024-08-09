@@ -9,7 +9,7 @@ from src.data_manipulation.TRexDataTester import TRexDataTester
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
-npz_path = r"C:\Users\jwright\Documents\GitHub\daphnia\data\npz_file\small_100_fish0.npz"
+npz_path = r'data/npz_file/small_100_fish0.npz'
 #npz_path = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/npz_file/small_100_fish0.npz"
 #npz_path = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/npz_file/single_7_9_fish1.MP4_fish0.npz"
 
@@ -45,8 +45,8 @@ def plotDetail(title, xlable, ylabel):
     plt.ylabel(ylabel,fontdict=hfont)
 
 
-plt.plot(df_subset['X'], df_subset['Y'])
-plotDetail("Single Fish Data","X value","Y value")
-plt.show()
+# plt.plot(df_subset['X'], df_subset['Y'])
+# plotDetail("Single Fish Data","X value","Y value")
+# plt.show()
 
 #if __name__ == "__main__":

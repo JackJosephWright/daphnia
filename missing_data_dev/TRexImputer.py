@@ -17,7 +17,7 @@ class TRexImputer:
     """
     def __init__(self, strategy_dir='imputation_strategies'):
         self.imputationStrategies = {}
-        strategy_dir_path = os.path.abspath(os.path.join('src', 'data_manipulation', strategy_dir))
+        strategy_dir_path = os.path.abspath(strategy_dir)
         if not os.path.exists(strategy_dir_path):
             raise FileNotFoundError(f"Directory {strategy_dir_path} does not exist.")
         
