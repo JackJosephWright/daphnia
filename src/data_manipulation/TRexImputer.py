@@ -6,14 +6,24 @@ from src.data_manipulation.NPZer import NPZer
 import pandas as pd
 
 class TRexImputer:
-    """Handles TRex data imputation
-    
-    Functions:
+    """
+    Handles TRex data imputation.
+
+    This class loads imputation strategies from Python files in a specified directory 
+    and applies these strategies to impute faulty values in TRex data.
+
+    Attributes
     ----------
-    impute:
-        Imputes data's faulty values
-    functions:
-        Describes imputation strategies
+    imputationStrategies : dict
+        A dictionary storing the available imputation functions.
+
+    Methods
+    -------
+    impute(data, function='avgValue', tester=None):
+        Imputes faulty values in the provided data using the specified function.
+    
+    functions():
+        Lists all available imputation strategies.
     """
     def __init__(self, strategy_dir='imputation_strategies'):
         self.imputationStrategies = {}
@@ -39,21 +49,29 @@ class TRexImputer:
                 func = getattr(module, 'impute', None)
                 if func:
                     self.imputationStrategies[function] = func
-        
+    
     def impute(self, data: pd.DataFrame, function: str = 'avgValue', tester: TRexDataTester = None) -> pd.DataFrame:
-        """Imputes data's faulty values
+        """
+        Imputes faulty values in the provided data.
 
-        Parameters:
-        -----------
-        function: str, default 'avgValue'
-            Function used to impute
-        data: pd.DataFrame
-            Data to impute
-        tester: TRexDataTester, optional
+        Parameters
+        ----------
+        data : pd.DataFrame
+            The DataFrame containing the data to be imputed.
+        function : str, optional
+            The name of the imputation function to use. Defaults to 'avgValue'.
+        tester : TRexDataTester, optional
+            An instance of TRexDataTester used to test the data before imputation.
 
-        Returns:
-        --------
-        pd.DataFrame: imputed data
+        Returns
+        -------
+        pd.DataFrame
+            The DataFrame with imputed data.
+
+        Raises
+        ------
+        AssertionError
+            If the specified function is not found in the available imputation strategies.
         """
         if tester is not None:
             tester.testAll(data)
@@ -66,12 +84,16 @@ class TRexImputer:
         return imputedData
     
     def functions(self):
-        """Describes imputation strategies"""
+        """
+        Prints a list of all available imputation strategies.
+
+        This method prints the names of the functions available for data imputation, 
+        as well as a brief description if provided by the function.
+        """
         print("Imputation functions: \n")
         for function in self.imputationStrategies:
             print(f"{function}(): {self.imputationStrategies[function]()}\n")
-        
-        
+
 if __name__ == '__main__':
     imputer = TRexImputer()
     

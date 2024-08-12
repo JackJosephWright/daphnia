@@ -2,15 +2,28 @@ import numpy as np
 import pandas as pd
 from typing import Union
 
-import numpy as np
-import pandas as pd
-from typing import Union
-
 def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFrame:
+    """
+    Imputes missing or invalid data points in a DataFrame by filling in values based on average velocity.
+
+    Parameters:
+    -----------
+    data : pd.DataFrame, optional
+        A DataFrame with 'time', 'X', and 'Y' columns. Missing data points in the 'X' and 'Y' columns will be filled in.
+    function : str, optional
+        Function to determine how to fill in the missing data. Default is 'avgValue'.
+
+    Returns:
+    --------
+    pd.DataFrame
+        The DataFrame with missing or invalid data points imputed.
+    """
     if data is None:
-        return "Fill values with an average velocity to connect two disconnected segments"
+        raise ValueError("DataFrame cannot be None. Provide a DataFrame with 'time', 'X', and 'Y' columns.")
+
+    required_columns = ['time', 'X', 'Y']
+    assert all(col in data.columns for col in required_columns), f"Expected columns: {required_columns}\nReceived: {list(data.columns)}"
     
-    assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nReceived: {data.columns}"
     data = data.copy(deep=True)
     data.reset_index(drop=True, inplace=True)
     
@@ -22,8 +35,7 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
             while i < len(data) and data.loc[i, 'X'] in ('infinity', np.inf):
                 i += 1
             
-            # If we reach the end of the DataFrame and it's still invalid, use the last valid index
-            if i >= len(data):
+            if i >= len(data):  # End of DataFrame reached with still invalid data
                 velocityX = calculateVelocity(data.loc[lastValidIndex, 'X'], data.loc[lastValidIndex, 'X'], data.loc[f, 'time'] - data.loc[lastValidIndex, 'time'])
                 velocityY = calculateVelocity(data.loc[lastValidIndex, 'Y'], data.loc[lastValidIndex, 'Y'], data.loc[f, 'time'] - data.loc[lastValidIndex, 'time'])
                 
@@ -49,20 +61,22 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
     return data
 
 def calculateVelocity(pi: Union[float, np.floating], pf: Union[float, np.floating], dtime: Union[float, np.floating]) -> float:
-    """Calculates velocity between two points.
-    
+    """
+    Calculates the velocity between two points.
+
     Parameters:
     -----------
-    pi: float or np.floating
-        Initial position of the entity.
-    pf: float or np.floating
-        Final position of the entity.
-    dtime: float or np.floating
-        Time difference between pi and pf.
-    
+    pi : float or np.floating
+        The initial position of the entity.
+    pf : float or np.floating
+        The final position of the entity.
+    dtime : float or np.floating
+        The time difference between the initial and final positions.
+
     Returns:
     --------
-    float: Calculated velocity.
+    float
+        The calculated velocity.
     """
     assert dtime != 0, "dtime must be non-zero to calculate velocity."
     return (pf - pi) / dtime

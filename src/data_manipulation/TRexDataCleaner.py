@@ -5,28 +5,36 @@ from typing import Union, Tuple
 from src.data_manipulation.NPZer import NPZer
 
 class TRexDataCleaner:
-    """Removes invalid data from TRex data, e.g., sudden jumps, missing data
+    """
+    A class for cleaning TRex data by removing invalid data, such as sudden jumps or missing data points.
+    
     Functions:
     ----------
     renderDiscontinuities:
-        Renders discontinuities from TRex data, e.g., jumps, missing data as 'infinity'
+        Identifies and removes discontinuities from TRex data, such as jumps or missing data, and marks them as 'infinity'.
+    
     isDiscontinuity:
-        Checks whether a point is a discontinuity from another
+        Checks if there is a discontinuity between two data points.
+    
     calculateVelocity:
-        Calculates velocity between two points
+        Computes the velocity between two points given their positions and the time elapsed.
     """
 
     def renderDiscontinuities(self, data: pd.DataFrame, vmax: Union[float, np.floating]) -> Tuple[pd.DataFrame, pd.DataFrame]:
-        """Removes discontinuities from data
+        """
+        Removes discontinuities from the input data based on the specified maximum velocity (vmax).
+
         Parameters:
         -----------
-        data: pd.DataFrame
-            Data to clean
-        vmax: float or np.floating
-            Maximum velocity of entity
+        data : pd.DataFrame
+            The TRex data to clean. Must include 'time', 'X', and 'Y' columns.
+        vmax : float or np.floating
+            The maximum velocity considered valid for the entity.
+
         Returns:
         --------
-        Tuple of two Pandas DataFrames: (Cleaned DataFrame, Faulty rows from DataFrame)
+        Tuple[pd.DataFrame, pd.DataFrame]
+            A tuple containing two DataFrames: the cleaned data and the data points identified as faulty.
         """
         assert all(col in data.columns for col in ['time', 'X', 'Y']), f"Expected columns of ['time', 'X', 'Y']\nReceived: {[col for col in data.columns]}"
         assert vmax > 0, f"Expected vmax > 0\nReceived: {vmax}"
@@ -51,25 +59,29 @@ class TRexDataCleaner:
                 cleanedData = pd.concat([cleanedData, pd.DataFrame([data.iloc[f]])], ignore_index=True)
                 validIndex = f
 
-        return (cleanedData.reset_index(drop=True), removedData.reset_index(drop=True))
+        return cleanedData.reset_index(drop=True), removedData.reset_index(drop=True)
 
     def isDiscontinuity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], vmax: Union[float, np.floating], ti: Union[float, np.floating], tf: Union[float, np.floating]) -> bool:
-        """Determines if a jump between two points is a discontinuity
+        """
+        Determines if there is a discontinuity between two points based on their positions and the time interval.
+
         Parameters:
         -----------
-        pi: (float, float) or (np.floating, np.floating)
-            Initial position of entity. Given as (x-coordinate, y-coordinate)
-        pf: (float, float) or (np.floating, np.floating)
-            Final position of entity. Given as (x-coordinate, y-coordinate)
-        vmax: float or np.floating
-            Maximum velocity of entity
-        ti: float or np.floating
-            Initial time
-        tf: float or np.floating
-            Final time
+        pi : (float, float) or (np.floating, np.floating)
+            The initial position of the entity, given as (x-coordinate, y-coordinate).
+        pf : (float, float) or (np.floating, np.floating)
+            The final position of the entity, given as (x-coordinate, y-coordinate).
+        vmax : float or np.floating
+            The maximum allowable velocity for the entity.
+        ti : float or np.floating
+            The initial time.
+        tf : float or np.floating
+            The final time.
+
         Returns:
         --------
-        Boolean: Discontinuity or not
+        bool
+            True if there is a discontinuity, False otherwise.
         """
         if pf[0] in ('infinity', np.inf) or pf[1] in ('infinity', np.inf) or pi[0] in ('infinity', np.inf) or pi[1] in ('infinity', np.inf):
             return True
@@ -77,24 +89,28 @@ class TRexDataCleaner:
         return velocity > vmax
 
     def calculateVelocity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], dtime: Union[float, np.floating]) -> float:
-        """Calculates velocity between two points
+        """
+        Calculates the velocity between two points.
+
         Parameters:
         -----------
-        pi: (float, float) or (np.floating, np.floating)
-            Initial position of entity. Given as (x-coordinate, y-coordinate)
-        pf: (float, float) or (np.floating, np.floating)
-            Final position of entity. Given as (x-coordinate, y-coordinate)
-        dtime: float or np.floating
-            Difference in time between pi and pf
+        pi : (float, float) or (np.floating, np.floating)
+            The initial position of the entity, given as (x-coordinate, y-coordinate).
+        pf : (float, float) or (np.floating, np.floating)
+            The final position of the entity, given as (x-coordinate, y-coordinate).
+        dtime : float or np.floating
+            The time difference between the two positions.
+
         Returns:
         --------
-        Float: calculated velocity
+        float
+            The calculated velocity.
         """
         if dtime == 0:
             raise ValueError("dtime must be non-zero to calculate velocity.")
         xDistance = pf[0] - pi[0]
         yDistance = pf[1] - pi[1]
-        distance = math.sqrt(xDistance * xDistance + yDistance * yDistance)
+        distance = math.sqrt(xDistance**2 + yDistance**2)
         velocity = distance / dtime
         return velocity
 
@@ -102,7 +118,7 @@ if __name__ == "__main__":
     dataCleaner = TRexDataCleaner()
     
     faultyData = NPZer.pandafy(source_dir='data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY=True, params=['time', 'X', 'Y'])
-    print(f"Faulty Data: \n {faultyData}")
+    print(f"Faulty Data: \n{faultyData}")
 
     cleanedData, removedData = dataCleaner.renderDiscontinuities(data=faultyData, vmax=50)
     print("Cleaned Data: \n", cleanedData)
