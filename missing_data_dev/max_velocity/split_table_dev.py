@@ -8,9 +8,9 @@ import pandas as pd
 import numpy as np
 
 
-Clean_data = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/clean_fish_data/fish_data_clean.csv"
+clean_data = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/clean_fish_data/fish_data_clean.csv"
 
-df = pd.read_csv(Clean_data, index_col=False)
+df = pd.read_csv(clean_data, index_col=False)
 
 
 def split_table(df):
@@ -19,11 +19,10 @@ def split_table(df):
         print(col)
         if col not in ['X','Y','time']:
             df = df.drop(columns = col)
-            
+    
     tables = []  #list to store dataframes
-    index = 0  #starting index
     temp_table = None
-    for i, row in df.iterrows():
+    for row in df.iterrows():
         
         if np.isinf(row['X']) or np.isinf(row['Y']):
             if temp_table is not None:
@@ -40,6 +39,9 @@ def split_table(df):
         tables.append(temp_table)
                 
     return tables
+
+
+
         # print(temp_table)
 
     # if index < len(df):
@@ -47,6 +49,7 @@ def split_table(df):
     #     tables.append(new_table)
     # return tables
 
+print(split_table(df))
 
 def save_tables(tables):
     for index, table in enumerate(tables):
