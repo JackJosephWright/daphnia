@@ -42,7 +42,7 @@ def split_table(df):
     return tables
 
 
-print(split_table(df))
+# print(split_table(df))
 
 def save_tables(tables):
     for index, table in enumerate(tables):
