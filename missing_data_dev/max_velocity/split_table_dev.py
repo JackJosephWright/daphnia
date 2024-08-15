@@ -22,7 +22,8 @@ def split_table(df):
     
     tables = []  #list to store dataframes
     temp_table = None
-    for row in df.iterrows():
+
+    for _, row in df.iterrows():
         
         if np.isinf(row['X']) or np.isinf(row['Y']):
             if temp_table is not None:
@@ -40,14 +41,6 @@ def split_table(df):
                 
     return tables
 
-
-
-        # print(temp_table)
-
-    # if index < len(df):
-    #     new_table = df.iloc[index:]
-    #     tables.append(new_table)
-    # return tables
 
 print(split_table(df))
 
