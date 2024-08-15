@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.data_manipulation.NPZer &mdash; TRexDataManipulation 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            TRexDataManipulation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.data_manipulation.html">src.data_manipulation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.data_manipulation.imputation_strategies.html">src.data_manipulation.imputation_strategies package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">TRexDataManipulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.data_manipulation.NPZer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.data_manipulation.NPZer</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">src.data_manipulation.TRexDataTester</span> <span class="kn">import</span> <span class="n">TRexDataTester</span>
+
+<div class="viewcode-block" id="NPZer">
+<a class="viewcode-back" href="../../../src.data_manipulation.html#src.data_manipulation.NPZer.NPZer">[docs]</a>
+<span class="k">class</span> <span class="nc">NPZer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A utility class for handling Numpy .npz files and Pandas DataFrames.</span>
+
+<span class="sd">    Functions:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    npzip:</span>
+<span class="sd">        Converts a Pandas DataFrame or a Numpy matrix into a zipped .npz file.</span>
+<span class="sd">    unzipNpz:</span>
+<span class="sd">        Unzips a .npz file and returns its contents as a Numpy array.</span>
+<span class="sd">    pandafy:</span>
+<span class="sd">        Converts unzipped .npz data into a Pandas DataFrame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="NPZer.npzip">
+<a class="viewcode-back" href="../../../src.data_manipulation.html#src.data_manipulation.NPZer.NPZer.npzip">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">npzip</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">save_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">tester</span><span class="p">:</span> <span class="n">TRexDataTester</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a Pandas DataFrame or a Numpy matrix into a zipped .npz file.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data : Union[pd.DataFrame, np.ndarray]</span>
+<span class="sd">            The data to be zipped.</span>
+<span class="sd">        save_dir : str</span>
+<span class="sd">            The file path where the zipped data will be saved.</span>
+<span class="sd">        params : List[str], optional</span>
+<span class="sd">            A list of parameters to zip. If not specified, all parameters will be zipped.</span>
+<span class="sd">        tester : TRexDataTester, optional</span>
+<span class="sd">            An optional tester to validate the data structure.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tester</span><span class="o">.</span><span class="n">testAll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">param</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="n">param</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># Assuming data is a numpy array</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;param_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">save_dir</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">))})</span></div>
+
+
+<div class="viewcode-block" id="NPZer.unzipNpz">
+<a class="viewcode-back" href="../../../src.data_manipulation.html#src.data_manipulation.NPZer.NPZer.unzipNpz">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">unzipNpz</span><span class="p">(</span><span class="n">source_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">tester</span><span class="p">:</span> <span class="n">TRexDataTester</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unzips a .npz file and returns its contents as a Numpy array.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        source_dir : str</span>
+<span class="sd">            The file path of the .npz file to be unzipped.</span>
+<span class="sd">        params : List[str], optional</span>
+<span class="sd">            A list of parameters to extract. If not specified, all parameters will be extracted.</span>
+<span class="sd">        tester : TRexDataTester, optional</span>
+<span class="sd">            An optional tester to validate the data structure.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            A Numpy array containing the unzipped data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="n">source_dir</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.npz&#39;</span><span class="p">),</span> <span class="s2">&quot;Provided file is not a .npz file&quot;</span>
+        
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span> <span class="k">as</span> <span class="n">openedArray</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">openedArray</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> is not a valid parameter in the data&quot;</span>
+                <span class="n">unzippedArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">openedArray</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">unzippedArray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">openedArray</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">openedArray</span><span class="o">.</span><span class="n">keys</span><span class="p">()])</span>
+            
+            <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">tester</span><span class="o">.</span><span class="n">testAll</span><span class="p">(</span><span class="n">unzippedArray</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">unzippedArray</span></div>
+
+
+<div class="viewcode-block" id="NPZer.pandafy">
+<a class="viewcode-back" href="../../../src.data_manipulation.html#src.data_manipulation.NPZer.NPZer.pandafy">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pandafy</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">source_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">invertY</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">tester</span><span class="p">:</span> <span class="n">TRexDataTester</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts unzipped .npz data or a Numpy array into a Pandas DataFrame.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data : np.ndarray, optional</span>
+<span class="sd">            The Numpy array to be converted into a Pandas DataFrame.</span>
+<span class="sd">        source_dir : str, optional</span>
+<span class="sd">            The file path of the .npz file to be converted into a Pandas DataFrame.</span>
+<span class="sd">        invertY : bool, optional</span>
+<span class="sd">            If True, inverts the Y values in the DataFrame. Default is False.</span>
+<span class="sd">        params : List[str], optional</span>
+<span class="sd">            A list of parameters to extract. If not specified, all parameters will be extracted.</span>
+<span class="sd">        tester : TRexDataTester, optional</span>
+<span class="sd">            An optional tester to validate the data structure.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            A Pandas DataFrame containing the extracted data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">source_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;No data source provided. data exists: </span><span class="si">{</span><span class="n">data</span><span class="w"> </span><span class="ow">is</span><span class="w"> </span><span class="kc">None</span><span class="si">}</span><span class="s2">, source_dir exists: </span><span class="si">{</span><span class="n">source_dir</span><span class="w"> </span><span class="ow">is</span><span class="w"> </span><span class="kc">None</span><span class="si">}</span><span class="s2">&quot;</span>
+        
+        <span class="k">if</span> <span class="n">source_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">source_dir</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.npz&#39;</span><span class="p">),</span> <span class="s2">&quot;Provided file is not a .npz file&quot;</span>
+            <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span> <span class="k">as</span> <span class="n">openedData</span><span class="p">:</span>
+                <span class="n">pandaDataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">openedData</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">openedData</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">openedData</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">})</span>
+                
+                <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                    <span class="n">pandaDataFrame</span> <span class="o">=</span> <span class="n">pandaDataFrame</span><span class="p">[</span><span class="n">params</span><span class="p">]</span>
+                
+                <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">tester</span><span class="o">.</span><span class="n">testAll</span><span class="p">(</span><span class="n">pandaDataFrame</span><span class="p">)</span>
+                
+                <span class="k">if</span> <span class="n">invertY</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="s1">&#39;Y&#39;</span> <span class="ow">in</span> <span class="n">pandaDataFrame</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Data has no parameter Y&quot;</span>
+                    <span class="n">pandaDataFrame</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pandaDataFrame</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+            
+                <span class="k">return</span> <span class="n">pandaDataFrame</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tester</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">tester</span><span class="o">.</span><span class="n">testAll</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">params</span><span class="p">:</span>
+                <span class="n">pandaDataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>  
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pandaDataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">invertY</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="s1">&#39;Y&#39;</span> <span class="ow">in</span> <span class="n">pandaDataFrame</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;No Y parameter in dataset&quot;</span>
+                <span class="n">pandaDataFrame</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">pandaDataFrame</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+            
+            <span class="k">return</span> <span class="n">pandaDataFrame</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Jack Wright, Giuliano, Ibrahim.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
