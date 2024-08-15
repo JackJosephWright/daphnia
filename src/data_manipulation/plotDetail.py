@@ -6,7 +6,7 @@ import numpy as np
 
 def plotDetail(df, xlabel = None, ylabel = None, invert_y =False, title ="placeholder_title"):
 
-    "this function is used to plot the path of the daphnia"
+    """this function is used to plot the path of the daphnia"""
 
 
     csfont = {'fontname':'Comic Sans MS', 'color':'blue', 'size':20}
