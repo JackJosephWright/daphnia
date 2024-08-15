@@ -1,3 +1,5 @@
+from src.data_manipulation.NPZer import NPZer
+from src.data_manipulation.TRexDataTester import TRexDataTester
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
@@ -49,10 +51,31 @@ def plotDetail(title, xlable, ylabel):
     plt.xlabel(xlable,fontdict=hfont)
     plt.ylabel(ylabel,fontdict=hfont)
 
-
-plt.plot(df_subset['X'], df_subset['Y'])
 plotDetail("Single Fish Data","X value","Y value")
+
+
+# Initialization function: plot the background of each frame
+def init():
+    line.set_data([], [])
+    return line,
+
+# Animation function: this is called sequentially
+def animate(i):
+    x = df_subset['X'][:i]
+    y = df_subset['Y'][:i]
+    line.set_data(x, y)
+    return line,
+
+# Call the animator
+ani = FuncAnimation(fig, animate, init_func=init, frames=len(df_subset), interval=10, blit=True)
+
+
+# plt.plot(df_subset['X'], df_subset['Y'])
 plt.show()
+
+
+
+
 
 #if __name__ == "__main__":
 
