@@ -45,6 +45,5 @@ def save_tables(tables):
     for index, table in enumerate(tables):
         table.to_csv(f'table_{index}.csv', index=False)
 
-# tables = split_table(df)
-# save_tables(tables)
+
 
