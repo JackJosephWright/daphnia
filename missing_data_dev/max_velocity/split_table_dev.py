@@ -48,7 +48,3 @@ def save_tables(tables):
 # tables = split_table(df)
 # save_tables(tables)
 
-
-
-
-
