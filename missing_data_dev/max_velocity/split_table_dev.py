@@ -2,7 +2,6 @@
 save tables as dataframes
     break and start new table
 """
-# drop column index
 
 import pandas as pd
 import numpy as np
@@ -41,8 +40,6 @@ def split_table(df):
                 
     return tables
 
-
-# print(split_table(df))
 
 def save_tables(tables):
     for index, table in enumerate(tables):
