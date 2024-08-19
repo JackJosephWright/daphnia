@@ -1,0 +1,35 @@
+to complete single daphnia;
+
+
+are we going to impute the data for them?
+
+
+are we going to give a python package/ just the repo
+
+
+MAJOR PROBLEMS:
+
+disjoint data to start the process. 
+need more data
+
+
+
+
+
+
+
+
+thresholding:
+
+optical flow
+
+
+
+to do:
+
+
+remake histograms with all tracking data to identify max velos
+
+set up and document repo for use by researchers
+
+get more videos to start looking at preproessing

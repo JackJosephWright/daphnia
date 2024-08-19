@@ -13,17 +13,17 @@ class TRexDataTester:
                 Sets classes to check if data is of specified type(s)
         Functions:
         ----------
-        test_datastruct(data):
+        test_datastruct:
             Tests if data is a Numpy ndarray or Pandas DataFrame
-        test_columns(data):
+        test_columns:
             Tests if all columns have data
         test_homogenous
             Tests if all columns are homogenous, i.e., they have the same length
-        test_dtype(data):
+        test_dtype:
             Tests if all data is of specified type(s)
-        test_startZero(data):
+        test_startZero:
             Tests if time parameter starts at zero
-        test_timeOrder(data)
+        test_timeOrder:
             Tests if time data is in order, e.g., 1, 2, 3...
     """
 
@@ -32,7 +32,7 @@ class TRexDataTester:
         self.dtype = dtype
 
     def test_datastruct(self, data: Union[np.ndarray, pd.DataFrame]):
-        assert isinstance(data, (np.ndarray, pd.DataFrame)), f"\nExpected numpy ndarray or pandas DataFrame \nReceived: {type(data)}"
+        assert isinstance(data, np.ndarray) or isinstance(data, pd.DataFrame), f"\nExpected numpy ndarray or pandas DataFrame \nReceived: {type(data)}"
 
     def test_columns(self, data: Union[np.ndarray, pd.DataFrame]):
         if isinstance(data, pd.DataFrame):
@@ -58,12 +58,12 @@ class TRexDataTester:
             for col in range(data.shape[1]):
                 for row in range(data.shape[0]):
                     num = data.iat[row, col]
-                    if num == 'infinity': continue
+                    if num in ('infinity', np.inf): continue
                     assert isinstance(num, self.dtype), f"\nExpected data type: {self.dtype}\nReceived: {data.columns[col]} value {num} as {type(num)} at row {row}"
         else:
             for colNum, col in enumerate(data): 
                 for rowNum, num in enumerate(col):
-                    if num == 'infinity': continue
+                    if num in ('infinity', np.inf): continue
                     assert isinstance(num, self.dtype), f"\nExpected data type: {self.dtype}\nReceived: value {num} as {type(num)} in column {colNum} at row {rowNum}"
 
     def test_startZero(self, data: Union[np.ndarray, pd.DataFrame]):

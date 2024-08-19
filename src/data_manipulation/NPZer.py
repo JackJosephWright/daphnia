@@ -55,6 +55,9 @@ class NPZer:
                     Selects which parameters to save. If not specified, all parameters will be saved.
                 tester: TRexDataTester, optional
                     Tests data to check if it is structured correctly
+            Returns:
+            --------
+            np.ndarray: Numpy Matrix of data
         """
         
         assert source_dir.endswith('.npz')
@@ -68,7 +71,7 @@ class NPZer:
                 unzippedArray = np.array([openedArray[key] for key in openedArray.keys()])
             
             if isinstance(tester, TRexDataTester):
-                tester.testAll(data)
+                tester.testAll(unzippedArray)
             
             return unzippedArray
 
@@ -88,6 +91,9 @@ class NPZer:
                     Selects which parameters to save. If not specified, all parameters will be saved.
                 tester: TRexDataTester, optional
                     Tests data to check if it is structured correctly
+            Returns:
+            --------
+            pd.DataFrame: Pandas DataFrame of given data
         """
         
         assert (data is not None) or (source_dir is not None), f"No data source provided. data exists: {data is None}, source_dir exists: {source_dir is None}"
@@ -103,7 +109,7 @@ class NPZer:
                     tester.testAll(pandaDataFrame)
                 
                 if invertY:
-                    pandaDataFrame['Y#wcentroid'] = -pandaDataFrame['Y#wcentroid']
+                    pandaDataFrame['Y'] = -pandaDataFrame['Y']
             
                 return pandaDataFrame
         else:
@@ -111,32 +117,10 @@ class NPZer:
                 tester.testAll(data)
             
             if len(params) > 0: pandaDataFrame = pd.DataFrame(data = data, index = [param for param in params])  
-            else: pandaDataFrame = pd.DataFrame(data = data, columns = [i for i in range(len(data))])
+            else: pandaDataFrame = pd.DataFrame(data = data, index = [i for i in range(len(data))])
             
             if invertY:
-                pandaDataFrame.loc['Y#wcentroid'] = -pandaDataFrame.loc['Y#wcentroid']
+                assert 'Y' in params or 'Y' in params, f"No Y parameter in dataset"
+                pandaDataFrame.loc['Y'] = -pandaDataFrame.loc['Y']
             
-            return pandaDataFrame.T 
-
-
-
-# if __name__ == "__main__":
-#     data = NPZer.unzipNpz(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', params = ['time', 'X#wcentroid', 'Y#wcentroid'])
-    
-#     tester = TRexDataTester(timeTracked = True, dtype = np.floating)
-#     tester.testAll(data)
-    
-#     print("Unzipped data:\n", data)
-
-#     pandasData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], )
-#     print("Pandafied Directly:\n", pandasData)
-    
-#     pandasData = NPZer.pandafy(data = data, invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], tester = tester)
-#     print("Pandafied from Unzipped:\n", pandasData)
-
-#     NPZer.npzip(data = pandasData, save_dir = 'src/data_manipulation/npzer_dev/zipped.npz', tester = tester, params = ['time', 'X#wcentroid', 'Y#wcentroid'])
-#     unzipped = NPZer.unzipNpz(source_dir = 'src/data_manipulation/npzer_dev/zipped.npz', params = ['time', 'X#wcentroid', 'Y#wcentroid'])
-#     print("Unzipped again:\n", unzipped)
-
-#     pandasData = NPZer.pandafy(data = unzipped, invertY = True, params = ['time', 'X#wcentroid', 'Y#wcentroid'], tester = tester)
-#     print("Pandafied again:\n", pandasData)
+            return pandaDataFrame.T
