@@ -22,7 +22,7 @@ class DaphniaAnimation:
             Creates and displays the animation of the Daphnia's movements
 
     """
-    def __init__(self, npz_path, start_index=0):
+    def __init__(self, df, start_index=0):
         """ Initializes the DaphniaAnimation class with the given NPZ file and start index
 
         Parameters:
@@ -33,40 +33,39 @@ class DaphniaAnimation:
                 Index declaring what frame you want the animation to start (default is 0)
                 
         """
-        self.npz_path = npz_path
+        self.df = df
         self.start_index = start_index
-        self.df = self.load_data()
-        self.df_subset = self.df.loc[self.start_index:]
+        self.df_subset = self.df.iloc[self.start_index:]
 
         self.fig, self.ax = plt.subplots()
         self.line, = self.ax.plot([], [], 'b-')
 
-    def load_data(self):
-        """ Loads data from NPZ file into dataframes and removes missing data if needed
+    # def load_data(self):
+    #     """ Loads data from NPZ file into dataframes and removes missing data if needed
 
-        Returns:
-        --------
-        A pandas dataframe containing columns X, Y, time
+    #     Returns:
+    #     --------
+    #     A pandas dataframe containing columns X, Y, time
 
-        """
-        # Load the npz file
-        data = np.load(self.npz_path)
-        timestamp = data['timestamp']
-        X = data['X']
-        Y = -data['Y']  # Inverting Y
+    #     """
+    #     # Load the npz file
+    #     data = np.load(self.npz_path)
+    #     timestamp = data['timestamp']
+    #     X = data['X']
+    #     Y = -data['Y']  # Inverting Y
 
-        df = pd.DataFrame(
-            {
-                "X": X,
-                "Y": Y,
-                "time": timestamp
-            }
-        )
+    #     df = pd.DataFrame(
+    #         {
+    #             "X": X,
+    #             "Y": Y,
+    #             "time": timestamp
+    #         }
+    #     )
 
-        # Drop missing or infinite data
-        df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
-        df.dropna(inplace=True)
-        return df
+    #     # Drop missing or infinite data
+    #     df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
+    #     df.dropna(inplace=True)
+    #     return df
 
     def plot_detail(self, title, xlabel, ylabel):
         """ Sets the title and labels for the plot
@@ -107,20 +106,27 @@ class DaphniaAnimation:
                 The current frame index
         
         """
-        x = self.df_subset['X'][:i]
-        y = self.df_subset['Y'][:i]
+        x = self.df_subset['X#wcentroid'].iloc[:i]
+        y = self.df_subset['Y#wcentroid'].iloc[:i]
         self.line.set_data(x, y)
         return self.line,
 
     def create_animation(self):
         """ Creates and displays the animation of the Daphnia's movements
 
-            The function sets up the plot, adds plot details, and then runs the animation
+            The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
         
         """
-        # Set up plot limits
-        self.ax.set_xlim(self.df_subset['X'].min(), self.df_subset['X'].max())
-        self.ax.set_ylim(self.df_subset['Y'].min(), self.df_subset['Y'].max())
+            # Ensure there are no NaN or Inf values in the columns used for limits
+        valid_x = self.df_subset['X#wcentroid'].replace([np.inf, -np.inf], np.nan).dropna()
+        valid_y = self.df_subset['Y#wcentroid'].replace([np.inf, -np.inf], np.nan).dropna()
+
+        if valid_x.empty or valid_y.empty:
+            raise ValueError("No valid data points available to set axis limits.")
+
+        # Set up plot limits using the cleaned data
+        self.ax.set_xlim(valid_x.min(), valid_x.max())
+        self.ax.set_ylim(valid_y.min(), valid_y.max())
 
         # Add plot details
         self.plot_detail("Single Fish Data", "X value", "Y value")
