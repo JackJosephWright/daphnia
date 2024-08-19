@@ -3,6 +3,7 @@ import numpy as np
 import math
 from typing import Union, Tuple
 from src.data_manipulation.NPZer import NPZer
+from src.data_manipulation.calculateVelocity import calculateVelocity
 
 class TRexDataCleaner:
     """
@@ -49,10 +50,10 @@ class TRexDataCleaner:
         validIndex = 0
         
         for f in range(1, len(data)):
-            pi = (data.loc[validIndex, 'X'], data.loc[validIndex, 'Y'])
-            pf = (data.loc[f, 'X'], data.loc[f, 'Y'])
+            pi = data.iloc[validIndex]
+            pf = data.iloc[f]
             
-            if self.isDiscontinuity(pi=pi, pf=pf, vmax=vmax, ti=data.loc[validIndex, 'time'], tf=data.loc[f, 'time']):
+            if self.isDiscontinuity(pi=pi, pf=pf, vmax=vmax):
                 removedData = pd.concat([removedData, pd.DataFrame([data.iloc[f]])], ignore_index=True)
                 cleanedData = pd.concat([cleanedData, pd.DataFrame({'time': [data.loc[f, 'time']], 'X': [np.inf], 'Y': [np.inf]})], ignore_index=True)
             else:
@@ -61,58 +62,28 @@ class TRexDataCleaner:
 
         return cleanedData.reset_index(drop=True), removedData.reset_index(drop=True)
 
-    def isDiscontinuity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], vmax: Union[float, np.floating], ti: Union[float, np.floating], tf: Union[float, np.floating]) -> bool:
+    def isDiscontinuity(self, pi: pd.DataFrame, pf: pd.DataFrame, vmax: Union[float, np.floating]) -> bool:
         """
         Determines if there is a discontinuity between two points based on their positions and the time interval.
 
         Parameters:
         -----------
-        pi : (float, float) or (np.floating, np.floating)
-            The initial position of the entity, given as (x-coordinate, y-coordinate).
-        pf : (float, float) or (np.floating, np.floating)
-            The final position of the entity, given as (x-coordinate, y-coordinate).
+        pi : DataFrame
+            The initial point of the entity, given as a section of a pandas DataFrame.
+        pf : DataFrame
+            The final position of the entity, given as a section of a pandas DataFrame.
         vmax : float or np.floating
             The maximum allowable velocity for the entity.
-        ti : float or np.floating
-            The initial time.
-        tf : float or np.floating
-            The final time.
 
         Returns:
         --------
         bool
             True if there is a discontinuity, False otherwise.
         """
-        if pf[0] in ('infinity', np.inf) or pf[1] in ('infinity', np.inf) or pi[0] in ('infinity', np.inf) or pi[1] in ('infinity', np.inf):
+        if pf['X'] in ('infinity', np.inf) or pf['X'] in ('infinity', np.inf) or pi['Y'] in ('infinity', np.inf) or pi['Y'] in ('infinity', np.inf):
             return True
-        velocity = self.calculateVelocity(pi=pi, pf=pf, dtime=tf - ti)
+        velocity = calculateVelocity(pi=pi, pf=pf)
         return velocity > vmax
-
-    def calculateVelocity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], dtime: Union[float, np.floating]) -> float:
-        """
-        Calculates the velocity between two points.
-
-        Parameters:
-        -----------
-        pi : (float, float) or (np.floating, np.floating)
-            The initial position of the entity, given as (x-coordinate, y-coordinate).
-        pf : (float, float) or (np.floating, np.floating)
-            The final position of the entity, given as (x-coordinate, y-coordinate).
-        dtime : float or np.floating
-            The time difference between the two positions.
-
-        Returns:
-        --------
-        float
-            The calculated velocity.
-        """
-        if dtime == 0:
-            raise ValueError("dtime must be non-zero to calculate velocity.")
-        xDistance = pf[0] - pi[0]
-        yDistance = pf[1] - pi[1]
-        distance = math.sqrt(xDistance**2 + yDistance**2)
-        velocity = distance / dtime
-        return velocity
 
 if __name__ == "__main__":
     dataCleaner = TRexDataCleaner()

@@ -76,13 +76,13 @@ class TRexDataCleaner:
         velocity = self.calculateVelocity(pi=pi, pf=pf, dtime=tf - ti)
         return velocity > vmax
 
-    def calculateVelocity(self, pi: Union[Tuple[float, float], Tuple[np.floating, np.floating]], pf: Union[Tuple[float, float], Tuple[np.floating, np.floating]], dtime: Union[float, np.floating]) -> float:
+    def calculateVelocity(self, pi: pd.DataFrame, pf: pd.DataFrame, dtime: Union[float, np.floating]) -> float:
         """Calculates velocity between two points
         Parameters:
         -----------
-        pi: (float, float) or (np.floating, np.floating)
+        pi: pd.DataFrame
             Initial position of entity. Given as (x-coordinate, y-coordinate)
-        pf: (float, float) or (np.floating, np.floating)
+        pf: pd.DataFrame
             Final position of entity. Given as (x-coordinate, y-coordinate)
         dtime: float or np.floating
             Difference in time between pi and pf
