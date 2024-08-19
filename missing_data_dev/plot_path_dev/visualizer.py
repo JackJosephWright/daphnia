@@ -40,33 +40,6 @@ class DaphniaAnimation:
         self.fig, self.ax = plt.subplots()
         self.line, = self.ax.plot([], [], 'b-')
 
-    # def load_data(self):
-    #     """ Loads data from NPZ file into dataframes and removes missing data if needed
-
-    #     Returns:
-    #     --------
-    #     A pandas dataframe containing columns X, Y, time
-
-    #     """
-    #     # Load the npz file
-    #     data = np.load(self.npz_path)
-    #     timestamp = data['timestamp']
-    #     X = data['X']
-    #     Y = -data['Y']  # Inverting Y
-
-    #     df = pd.DataFrame(
-    #         {
-    #             "X": X,
-    #             "Y": Y,
-    #             "time": timestamp
-    #         }
-    #     )
-
-    #     # Drop missing or infinite data
-    #     df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
-    #     df.dropna(inplace=True)
-    #     return df
-
     def plot_detail(self, title, xlabel, ylabel):
         """ Sets the title and labels for the plot
 
@@ -106,8 +79,8 @@ class DaphniaAnimation:
                 The current frame index
         
         """
-        x = self.df_subset['X#wcentroid'].iloc[:i]
-        y = self.df_subset['Y#wcentroid'].iloc[:i]
+        x = self.df_subset['X'].iloc[:i]
+        y = self.df_subset['Y'].iloc[:i]
         self.line.set_data(x, y)
         return self.line,
 
@@ -118,8 +91,8 @@ class DaphniaAnimation:
         
         """
             # Ensure there are no NaN or Inf values in the columns used for limits
-        valid_x = self.df_subset['X#wcentroid'].replace([np.inf, -np.inf], np.nan).dropna()
-        valid_y = self.df_subset['Y#wcentroid'].replace([np.inf, -np.inf], np.nan).dropna()
+        valid_x = self.df_subset['X'].replace([np.inf, -np.inf], np.nan).dropna()
+        valid_y = self.df_subset['Y'].replace([np.inf, -np.inf], np.nan).dropna()
 
         if valid_x.empty or valid_y.empty:
             raise ValueError("No valid data points available to set axis limits.")
