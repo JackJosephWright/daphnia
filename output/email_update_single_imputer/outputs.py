@@ -26,7 +26,7 @@ from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 dataCleaner = TRexDataCleaner()
 
 # Set desired parameters
-VMAX = 3
+VMAX = 20
 
 # Set sample of original data
 originalData = unzippedData.reset_index(drop=True)
