@@ -23,9 +23,10 @@ def calc_velocity(point1, point2):
 
     delta_time = point2["time"] - point1["time"]
     #print("delta_time:", delta_time)
+    print(f"time {point2['time']} - time {point1['time']} = {delta_time}")
 
     velocity = displacement / delta_time
-    
+    print(f"displacement {displacement} / dtime {delta_time} = velocity {velocity}")
     return velocity
 
 
@@ -39,7 +40,9 @@ def avg_velocity(df):
         point1 = df.iloc[i - 1]
         # print('point 1:', point1)
         # print('point 2:', point2)
-        V.append(calc_velocity(point1, point2))
+        velo = calc_velocity(point1, point2)
+        print(velo)
+        if velo > 0: V.append(velo)
     return V
 
 
@@ -71,3 +74,11 @@ def plot_histogram(data, bins=10):
     plt.title('Histogram of Velocities')
     plt.grid(True)
     plt.show()
+    
+for file in all_files:
+    file_path = os.path.join(relative_path, file)
+    df = pd.read_csv(file_path)
+    dataframes.append(df)
+    
+all_velo = all_velocity(dataframes)
+plot_histogram(all_velo)

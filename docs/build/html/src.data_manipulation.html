@@ -175,7 +175,7 @@
 <section id="parameters">
 <h4>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h4>
 <dl class="simple">
-<dt>data<span class="classifier">Union[pd.DataFrame, np.ndarray]</span></dt><dd><p>The data to be zipped.</p>
+<dt>data<span class="classifier">pd.DataFrame | np.ndarray</span></dt><dd><p>The data to be zipped.</p>
 </dd>
 <dt>save_dir<span class="classifier">str</span></dt><dd><p>The file path where the zipped data will be saved.</p>
 </dd>
@@ -186,6 +186,35 @@
 </dl>
 </section>
 </dd></dl>
+<h2>Example Usage</h2>
+<pre><code class="language-python">
+import pandas as pd
+import numpy as np
+from src.data_manipulation.NPZer import NPZer
+from src.data_manipulation.TRexDataTester import TRexDataTester
+
+# Create sample data
+data_frame = pd.DataFrame({
+    'X': [1, 2, 3, 4],
+    'Y': [5, 6, 7, 8],
+    'time': [0, 1, 2, 3]
+})
+
+save_directory = 'path/to/save/data.npz'
+parameters = ['X', 'Y', 'time']
+data_tester = TRexDataTester() # optional
+
+# Using npzip to create a .npz file
+NPZer.npzip(data=data_frame, save_dir=save_directory, params=parameters, tester=data_tester)
+</code></pre>
+
+<p>In this example:</p>
+<ul>
+    <li>A Pandas DataFrame is created with two columns.</li>
+    <li>The data is then saved as a zipped <code>.npz</code> file at the specified directory using the <code>npzip</code> function.</li>
+    <li>The optional <code>params</code> argument specifies which columns to include in the zipped file.</li>
+    <li>The <code>tester</code> argument uses a <code>TRexDataTester</code> instance to validate the data structure before saving.</li>
+</ul>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.data_manipulation.NPZer.NPZer.pandafy">

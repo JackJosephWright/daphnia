@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 
-Clean_data = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/clean_fish_data/fish_data_clean.csv"
+Clean_data = "data/clean_fish_data/fish_data_clean.csv"
 
 df = pd.read_csv(Clean_data, index_col=False)
 
@@ -50,10 +50,12 @@ def split_table(df):
 
 def save_tables(tables):
     for index, table in enumerate(tables):
-        table.to_csv(f'table_{index}.csv', index=False)
+        table.to_csv(f'data/table_data/table_{index}.csv', index=False)
 
-# tables = split_table(df)
-# save_tables(tables)
+if __name__ == '__main__':  
+    print('splitting')
+    tables = split_table(df)
+    save_tables(tables)
 
 
 

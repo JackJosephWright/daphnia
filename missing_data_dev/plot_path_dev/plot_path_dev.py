@@ -10,7 +10,7 @@ npz_path = r"data/npz_file/single_7_9_fish1.MP4_fish0.npz"
 #use np.load to load the npz file
 data = np.load(npz_path)
 
-timestamp = data['timestamp']
+time = data['time']
 
 X = data['X']
 Y = data['Y']
@@ -20,7 +20,7 @@ df = pd.DataFrame(
     {
         "X": X,
         "Y": Y,
-        "time": timestamp
+        "time": time
     }
 )
 
@@ -50,17 +50,16 @@ def plotDetail(title, xlable, ylabel):
     plt.ylabel(ylabel,fontdict=hfont)
 
 
-plt.plot(df_subset['X'], df_subset['Y'])
-plotDetail("Single Fish Data","X value","Y value")
-plt.show()
+# plt.plot(df_subset['X'], df_subset['Y'])
+# plotDetail("Single Fish Data","X value","Y value")
+# plt.show()
 
-#if __name__ == "__main__":
-
-# print(df_subset)
-#writing csv
-# df_subset.to_csv('fish_data_clean.csv')
+if __name__ == "__main__":
+    #writing csv
+    import csv
+    df_subset.to_csv('data/clean_fish_data/fish_data_clean.csv', index=False)
 
 # check how many rows of missing data
-# df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
-# miss = df_subset[df_subset.isnull().any(axis=1)]
-# print(miss)
+    # df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
+    # miss = df_subset[df_subset.isnull().any(axis=1)]
+    # print(miss)
