@@ -78,6 +78,11 @@ class DaphniaAnimation:
         -----------
         i: int
             The current frame index
+
+        Returns:
+        --------
+        tuple
+            A tuple containing the updated line object
         """
         x = self.df_subset['X'].iloc[:i]
         y = self.df_subset['Y'].iloc[:i]
