@@ -6,14 +6,11 @@ import matplotlib.pyplot as plt
 
 from src.data_manipulation.NPZer import NPZer
 
-NPZer = NPZer()
-
-# Set desired parameters
 SOURCE_DIR = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz'
 PARAMS = ['time', 'X', 'Y']
 INVERT_Y = True
 
-# Unzip and turn data into a pandas table
+npzer = NPZer()
 unzippedData = NPZer.pandafy(source_dir=SOURCE_DIR, invertY=INVERT_Y, params=PARAMS)
 
 # Unzip to nparray

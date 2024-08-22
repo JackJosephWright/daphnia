@@ -7,34 +7,6 @@
   <title>src.data_manipulation package &mdash; TRexDataManipulation 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <style>
-        pre {
-          white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
-          overflow-x: auto; /* Add horizontal scroll if needed */
-          background-color: #f5f5f5;
-          padding: 10px;
-          border-radius: 5px;
-          border: 1px solid #ddd;
-          max-width: 100%; /* Prevent overflow beyond the container */
-        }
-        code {
-          font-family: Consolas, "Courier New", monospace;
-          display: block; /* Ensures each line is its own block */
-          margin-bottom: 4px; /* Space between code lines */
-        }
-    </style>
-  
-    <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-    <![endif]-->
-        <!-- Include highlight.js CSS theme -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
-
-    <!-- Include highlight.js library -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-
-    <!-- Initialize highlight.js -->
-    <script>hljs.highlightAll();</script>
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=8d563738"></script>
@@ -209,11 +181,27 @@
 </section>
 </dd></dl>
 <h2>Example Usage</h2>
-<img src="docs/build/html/images/NPZer_output.png">
+
+<pre class="highlight">
+  <span class="k">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+  <span class="k">from</span> <span class="nn">src.data_manipulation.NPZer</span> <span class="k">import</span> <span class="nn">NPZer</span>
+  
+  <span class="no">DATA</span> <span class="o">=</span> <span class="nn">pd</span><span class="o">.</span><span class="nf">DataFrame</span><span class="p">(</span><span class="p">{</span>
+  <span class="s">'X'</span><span class="o">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span>
+  <span class="s">'Y'</span><span class="o">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span>
+  <span class="s">'time'</span><span class="o">:</span> <span class="p">[</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+  <span class="p">})</span>
+  
+  <span class="no">SAVE_DIR</span> <span class="o">=</span> <span class="s">'data/zipped.npz'</span>
+  <span class="no">PARAMS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'X'</span><span class="p">,</span> <span class="s">'Y'</span><span class="p">,</span> <span class="s">'time'</span><span class="p">]</span>
+  
+  <span class="no">npzer</span> <span class="o">=</span> <span class="nf">NPZer</span><span class="p">()</span>
+  <span class="no">npzer</span><span class="o">.</span><span class="nf">npzip</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="no">DATA</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="no">SAVE_DIR</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="no">PARAMS</span><span class="p">)</span>
+</pre>
 
 <p>In this example:</p>
 <ul>
-    <li>A Pandas DataFrame is created with two columns.</li>
+    <li>A Pandas DataFrame is created with columns tracking 'X', 'Y', and 'time'.</li>
     <li>The data is then saved as a zipped <code>.npz</code> file at the specified directory using the <code>npzip</code> function.</li>
     <li>The optional <code>params</code> argument specifies which columns to include in the zipped file.</li>
     <li>The <code>tester</code> argument uses a <code>TRexDataTester</code> instance to validate the data structure before saving.</li>
@@ -246,6 +234,25 @@
 </dl>
 </section>
 </dd></dl>
+<h2>Example Usage</h2>
+
+<pre class="highlight">
+  <span class="no">SOURCE_DIR</span> <span class="o">=</span> <span class="s">'data/fish1.MP4_fish0.npz'</span>
+  <span class="no">PARAMS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'time'</span><span class="p">,</span> <span class="s">'X'</span><span class="p">,</span> <span class="s">'Y'</span><span class="p">]</span>
+  <span class="no">INVERT_Y</span> <span class="o">=</span> <span class="kc">True</span>
+  
+  <span class="no">npzer</span> <span class="o">=</span> <span class="nf">NPZer</span><span class="p">()</span>
+  <span class="no">unzippedData</span> <span class="o">=</span> <span class="no">NPZer</span><span class="o">.</span><span class="nf">pandafy</span><span class="p">(</span><span class="n">source_dir</span><span class="o">=</span><span class="no">SOURCE_DIR</span><span class="p">,</span> <span class="n">invertY</span><span class="o">=</span><span class="no">INVERT_Y</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="no">PARAMS</span><span class="p">)</span>
+  </pre>
+  
+
+<p>In this example:</p>
+<ul>
+    <li>A Pandas DataFrame is created with columns tracking 'X', 'Y', and 'time'.</li>
+    <li>The data is then saved as a zipped <code>.npz</code> file at the specified directory using the <code>npzip</code> function.</li>
+    <li>The optional <code>params</code> argument specifies which columns to include in the zipped file.</li>
+    <li>The <code>tester</code> argument uses a <code>TRexDataTester</code> instance to validate the data structure before saving.</li>
+</ul>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.data_manipulation.NPZer.NPZer.unzipNpz">

@@ -1,4 +1,4 @@
-pre { line-height: 125%; }
+pre { line-height: 125%; overflow-x: auto; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -73,15 +73,3 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-pre {
-    white-space: pre-wrap; /* Break lines as needed */
-    word-wrap: break-word;
-    overflow-x: auto; /* Add horizontal scroll if needed */
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-code {
-    font-family: Consolas, "Courier New", monospace;
-}
