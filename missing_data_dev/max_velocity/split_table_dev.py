@@ -1,19 +1,16 @@
-"""if x or y is inf/NaN,
-save tables as dataframes
-    break and start new table
-"""
-
 import pandas as pd
 import numpy as np
 import os
 
-
-clean_data = r"/Users/ibrahimrahat/Documents/GitHub/daphnia/data/clean_fish_data/fish_data_clean.csv"
-
-df = pd.read_csv(clean_data, index_col=False)
-
-
 def split_table(df, save_to_folder=False, folder_path=None):
+    """ Splits valid data into tables
+    
+    Parameters:
+    -----------
+        df: pd.dataframe
+            The input dataframe to be split
+        save_to_folder: 
+    """
     #remove unwanted columns
     for col in df.columns:
         print(col)
