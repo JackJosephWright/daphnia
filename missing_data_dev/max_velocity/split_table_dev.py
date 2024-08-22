@@ -45,7 +45,6 @@ def split_table(df, save_to_folder=False, folder_path=None):
     if temp_table is not None:
         tables.append(temp_table)
 
-
      # Save tables to folder if specified
     if save_to_folder and folder_path:
         if not os.path.exists(folder_path):
