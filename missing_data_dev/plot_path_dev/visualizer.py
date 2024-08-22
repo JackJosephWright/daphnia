@@ -4,34 +4,34 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 
 class DaphniaAnimation:
-    """ Animates the movement of a Daphnia using clean data from an NPZ file
+    """ 
+    Animates the movement of a Daphnia using clean data from an NPZ file
 
-        Functions:
-        ----------
-        __init__:
-            Initializes the DaphniaAnimation class with the given NPZ file and start index
-        load_data:
-            Loads data from NPZ file into dataframes and removes missing data if needed
-        plot_detail:
-            Sets the title and labels for the plot
-        init_animation:
-            Initializes the animation by setting the line data to empty
-        animate:
-            Updates the animation frame by frame
-        create_animation:
-            Creates and displays the animation of the Daphnia's movements
-
+    Functions:
+    ----------
+    __init__:
+        Initializes the DaphniaAnimation class with the given NPZ file and start index
+    load_data:
+        Loads data from NPZ file into dataframes and removes missing data if needed
+    plot_detail:
+        Sets the title and labels for the plot
+    init_animation:
+        Initializes the animation by setting the line data to empty
+    animate:
+        Updates the animation frame by frame
+    create_animation:
+        Creates and displays the animation of the Daphnia's movements
     """
     def __init__(self, df, start_index=0):
-        """ Initializes the DaphniaAnimation class with the given NPZ file and start index
+        """ 
+        Initializes the DaphniaAnimation class with the given NPZ file and start index
 
         Parameters:
         -----------
-            npz_path: str/source_dir
-                Clean npz file to be used for animation 
-            start_index: int, optional
-                Index declaring what frame you want the animation to start (default is 0)
-                
+        npz_path: str/source_dir
+            Clean npz file to be used for animation 
+        start_index: int, optional
+            Index declaring what frame you want the animation to start (default is 0)
         """
         self.df = df
         self.start_index = start_index
@@ -41,17 +41,17 @@ class DaphniaAnimation:
         self.line, = self.ax.plot([], [], 'b-')
 
     def plot_detail(self, title, xlabel, ylabel):
-        """ Sets the title and labels for the plot
+        """ 
+        Sets the title and labels for the plot
 
         Parameters:
         -----------
-            title: str
-                Title of the plot
-            xlabel: str
-                The label for the X-axis
-            ylabel: str
-                The label for the Y-axis
-        
+        title: str
+            Title of the plot
+        xlabel: str
+            The label for the X-axis
+        ylabel: str
+            The label for the Y-axis
         """
         csfont = {'fontname': 'Comic Sans MS', 'color': 'blue', 'size': 20}
         hfont = {'fontname': 'Helvetica', 'color': 'blue', 'size': 12}
@@ -60,24 +60,24 @@ class DaphniaAnimation:
         plt.ylabel(ylabel, fontdict=hfont)
 
     def init_animation(self):
-        """ Initializes the animation by setting the line data to empty
+        """ 
+        Initializes the animation by setting the line data to empty
 
         Returns:
         --------
         A tuple containing the line object to be animated
-
         """
         self.line.set_data([], [])
         return self.line,
 
     def animate(self, i):
-        """ Updates the animation frame by frame
+        """ 
+        Updates the animation frame by frame
 
         Parameters:
         -----------
-            i: int
-                The current frame index
-        
+        i: int
+            The current frame index
         """
         x = self.df_subset['X'].iloc[:i]
         y = self.df_subset['Y'].iloc[:i]
@@ -85,10 +85,10 @@ class DaphniaAnimation:
         return self.line,
 
     def create_animation(self):
-        """ Creates and displays the animation of the Daphnia's movements
+        """ 
+        Creates and displays the animation of the Daphnia's movements
 
-            The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
-        
+        The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
         """
             # Ensure there are no NaN or Inf values in the columns used for limits
         valid_x = self.df_subset['X'].replace([np.inf, -np.inf], np.nan).dropna()
