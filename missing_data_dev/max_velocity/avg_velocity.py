@@ -53,10 +53,8 @@ def all_velocity(df_list):
     return all_v
     
 
-#get avg velocity with standard deviation 
 
-
-#plot the velocities as a ccontinuous density function (or histogram)
+#plot the velocities as a continuous density function (or histogram)
 
 
 import matplotlib.pyplot as plt
