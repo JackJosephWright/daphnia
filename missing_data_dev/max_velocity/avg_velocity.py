@@ -85,14 +85,14 @@ import numpy as np
 
 def plot_histogram(data, bins=10):
     """
-    Plots a histogram of the given data, representing the distribution of velocities.
+    Plots a histogram of the given data, representing the distribution of velocities
 
     Parameters:
     -----------
     data : list
-        A list of velocity values to be plotted.
+        A list of velocity values to be plotted
     bins : int, optional
-        The number of bins to use in the histogram (default is 10).
+        The number of bins to use in the histogram (default is 10)
     """
     plt.figure(figsize=(8, 6))
     plt.hist(data, bins=bins, edgecolor='black', alpha=0.7)
