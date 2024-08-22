@@ -3,13 +3,21 @@ import numpy as np
 import os
 
 def split_table(df, save_to_folder=False, folder_path=None):
-    """ Splits valid data into tables
+    """ 
+    Splits valid data into tables
     
     Parameters:
     -----------
-        df: pd.dataframe
-            The input dataframe to be split
-        save_to_folder: 
+    df: pd.dataframe
+        The input dataframe to be split
+    save_to_folder: bool, optional
+        If True, the resulting tables will be saved as CSV files in the specified folder (default is False)
+    folder_path: str, optional
+        The directory path where the CSV files will be saved, if save_to_folder is True
+
+    Returns:
+    --------
+        A list of DataFrames, each representing a subset of the original DataFrame without infinite values.
     """
     #remove unwanted columns
     for col in df.columns:
@@ -47,8 +55,15 @@ def split_table(df, save_to_folder=False, folder_path=None):
 
 
 def save_tables(tables, folder_path):
+    """
+    Saves a list of dataframes as csv files
+
+    Parameters:
+    -----------
+    tables: list
+        A list of DataFrames to be saved
+    folder_path: str
+        The directory path where the CSV files will be saved
+    """
     for index, table in enumerate(tables):
         table.to_csv(os.path.join(folder_path, f'table_{index}.csv'), index=False)
-
-
-
