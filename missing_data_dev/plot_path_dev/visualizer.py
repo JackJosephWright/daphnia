@@ -4,36 +4,55 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 
 class DaphniaAnimation:
-    def __init__(self, npz_path, start_index=0):
-        self.npz_path = npz_path
+    """ 
+    Animates the movement of a Daphnia using clean data from an NPZ file
+
+    Functions:
+    ----------
+    __init__:
+        Initializes the DaphniaAnimation class with the given NPZ file and start index
+    load_data:
+        Loads data from NPZ file into dataframes and removes missing data if needed
+    plot_detail:
+        Sets the title and labels for the plot
+    init_animation:
+        Initializes the animation by setting the line data to empty
+    animate:
+        Updates the animation frame by frame
+    create_animation:
+        Creates and displays the animation of the Daphnia's movements
+    """
+    def __init__(self, df, start_index=0):
+        """ 
+        Initializes the DaphniaAnimation class with the given NPZ file and start index
+
+        Parameters:
+        -----------
+        npz_path: str/source_dir
+            Clean npz file to be used for animation 
+        start_index: int, optional
+            Index declaring what frame you want the animation to start (default is 0)
+        """
+        self.df = df
         self.start_index = start_index
-        self.df = self.load_data()
-        self.df_subset = self.df.loc[self.start_index:]
+        self.df_subset = self.df.iloc[self.start_index:]
 
         self.fig, self.ax = plt.subplots()
         self.line, = self.ax.plot([], [], 'b-')
 
-    def load_data(self):
-        # Load the npz file
-        data = np.load(self.npz_path)
-        timestamp = data['timestamp']
-        X = data['X']
-        Y = -data['Y']  # Inverting Y
-
-        df = pd.DataFrame(
-            {
-                "X": X,
-                "Y": Y,
-                "time": timestamp
-            }
-        )
-
-        # Drop missing or infinite data
-        df.replace(['', np.inf, -np.inf], np.nan, inplace=True)
-        df.dropna(inplace=True)
-        return df
-
     def plot_detail(self, title, xlabel, ylabel):
+        """ 
+        Sets the title and labels for the plot
+
+        Parameters:
+        -----------
+        title: str
+            Title of the plot
+        xlabel: str
+            The label for the X-axis
+        ylabel: str
+            The label for the Y-axis
+        """
         csfont = {'fontname': 'Comic Sans MS', 'color': 'blue', 'size': 20}
         hfont = {'fontname': 'Helvetica', 'color': 'blue', 'size': 12}
         plt.title(title, fontdict=csfont)
@@ -41,19 +60,51 @@ class DaphniaAnimation:
         plt.ylabel(ylabel, fontdict=hfont)
 
     def init_animation(self):
+        """ 
+        Initializes the animation by setting the line data to empty
+
+        Returns:
+        --------
+        A tuple containing the line object to be animated
+        """
         self.line.set_data([], [])
         return self.line,
 
     def animate(self, i):
-        x = self.df_subset['X'][:i]
-        y = self.df_subset['Y'][:i]
+        """ 
+        Updates the animation frame by frame
+
+        Parameters:
+        -----------
+        i: int
+            The current frame index
+
+        Returns:
+        --------
+        tuple
+            A tuple containing the updated line object
+        """
+        x = self.df_subset['X'].iloc[:i]
+        y = self.df_subset['Y'].iloc[:i]
         self.line.set_data(x, y)
         return self.line,
 
     def create_animation(self):
-        # Set up plot limits
-        self.ax.set_xlim(self.df_subset['X'].min(), self.df_subset['X'].max())
-        self.ax.set_ylim(self.df_subset['Y'].min(), self.df_subset['Y'].max())
+        """ 
+        Creates and displays the animation of the Daphnia's movements
+
+        The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
+        """
+            # Ensure there are no NaN or Inf values in the columns used for limits
+        valid_x = self.df_subset['X'].replace([np.inf, -np.inf], np.nan).dropna()
+        valid_y = self.df_subset['Y'].replace([np.inf, -np.inf], np.nan).dropna()
+
+        if valid_x.empty or valid_y.empty:
+            raise ValueError("No valid data points available to set axis limits.")
+
+        # Set up plot limits using the cleaned data
+        self.ax.set_xlim(valid_x.min(), valid_x.max())
+        self.ax.set_ylim(valid_y.min(), valid_y.max())
 
         # Add plot details
         self.plot_detail("Single Fish Data", "X value", "Y value")

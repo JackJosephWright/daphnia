@@ -1,19 +1,25 @@
-"""if x or y is inf/NaN,
-save tables as dataframes
-    break and start new table
-"""
-
 import pandas as pd
 import numpy as np
 import os
 
-
-clean_data = "data/clean_fish_data/fish_data_clean.csv"
-
-df = pd.read_csv(clean_data, index_col=False)
-
-
 def split_table(df, save_to_folder=False, folder_path=None):
+    """ 
+    Splits valid data into tables
+    
+    Parameters:
+    -----------
+    df: pd.dataframe
+        The input dataframe to be split
+    save_to_folder: bool, optional
+        If True, the resulting tables will be saved as CSV files in the specified folder (default is False)
+    folder_path: str, optional
+        The directory path where the CSV files will be saved, if save_to_folder is True
+
+    Returns:
+    --------
+    List
+        A list of DataFrames, each representing a subset of the original DataFrame without infinite values
+    """
     #remove unwanted columns
     for col in df.columns:
         print(col)
@@ -39,7 +45,6 @@ def split_table(df, save_to_folder=False, folder_path=None):
     if temp_table is not None:
         tables.append(temp_table)
 
-
      # Save tables to folder if specified
     if save_to_folder and folder_path:
         if not os.path.exists(folder_path):
@@ -50,5 +55,15 @@ def split_table(df, save_to_folder=False, folder_path=None):
 
 
 def save_tables(tables, folder_path):
+    """
+    Saves a list of dataframes as csv files
+
+    Parameters:
+    -----------
+    tables: list
+        A list of DataFrames to be saved
+    folder_path: str
+        The directory path where the CSV files will be saved
+    """
     for index, table in enumerate(tables):
         table.to_csv(os.path.join(folder_path, f'table_{index}.csv'), index=False)
