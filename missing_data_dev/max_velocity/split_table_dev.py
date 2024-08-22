@@ -17,6 +17,7 @@ def split_table(df, save_to_folder=False, folder_path=None):
 
     Returns:
     --------
+    List
         A list of DataFrames, each representing a subset of the original DataFrame without infinite values.
     """
     #remove unwanted columns
