@@ -3,17 +3,13 @@ import os
 import numpy as np
 
 # from data import table_data
-
 # directory containing csv table files
-#direct_path = "/Users/ibrahimrahat/Documents/GitHub/daphnia/data/table_data"
 relative_path = "data/table_data"
-#all_files = os.listdir(direct_path)
 all_files = os.listdir(relative_path)
 dataframes = []
 
 def calc_velocity(point1, point2):
-   # print("point 1:", point1)
-    #print("point 2:", point2)
+    """"""
 
     delta_x = point2["X"] - point1["X"]
     delta_y = point2["Y"] - point1["Y"]
@@ -34,11 +30,8 @@ def avg_velocity(df):
     V = []
     #print('length of df:',len(df))
     for i in range(1, len(df)):
-        # print(i)
         point2 = df.iloc[i]
         point1 = df.iloc[i - 1]
-        # print('point 1:', point1)
-        # print('point 2:', point2)
         V.append(calc_velocity(point1, point2))
     return V
 
@@ -55,7 +48,6 @@ def all_velocity(df_list):
 
 
 #plot the velocities as a continuous density function (or histogram)
-
 
 import matplotlib.pyplot as plt
 import numpy as np
