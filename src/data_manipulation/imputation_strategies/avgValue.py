@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from typing import Union
 
-def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFrame:
+def impute(data: pd.DataFrame = None) -> pd.DataFrame:
     """
     Imputes missing or invalid data points in a DataFrame by filling in values based on average velocity.
 
@@ -10,9 +10,7 @@ def impute(data: pd.DataFrame = None, function: str = 'avgValue') -> pd.DataFram
     -----------
     data : pd.DataFrame, optional
         A DataFrame with 'time', 'X', and 'Y' columns. Missing data points in the 'X' and 'Y' columns will be filled in.
-    function : str, optional
-        Function to determine how to fill in the missing data. Default is 'avgValue'.
-
+   
     Returns:
     --------
     pd.DataFrame

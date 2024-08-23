@@ -34,7 +34,6 @@ from src.data_manipulation.TRexImputer import TRexImputer
 
 imputer = TRexImputer()
 
-# Set desired parameters
 DATA = pd.DataFrame({
     'X': [1.0, 2.0, np.inf, 4.0],
     'Y': [1.0, 2.0, np.inf, 4.0],
@@ -42,7 +41,6 @@ DATA = pd.DataFrame({
 })
 FUNCTION = 'avgValue'
 
-# Impute data
 imputedData = imputer.impute(data=DATA, function=FUNCTION)
 
 
