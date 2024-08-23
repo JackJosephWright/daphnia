@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import importlib.util
-from src.data_manipulation.TRexDataTester import TRexDataTester
 from src.data_manipulation.NPZer import NPZer
 import pandas as pd
 
@@ -19,13 +18,36 @@ class TRexImputer:
 
     Methods
     -------
-    impute(data, function='avgValue', tester=None):
+    impute(data, function='avgValue'):
         Imputes faulty values in the provided data using the specified function.
     
     functions():
         Lists all available imputation strategies.
     """
     def __init__(self, strategy_dir='imputation_strategies'):
+        """
+        Initializes the TRexImputer class by loading imputation strategies.
+
+        This method sets up the TRexImputer by locating and loading all available 
+        imputation strategies from Python files in the specified directory. Each 
+        imputation strategy should be a Python function named 'impute' within the 
+        file, which will be added to the `imputationStrategies` dictionary.
+
+        Parameters
+        ----------
+        strategy_dir : str, optional
+            The directory containing the Python files with imputation strategies. 
+            Defaults to 'imputation_strategies'.
+
+        Raises
+        ------
+        FileNotFoundError
+            If the specified strategy directory does not exist.
+        
+        Exception
+            If an error occurs while loading a module, the error is caught and printed, 
+            but the imputer continues to load other available strategies.
+        """
         self.imputationStrategies = {}
         strategy_dir_path = os.path.abspath(os.path.join('src', 'data_manipulation', strategy_dir))
         if not os.path.exists(strategy_dir_path):
@@ -50,7 +72,7 @@ class TRexImputer:
                 if func:
                     self.imputationStrategies[function] = func
     
-    def impute(self, data: pd.DataFrame, function: str = 'avgValue', tester: TRexDataTester = None) -> pd.DataFrame:
+    def impute(self, data: pd.DataFrame, function: str = 'avgValue') -> pd.DataFrame:
         """
         Imputes faulty values in the provided data.
 
@@ -60,8 +82,6 @@ class TRexImputer:
             The DataFrame containing the data to be imputed.
         function : str, optional
             The name of the imputation function to use. Defaults to 'avgValue'.
-        tester : TRexDataTester, optional
-            An instance of TRexDataTester used to test the data before imputation.
 
         Returns
         -------
@@ -73,9 +93,7 @@ class TRexImputer:
         AssertionError
             If the specified function is not found in the available imputation strategies.
         """
-        if tester is not None:
-            tester.testAll(data)
-        
+
         assert function in self.imputationStrategies, f"Imputation function '{function}' is not in self.imputationStrategies. Available functions: {list(self.imputationStrategies.keys())}"
         
         print(f"Imputing with: {function}()")

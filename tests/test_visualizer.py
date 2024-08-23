@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 # Import classes from src/data_manipulation
-from missing_data_dev.plot_path_dev.visualizer import DaphniaAnimation
+from src.data_visualization.visualizer import DaphniaAnimation
 from src.data_manipulation.NPZer import NPZer
 from src.data_manipulation.TRexDataTester import TRexDataTester
 from src.data_manipulation.TRexImputer import TRexImputer

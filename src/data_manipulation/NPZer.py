@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 from typing import Union, List
-from src.data_manipulation.TRexDataTester import TRexDataTester
 
 class NPZer:
     """
@@ -18,7 +17,7 @@ class NPZer:
     """
 
     @staticmethod
-    def npzip(data: Union[pd.DataFrame, np.ndarray], save_dir: str, params: List[str] = [], tester: TRexDataTester = None):
+    def npzip(data: Union[pd.DataFrame, np.ndarray], save_dir: str, params: List[str] = []):
         """
         Converts a Pandas DataFrame or a Numpy matrix into a zipped .npz file.
         
@@ -30,12 +29,7 @@ class NPZer:
             The file path where the zipped data will be saved.
         params : List[str], optional
             A list of parameters to zip. If not specified, all parameters will be zipped.
-        tester : TRexDataTester, optional
-            An optional tester to validate the data structure.
         """
-        
-        if tester is not None:
-            tester.testAll(data)
         
         if isinstance(data, pd.DataFrame):
             if not params:
@@ -47,42 +41,7 @@ class NPZer:
             np.savez(file=save_dir, **{params[i]: data[i] for i in range(len(params))})
 
     @staticmethod
-    def unzipNpz(source_dir: str, params: List[str] = [], tester: TRexDataTester = None) -> np.ndarray:
-        """
-        Unzips a .npz file and returns its contents as a Numpy array.
-        
-        Parameters:
-        -----------
-        source_dir : str
-            The file path of the .npz file to be unzipped.
-        params : List[str], optional
-            A list of parameters to extract. If not specified, all parameters will be extracted.
-        tester : TRexDataTester, optional
-            An optional tester to validate the data structure.
-            
-        Returns:
-        --------
-        np.ndarray
-            A Numpy array containing the unzipped data.
-        """
-        
-        assert source_dir.endswith('.npz'), "Provided file is not a .npz file"
-        
-        with np.load(source_dir) as openedArray:
-            if params:
-                for param in params:
-                    assert param in openedArray.keys(), f"{param} is not a valid parameter in the data"
-                unzippedArray = np.array([openedArray[param] for param in params])
-            else:
-                unzippedArray = np.array([openedArray[key] for key in openedArray.keys()])
-            
-            if tester is not None:
-                tester.testAll(unzippedArray)
-            
-            return unzippedArray
-
-    @staticmethod
-    def pandafy(data: np.ndarray = None, source_dir: str = None, invertY: bool = False, params: List[str] = [], tester: TRexDataTester = None) -> pd.DataFrame:
+    def pandafy(data: np.ndarray = None, source_dir: str = None, invertY: bool = False, params: List[str] = []) -> pd.DataFrame:
         """
         Converts unzipped .npz data or a Numpy array into a Pandas DataFrame.
         
@@ -96,8 +55,6 @@ class NPZer:
             If True, inverts the Y values in the DataFrame. Default is False.
         params : List[str], optional
             A list of parameters to extract. If not specified, all parameters will be extracted.
-        tester : TRexDataTester, optional
-            An optional tester to validate the data structure.
             
         Returns:
         --------
@@ -114,18 +71,13 @@ class NPZer:
                 
                 if params:
                     pandaDataFrame = pandaDataFrame[params]
-                
-                if tester is not None:
-                    tester.testAll(pandaDataFrame)
-                
+
                 if invertY:
                     assert 'Y' in pandaDataFrame.columns, f"Data has no parameter Y"
                     pandaDataFrame['Y'] = -pandaDataFrame['Y']
             
                 return pandaDataFrame
         else:
-            if tester is not None:
-                tester.testAll(data)
             
             if params:
                 pandaDataFrame = pd.DataFrame(data=data, columns=params)  

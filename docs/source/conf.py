@@ -5,10 +5,9 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../'))
+sys.path.insert(0, os.path.abspath('../src'))
 
 
 project = 'TRexDataManipulation'
@@ -20,11 +19,16 @@ release = '1.0.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
     'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.inheritance_diagram',
+    'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
+    'sphinx.ext.napoleon'
 ]
+
+# Napoleon Settings --------------------------------
+napoleon_include_init_with_doc = True
 
 templates_path = ['_templates']
 exclude_patterns = []

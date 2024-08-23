@@ -4,9 +4,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>src.data_manipulation.imputation_strategies package &mdash; TRexDataManipulation 1.0.0 documentation</title>
+  <title>../src.data_manipulation.imputation_strategies package &mdash; TRexDataManipulation 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
 
   
   <!--[if lt IE 9]>
@@ -20,8 +21,7 @@
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="src.data_manipulation package" href="src.data_manipulation.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,44 +43,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="src.data_manipulation.html">src.data_manipulation package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="src.data_manipulation.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">src.data_manipulation.imputation_strategies package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies.avgValue">src.data_manipulation.imputation_strategies.avgValue module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies.random">src.data_manipulation.imputation_strategies.random module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies">Module contents</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">../src.data_manipulation.imputation_strategies package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#src-data-manipulation-imputation-strategies-avgvalue-module">../src.data_manipulation.imputation_strategies.avgValue module</a></li>
+<li><a class="reference internal" href="#src-data-manipulation-imputation-strategies-random-module">../src.data_manipulation.imputation_strategies.random module</a></li>
+<li><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation.NPZer">src.data_manipulation.NPZer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation.TRexDataCleaner">src.data_manipulation.TRexDataCleaner module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation.TRexDataTester">src.data_manipulation.TRexDataTester module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation.TRexImputer">src.data_manipulation.TRexImputer module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation.plotDetail">src.data_manipulation.plotDetail module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.data_manipulation.html#module-src.data_manipulation">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">src.data_manipulation.imputation_strategies package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies.avgValue">src.data_manipulation.imputation_strategies.avgValue module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#src.data_manipulation.imputation_strategies.avgValue.calculateVelocity"><code class="docutils literal notranslate"><span class="pre">calculateVelocity()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#src.data_manipulation.imputation_strategies.avgValue.impute"><code class="docutils literal notranslate"><span class="pre">impute()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies.random">src.data_manipulation.imputation_strategies.random module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#src.data_manipulation.imputation_strategies.random.impute"><code class="docutils literal notranslate"><span class="pre">impute()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src.data_manipulation.imputation_strategies">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
+</div>
         </div>
       </div>
     </nav>
@@ -95,8 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="src.data_manipulation.html">src.data_manipulation package</a></li>
-      <li class="breadcrumb-item active">src.data_manipulation.imputation_strategies package</li>
+      <li class="breadcrumb-item active">../src.data_manipulation.imputation_strategies package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/src.data_manipulation.imputation_strategies.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,78 +79,25 @@
            <div itemprop="articleBody">
              
   <section id="src-data-manipulation-imputation-strategies-package">
-<h1>src.data_manipulation.imputation_strategies package<a class="headerlink" href="#src-data-manipulation-imputation-strategies-package" title="Link to this heading"></a></h1>
+<h1>../src.data_manipulation.imputation_strategies package<a class="headerlink" href="#src-data-manipulation-imputation-strategies-package" title="Link to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-src.data_manipulation.imputation_strategies.avgValue">
-<span id="src-data-manipulation-imputation-strategies-avgvalue-module"></span><h2>src.data_manipulation.imputation_strategies.avgValue module<a class="headerlink" href="#module-src.data_manipulation.imputation_strategies.avgValue" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="src.data_manipulation.imputation_strategies.avgValue.calculateVelocity">
-<span class="sig-prename descclassname"><span class="pre">src.data_manipulation.imputation_strategies.avgValue.</span></span><span class="sig-name descname"><span class="pre">calculateVelocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">floating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">floating</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">floating</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/src/data_manipulation/imputation_strategies/avgValue.html#calculateVelocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_manipulation.imputation_strategies.avgValue.calculateVelocity" title="Link to this definition"></a></dt>
-<dd><p>Calculates the velocity between two points.</p>
-<section id="parameters">
-<h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>pi<span class="classifier">float or np.floating</span></dt><dd><p>The initial position of the entity.</p>
-</dd>
-<dt>pf<span class="classifier">float or np.floating</span></dt><dd><p>The final position of the entity.</p>
-</dd>
-<dt>dtime<span class="classifier">float or np.floating</span></dt><dd><p>The time difference between the initial and final positions.</p>
-</dd>
-</dl>
+<section id="src-data-manipulation-imputation-strategies-avgvalue-module">
+<h2>../src.data_manipulation.imputation_strategies.avgValue module<a class="headerlink" href="#src-data-manipulation-imputation-strategies-avgvalue-module" title="Link to this heading"></a></h2>
 </section>
-<section id="returns">
-<h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>float</dt><dd><p>The calculated velocity.</p>
-</dd>
-</dl>
+<section id="src-data-manipulation-imputation-strategies-random-module">
+<h2>../src.data_manipulation.imputation_strategies.random module<a class="headerlink" href="#src-data-manipulation-imputation-strategies-random-module" title="Link to this heading"></a></h2>
 </section>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="src.data_manipulation.imputation_strategies.avgValue.impute">
-<span class="sig-prename descclassname"><span class="pre">src.data_manipulation.imputation_strategies.avgValue.</span></span><span class="sig-name descname"><span class="pre">impute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'avgValue'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/data_manipulation/imputation_strategies/avgValue.html#impute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_manipulation.imputation_strategies.avgValue.impute" title="Link to this definition"></a></dt>
-<dd><p>Imputes missing or invalid data points in a DataFrame by filling in values based on average velocity.</p>
-<section id="id1">
-<h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>data<span class="classifier">pd.DataFrame, optional</span></dt><dd><p>A DataFrame with ‘time’, ‘X’, and ‘Y’ columns. Missing data points in the ‘X’ and ‘Y’ columns will be filled in.</p>
-</dd>
-<dt>function<span class="classifier">str, optional</span></dt><dd><p>Function to determine how to fill in the missing data. Default is ‘avgValue’.</p>
-</dd>
-</dl>
-</section>
-<section id="id2">
-<h3>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
-<dl class="simple">
-<dt>pd.DataFrame</dt><dd><p>The DataFrame with missing or invalid data points imputed.</p>
-</dd>
-</dl>
-</section>
-</dd></dl>
-
-</section>
-<section id="module-src.data_manipulation.imputation_strategies.random">
-<span id="src-data-manipulation-imputation-strategies-random-module"></span><h2>src.data_manipulation.imputation_strategies.random module<a class="headerlink" href="#module-src.data_manipulation.imputation_strategies.random" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="src.data_manipulation.imputation_strategies.random.impute">
-<span class="sig-prename descclassname"><span class="pre">src.data_manipulation.imputation_strategies.random.</span></span><span class="sig-name descname"><span class="pre">impute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/data_manipulation/imputation_strategies/random.html#impute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.data_manipulation.imputation_strategies.random.impute" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-src.data_manipulation.imputation_strategies">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.data_manipulation.imputation_strategies" title="Link to this heading"></a></h2>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="src.data_manipulation.html" class="btn btn-neutral float-left" title="src.data_manipulation package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 

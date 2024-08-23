@@ -16,9 +16,6 @@ class TRexDataCleaner:
     
     isDiscontinuity:
         Checks if there is a discontinuity between two data points.
-    
-    calculateVelocity:
-        Computes the velocity between two points given their positions and the time elapsed.
     """
 
     def renderDiscontinuities(self, data: pd.DataFrame, vmax: Union[float, np.floating]) -> Tuple[pd.DataFrame, pd.DataFrame]:
@@ -91,6 +88,6 @@ if __name__ == "__main__":
     faultyData = NPZer.pandafy(source_dir='data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY=True, params=['time', 'X', 'Y'])
     print(f"Faulty Data: \n{faultyData}")
 
-    cleanedData, removedData = dataCleaner.renderDiscontinuities(data=faultyData, vmax=50)
+    cleanedData, removedData = dataCleaner.renderDiscontinuities(data=faultyData, vmax=15)
     print("Cleaned Data: \n", cleanedData)
     print("Removed Data: \n", removedData)

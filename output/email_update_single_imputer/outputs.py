@@ -10,11 +10,9 @@ SOURCE_DIR = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz'
 PARAMS = ['time', 'X', 'Y']
 INVERT_Y = True
 
+
 npzer = NPZer()
 unzippedData = NPZer.pandafy(source_dir=SOURCE_DIR, invertY=INVERT_Y, params=PARAMS)
-
-# Unzip to nparray
-unzippedData = NPZer.unzipNpz(source_dir=SOURCE_DIR, params=PARAMS)
 
 # Print data in form of pandas table
 print('TRex Data:\n', unzippedData)
@@ -23,24 +21,10 @@ print('TRex Data:\n', unzippedData)
 from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 
 dataCleaner = TRexDataCleaner()
+VMAX = 15
 
-# Set desired parameters
-VMAX = 20
-
-# Set sample of original data
-originalData = unzippedData.reset_index(drop=True)
-
-# Print sample of original data
-print('Original Data:\n', originalData)
-
-originalData = pd.DataFrame({
-    'X': [1.0, 2.0, 10.0, 4.0],
-    'Y': [1.0, 2.0, 10.0, 4.0],
-    'time': [0.0, 1.0, 2.0, 3.0]
-})
-
-# Clean data
-cleanedData, removedData = dataCleaner.renderDiscontinuities(data=originalData, vmax=VMAX)
+if TRexDataCleaner.isDiscontinuity(pi=unzippedData.loc[2], pf=unzippedData.loc[3], vmax=VMAX):
+    unzippedData.drop(3)
 
 # Print cleaned data
 print('Cleaned Data:\n', cleanedData)
