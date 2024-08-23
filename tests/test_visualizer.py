@@ -64,5 +64,11 @@ def test_create_animation_normal_case(daphnia_animation):
     # Here you would assert conditions based on what should happen in a successful animation creation
     # Since it's hard to assert animations, this is generally where you would rely on visual inspection or mock objects
 
+def test_out_of_bounds_index():
+    """Test using an out-of-bounds start index."""
+    df = pd.DataFrame({'time': [0, 1, 2], 'X': [1, 2, 3], 'Y': [4, 5, 6]})
+    with pytest.raises(IndexError):
+        DaphniaAnimation(df, start_index=10)  # Index out of range
+
 if __name__ == "__main__":
     pytest.main()
