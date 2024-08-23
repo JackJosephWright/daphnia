@@ -84,8 +84,8 @@ class DaphniaAnimation:
         tuple
             A tuple containing the updated line object
         """
-        x = self.df_subset['X'].iloc[:i]
-        y = self.df_subset['Y'].iloc[:i]
+        x = self.df_subset['X'].iloc[:i+1]
+        y = self.df_subset['Y'].iloc[:i+1]
         self.line.set_data(x, y)
         return self.line,
 
@@ -110,6 +110,6 @@ class DaphniaAnimation:
         self.plot_detail("Single Fish Data", "X value", "Y value")
 
         # Call the animator
-        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=50, blit=True)
+        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=500, blit=True)
 
         plt.show()

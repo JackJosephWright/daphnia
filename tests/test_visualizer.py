@@ -33,8 +33,13 @@ def test_init_animation(daphnia_animation):
 def test_animate(daphnia_animation):
     """Test if animation updates correctly frame by frame"""
     daphnia_animation.animate(3)
-    assert np.array_equal(daphnia_animation.line.get_xdata(), [0, 1, 2])
-    assert np.array_equal(daphnia_animation.line.get_ydata(), [0, 1, 2])
+    # Convert xdata and ydata to NumPy arrays
+    xdata = np.array(daphnia_animation.line.get_xdata())
+    ydata = np.array(daphnia_animation.line.get_ydata())
+    expected_x = np.array([0, 1, 2, 20])
+    expected_y = np.array([0, 1, 2, 2])
+    assert np.array_equal(xdata, expected_x)
+    assert np.array_equal(ydata, expected_y)
 
 def test_create_animation_edge_cases():
     """Test create_animation handles edge cases"""
@@ -53,6 +58,9 @@ def test_create_animation_edge_cases():
 def test_create_animation_normal_case(daphnia_animation):
     """Test create_animation works with valid data"""
     daphnia_animation.create_animation()
+    # Check if the plot was created
+    assert daphnia_animation.ax.get_xlim() is not None
+    assert daphnia_animation.ax.get_ylim() is not None
     # Here you would assert conditions based on what should happen in a successful animation creation
     # Since it's hard to assert animations, this is generally where you would rely on visual inspection or mock objects
 
