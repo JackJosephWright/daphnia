@@ -41,10 +41,12 @@ def test_animate(daphnia_animation):
     assert np.array_equal(xdata, expected_x)
     assert np.array_equal(ydata, expected_y)
 
+# Edge case
 def test_create_animation_edge_cases():
     """Test create_animation handles edge cases"""
     empty_df = pd.DataFrame(columns=['time', 'X', 'Y'])
-    with pytest.raises(ValueError, match="No valid data points available to set axis limits."):
+    # Expect IndexError due to empty DataFrame
+    with pytest.raises(IndexError, match="start_index is out of bounds"):
         DaphniaAnimation(df=empty_df).create_animation()
 
     inf_df = pd.DataFrame({
@@ -64,11 +66,36 @@ def test_create_animation_normal_case(daphnia_animation):
     # Here you would assert conditions based on what should happen in a successful animation creation
     # Since it's hard to assert animations, this is generally where you would rely on visual inspection or mock objects
 
+# Tests that should fail
 def test_out_of_bounds_index():
     """Test using an out-of-bounds start index."""
     df = pd.DataFrame({'time': [0, 1, 2], 'X': [1, 2, 3], 'Y': [4, 5, 6]})
     with pytest.raises(IndexError):
         DaphniaAnimation(df, start_index=10)  # Index out of range
+
+def test_invalid_data_types():
+    """Test handling of invalid data types."""
+    # DataFrame with strings instead of numeric values
+    df_with_strings = pd.DataFrame({
+        'time': ['a', 'b', 'c'],
+        'X': ['x', 'y', 'z'],
+        'Y': ['p', 'q', 'r']
+    })
+
+    # DataFrame with some numeric values replaced with empty strings
+    df_with_empty_values = pd.DataFrame({
+        'time': [0, 1, 2],
+        'X': [1, '', 3],
+        'Y': [4, 5, '']
+    })
+
+    # Test with DataFrame containing strings
+    with pytest.raises(ValueError):
+        DaphniaAnimation(df_with_strings)
+
+    # Test with DataFrame containing empty strings
+    with pytest.raises(ValueError):
+        DaphniaAnimation(df_with_empty_values)
 
 if __name__ == "__main__":
     pytest.main()

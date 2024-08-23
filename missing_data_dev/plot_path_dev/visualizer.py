@@ -35,6 +35,11 @@ class DaphniaAnimation:
         interval: int, optional
             Speed at which the graph is animated
         """
+        if not df[['X', 'Y', 'time']].map(lambda x: pd.to_numeric(x, errors='coerce')).notna().all().all():
+            raise ValueError("DataFrame contains non-numeric values in 'X', 'Y', or 'time' columns.")
+        if start_index >= len(df) or start_index < 0:
+            raise IndexError("start_index is out of bounds")
+
         self.df = df
         self.start_index = start_index
         self.df_subset = self.df.iloc[self.start_index:]
@@ -98,7 +103,7 @@ class DaphniaAnimation:
 
         The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
         """
-            # Ensure there are no NaN or Inf values in the columns used for limits
+        # Ensure there are no NaN or Inf values in the columns used for limits
         valid_x = self.df_subset['X'].replace([np.inf, -np.inf], np.nan).dropna()
         valid_y = self.df_subset['Y'].replace([np.inf, -np.inf], np.nan).dropna()
 
