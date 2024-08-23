@@ -22,7 +22,7 @@ class DaphniaAnimation:
     create_animation:
         Creates and displays the animation of the Daphnia's movements
     """
-    def __init__(self, df, start_index=0):
+    def __init__(self, df, start_index=0, interval=50):
         """ 
         Initializes the DaphniaAnimation class with the given NPZ file and start index
 
@@ -32,10 +32,13 @@ class DaphniaAnimation:
             Clean npz file to be used for animation 
         start_index: int, optional
             Index declaring what frame you want the animation to start (default is 0)
+        interval: int, optional
+            Speed at which the graph is animated
         """
         self.df = df
         self.start_index = start_index
         self.df_subset = self.df.iloc[self.start_index:]
+        self.interval = interval
 
         self.fig, self.ax = plt.subplots()
         self.line, = self.ax.plot([], [], 'b-')
@@ -110,6 +113,6 @@ class DaphniaAnimation:
         self.plot_detail("Single Fish Data", "X value", "Y value")
 
         # Call the animator
-        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=500, blit=True)
+        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=self.interval, blit=True)
 
         plt.show()

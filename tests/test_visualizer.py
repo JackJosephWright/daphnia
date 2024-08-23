@@ -16,7 +16,7 @@ def sample_data():
 @pytest.fixture
 def daphnia_animation(sample_data):
     """Fixture to create a DaphniaAnimation instance"""
-    return DaphniaAnimation(df=sample_data, start_index=0)
+    return DaphniaAnimation(df=sample_data, start_index=0, interval=100)
 
 def test_plot_detail(daphnia_animation):
     """Test if plot detail is set correctly"""
