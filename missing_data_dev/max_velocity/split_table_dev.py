@@ -22,7 +22,6 @@ def split_table(df, save_to_folder=False, folder_path=None):
     """
     #remove unwanted columns
     for col in df.columns:
-        print(col)
         if col not in ['X','Y','time']:
             df = df.drop(columns = col)
     
