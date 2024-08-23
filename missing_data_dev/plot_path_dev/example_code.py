@@ -6,7 +6,6 @@ from matplotlib.animation import FuncAnimation
 # Import classes from src/data_manipulation
 
 from src.data_manipulation.TRexDataTester import TRexDataTester
-from src.data_manipulation.NPZer import NPZer
 
 data = NPZer.unzipNpz(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', params = ['time', 'X', 'Y'])
     
@@ -16,6 +15,7 @@ tester.testAll(data)
 # print("Unzipped data:\n", data)
 
 from missing_data_dev.plot_path_dev.visualizer import DaphniaAnimation
+from src.data_manipulation.NPZer import NPZer
 
 pandasData = NPZer.pandafy(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', invertY = True, params = ['time', 'X', 'Y'], )
 
