@@ -22,7 +22,7 @@ class DaphniaAnimation:
     create_animation:
         Creates and displays the animation of the Daphnia's movements
     """
-    def __init__(self, df, start_index=0):
+    def __init__(self, df, start_index=0, interval=50):
         """ 
         Initializes the DaphniaAnimation class with the given NPZ file and start index
 
@@ -32,10 +32,18 @@ class DaphniaAnimation:
             Clean npz file to be used for animation 
         start_index: int, optional
             Index declaring what frame you want the animation to start (default is 0)
+        interval: int, optional
+            Speed at which the graph is animated
         """
+        if not df[['X', 'Y', 'time']].map(lambda x: pd.to_numeric(x, errors='coerce')).notna().all().all():
+            raise ValueError("DataFrame contains non-numeric values in 'X', 'Y', or 'time' columns.")
+        if start_index >= len(df) or start_index < 0:
+            raise IndexError("start_index is out of bounds")
+
         self.df = df
         self.start_index = start_index
         self.df_subset = self.df.iloc[self.start_index:]
+        self.interval = interval
 
         self.fig, self.ax = plt.subplots()
         self.line, = self.ax.plot([], [], 'b-')
@@ -84,8 +92,8 @@ class DaphniaAnimation:
         tuple
             A tuple containing the updated line object
         """
-        x = self.df_subset['X'].iloc[:i]
-        y = self.df_subset['Y'].iloc[:i]
+        x = self.df_subset['X'].iloc[:i+1]
+        y = self.df_subset['Y'].iloc[:i+1]
         self.line.set_data(x, y)
         return self.line,
 
@@ -95,7 +103,7 @@ class DaphniaAnimation:
 
         The function sets up the plot, removes missing data if needed, adds plot details, and then runs the animation
         """
-            # Ensure there are no NaN or Inf values in the columns used for limits
+        # Ensure there are no NaN or Inf values in the columns used for limits
         valid_x = self.df_subset['X'].replace([np.inf, -np.inf], np.nan).dropna()
         valid_y = self.df_subset['Y'].replace([np.inf, -np.inf], np.nan).dropna()
 
@@ -110,6 +118,6 @@ class DaphniaAnimation:
         self.plot_detail("Single Fish Data", "X value", "Y value")
 
         # Call the animator
-        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=50, blit=True)
+        ani = FuncAnimation(self.fig, self.animate, init_func=self.init_animation,frames=len(self.df_subset), interval=self.interval, blit=True)
 
         plt.show()
