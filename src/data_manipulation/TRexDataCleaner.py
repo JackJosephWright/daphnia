@@ -13,7 +13,6 @@ class TRexDataCleaner:
     ----------
     renderDiscontinuities:
         Identifies and removes discontinuities from TRex data, such as jumps or missing data, and marks them as 'infinity'.
-    
     isDiscontinuity:
         Checks if there is a discontinuity between two data points.
     """

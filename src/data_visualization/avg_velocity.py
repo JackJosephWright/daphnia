@@ -4,7 +4,7 @@ import numpy as np
 
 # from data import table_data
 # directory containing csv table files
-relative_path = "data/table_data"
+relative_path = "../data/table_data"
 all_files = os.listdir(relative_path)
 dataframes = []
 
@@ -106,6 +106,3 @@ for file in all_files:
     file_path = os.path.join(relative_path, file)
     df = pd.read_csv(file_path)
     dataframes.append(df)
-    
-all_velo = all_velocity(dataframes)
-plot_histogram(all_velo)
