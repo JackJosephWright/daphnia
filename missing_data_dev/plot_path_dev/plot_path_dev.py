@@ -9,9 +9,10 @@ npz_path = r"data/npz_file/single_7_9_fish1.MP4_fish0.npz"
 #use np.load to load the npz file
 data = np.load(npz_path)
 
-keys = list(data.keys())
-for key in keys:
-    print(key)
+#Prints keys of NPZ file
+# keys = list(data.keys())
+# for key in keys:
+#     print(key)
 
 timestamp = data['timestamp']
 
@@ -51,8 +52,6 @@ def plotDetail(title, xlable, ylabel):
     plt.title(title,fontdict=csfont)
     plt.xlabel(xlable,fontdict=hfont)
     plt.ylabel(ylabel,fontdict=hfont)
-
-# plotDetail("Single Fish Data","X value","Y value")
 
 
 # Initialization function: plot the background of each frame
