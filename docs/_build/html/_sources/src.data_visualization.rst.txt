@@ -1,10 +1,10 @@
-src.data\_visualization package
+data\_visualization package
 ===============================
 
 Submodules
 ----------
 
-src.data\_visualization.avg\_velocity module
+avg\_velocity
 --------------------------------------------
 
 .. automodule:: src.data_visualization.avg_velocity
@@ -12,7 +12,7 @@ src.data\_visualization.avg\_velocity module
    :undoc-members:
    :show-inheritance:
 
-src.data\_visualization.split\_table\_dev module
+split\_table\_dev
 ------------------------------------------------
 
 .. automodule:: src.data_visualization.split_table_dev
@@ -20,7 +20,7 @@ src.data\_visualization.split\_table\_dev module
    :undoc-members:
    :show-inheritance:
 
-src.data\_visualization.visualizer module
+visualizer
 -----------------------------------------
 
 .. automodule:: src.data_visualization.visualizer

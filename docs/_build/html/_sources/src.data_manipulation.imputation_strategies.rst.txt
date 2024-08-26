@@ -1,10 +1,10 @@
-src.data\_manipulation.imputation\_strategies package
+imputation\_strategies
 =====================================================
 
 Submodules
 ----------
 
-src.data\_manipulation.imputation\_strategies.avgValue module
+imputation\_strategies.avgValue
 -------------------------------------------------------------
 
 .. automodule:: src.data_manipulation.imputation_strategies.avgValue
@@ -12,7 +12,7 @@ src.data\_manipulation.imputation\_strategies.avgValue module
    :undoc-members:
    :show-inheritance:
 
-src.data\_manipulation.imputation\_strategies.random module
+imputation\_strategies.random
 -----------------------------------------------------------
 
 .. automodule:: src.data_manipulation.imputation_strategies.random

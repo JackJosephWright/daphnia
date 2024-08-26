@@ -1,4 +1,4 @@
-src.data\_manipulation package
+data\_manipulation package
 ==============================
 
 Subpackages
@@ -12,7 +12,7 @@ Subpackages
 Submodules
 ----------
 
-src.data\_manipulation.NPZer module
+NPZer
 -----------------------------------
 
 .. automodule:: src.data_manipulation.NPZer
@@ -20,7 +20,7 @@ src.data\_manipulation.NPZer module
    :undoc-members:
    :show-inheritance:
 
-src.data\_manipulation.TRexDataCleaner module
+TRexDataCleaner
 ---------------------------------------------
 
 .. automodule:: src.data_manipulation.TRexDataCleaner
@@ -28,7 +28,7 @@ src.data\_manipulation.TRexDataCleaner module
    :undoc-members:
    :show-inheritance:
 
-src.data\_manipulation.TRexImputer module
+TRexImputer
 -----------------------------------------
 
 .. automodule:: src.data_manipulation.TRexImputer
@@ -36,7 +36,7 @@ src.data\_manipulation.TRexImputer module
    :undoc-members:
    :show-inheritance:
 
-src.data\_manipulation.calculateVelocity module
+calculateVelocity
 -----------------------------------------------
 
 .. automodule:: src.data_manipulation.calculateVelocity

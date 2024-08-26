@@ -79,19 +79,20 @@
 <a class="viewcode-back" href="../../../src.data_manipulation.html#src.data_manipulation.calculateVelocity.calculateVelocity">[docs]</a>
 <span class="k">def</span> <span class="nf">calculateVelocity</span><span class="p">(</span><span class="n">pi</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">pf</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculates the velocity between two points.</span>
+<span class="sd">    Calculates the velocity between two points.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    pi : DataFrame</span>
+<span class="sd">        The initial point of the entity, given as a section of a pandas DataFrame.</span>
+<span class="sd">    pf : DataFrame</span>
+<span class="sd">        The final position of the entity, given as a section of a pandas DataFrame.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">        -----------</span>
-<span class="sd">        pi : DataFrame</span>
-<span class="sd">            The initial point of the entity, given as a section of a pandas DataFrame.</span>
-<span class="sd">        pf : DataFrame</span>
-<span class="sd">            The final position of the entity, given as a section of a pandas DataFrame.</span>
-<span class="sd">        Returns:</span>
-<span class="sd">        --------</span>
-<span class="sd">        float</span>
-<span class="sd">            The calculated velocity.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    float</span>
+<span class="sd">        The calculated velocity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="n">pf</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">pi</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">]</span>
     <span class="n">dy</span> <span class="o">=</span> <span class="n">pf</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">pi</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
 
