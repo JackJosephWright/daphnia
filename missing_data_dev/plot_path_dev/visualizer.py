@@ -5,14 +5,14 @@ from matplotlib.animation import FuncAnimation
 
 class DaphniaAnimation:
     """ 
-    Animates the movement of a Daphnia using clean data from an NPZ file
+    Animates the movement of a Daphnia using clean data from Pandas dataframe 
 
     Functions:
     ----------
     __init__:
-        Initializes the DaphniaAnimation class with the given NPZ file and start index
+        Initializes the DaphniaAnimation class with the given dataframe and start index
     load_data:
-        Loads data from NPZ file into dataframes and removes missing data if needed
+        Loads data from dataframe and removes missing data if needed
     plot_detail:
         Sets the title and labels for the plot
     init_animation:
@@ -24,12 +24,12 @@ class DaphniaAnimation:
     """
     def __init__(self, df, start_index=0, interval=50):
         """ 
-        Initializes the DaphniaAnimation class with the given NPZ file and start index
+        Initializes the DaphniaAnimation class with the given dataframe and start index
 
         Parameters:
         -----------
         npz_path: str/source_dir
-            Clean npz file to be used for animation 
+            Clean dataframe to be used for animation 
         start_index: int, optional
             Index declaring what frame you want the animation to start (default is 0)
         interval: int, optional
