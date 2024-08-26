@@ -1,11 +1,9 @@
 # tests/test_visualizer.py
-import pandas as pd
-from matplotlib import pyplot as plt
 import numpy as np
-from matplotlib.animation import FuncAnimation
 # Import classes from src/data_manipulation
 
 from src.data_manipulation.TRexDataTester import TRexDataTester
+from src.data_manipulation.NPZer import NPZer
 
 data = NPZer.unzipNpz(source_dir = 'data/npz_file/single_7_9_fish1.MP4_fish0.npz', params = ['time', 'X', 'Y'])
     
