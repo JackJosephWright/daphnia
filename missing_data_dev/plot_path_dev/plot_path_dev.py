@@ -48,8 +48,6 @@ def plotDetail(title, xlable, ylabel):
     plt.xlabel(xlable,fontdict=hfont)
     plt.ylabel(ylabel,fontdict=hfont)
 
-# plotDetail("Single Fish Data","X value","Y value")
-
 
 # Initialization function: plot the background of each frame
 def init():
