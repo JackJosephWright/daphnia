@@ -49,7 +49,7 @@ class TRexImputer:
             but the imputer continues to load other available strategies.
         """
         self.imputationStrategies = {}
-        strategy_dir_path = os.path.abspath(os.path.join('src', 'data_manipulation', strategy_dir))
+        strategy_dir_path = os.path.abspath(os.path.join('src', 'data_manipulation', strategy_dir))  #find a better way to make this work with both .py and jupyter notebook files
         if not os.path.exists(strategy_dir_path):
             raise FileNotFoundError(f"Directory {strategy_dir_path} does not exist.")
         
