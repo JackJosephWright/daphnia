@@ -4,5 +4,6 @@
         "npzip",
         "pandafy",
         "VMAX"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
