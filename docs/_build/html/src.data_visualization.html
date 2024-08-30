@@ -151,7 +151,7 @@
 <span class="kn">import</span> <span class="nb">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nb">os</span>
 <span class="kn">import</span> <span class="nb">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">missing_data_dev.max_velocity.avg_velocity</span> <span class="kn">import</span> <span class="nf">all_velocity</span>, <span class="nf">plot_histogram</span>
+<span class="kn">from</span> <span class="nn">src.data_visualization.avg_velocity</span> <span class="kn">import</span> <span class="nf">all_velocity</span>, <span class="nf">plot_histogram</span>
                       
 <span class="c1"># directory containing csv table files</span> 
 <span class="nv">direct_path</span> <span class="o">=</span> <span class="s1">'data/table_data'</span>
@@ -161,9 +161,9 @@
                       
 <span class="c1"># loop through csv files and read each one</span>
 <span class="kn">for</span> <span class="nv">file</span> <span class="kn">in</span> <span class="nv">all_files</span>: 
-<span class="nv">file_path</span> <span class="o">=</span> <span class="nb">os</span>.<span class="nf">path.join</span>(<span class="nv">direct_path</span>, <span class="nv">file</span>) 
-<span class="nv">df</span> <span class="o">=</span> <span class="nb">pd</span>.<span class="nf">read_csv</span>(<span class="nv">file_path</span>)
-<span class="nv">dataframes</span>.<span class="nf">append</span>(<span class="nv">df</span>)
+  <span class="nv">file_path</span> <span class="o">=</span> <span class="nb">os</span>.<span class="nf">path.join</span>(<span class="nv">direct_path</span>, <span class="nv">file</span>) 
+  <span class="nv">df</span> <span class="o">=</span> <span class="nb">pd</span>.<span class="nf">read_csv</span>(<span class="nv">file_path</span>)
+  <span class="nv">dataframes</span>.<span class="nf">append</span>(<span class="nv">df</span>)
 <span class="c1"># calculates velocities of all tables</span>
 <span class="nv">all_velo</span> <span class="o">=</span> <span class="nf">all_velocity</span>(<span class="nv">dataframes</span>)
                       
@@ -177,7 +177,7 @@
                     <ul>
                       <li>Necessary tools are imported, including <code>numpy</code>, <code>os</code>, and
                         <code>pandas</code>, along with functions <code>all_velocity</code> and
-                        <code>plot_histogram</code> from the <code>missing_data_dev.max_velocity.avg_velocity</code>
+                        <code>plot_histogram</code> from the <code>src.data_visualization.avg_velocity</code>
                         module.</li>
                       <li>The directory containing CSV files is specified, and all files in this directory are listed.
                       </li>
@@ -345,7 +345,7 @@
                     </dd>
                     <h4>Example Usage</h4>
                     <pre class="highlight">
-<span class="k">from</span> <span class="nb">missing_data_dev.max_velocity.split_table_dev</span> <span class="k">import</span> <span class="nf">split_table</span>
+<span class="k">from</span> <span class="nb">src.data_visualization.split_table_dev</span> <span class="k">import</span> <span class="nf">split_table</span>
 <span class="k">import</span> <span class="nb">pandas</span> <span class="k">as</span> <span class="nb">pd</span>
                       
 <span class="n">clean_data</span> <span class="o">=</span> <span class="s1">'data/clean_fish_data/fish_data_clean.csv'</span>
@@ -366,7 +366,7 @@
 
                     <p>In this example:</p>
                     <ul>
-                      <li>The `split_table` function from the `missing_data_dev.max_velocity.split_table_dev` module is
+                      <li>The `split_table` function from the `src.data_visualization.split_table_dev` module is
                         used to split a Pandas DataFrame into multiple tables based on certain criteria.</li>
                       <li>The data is read from a CSV file located at
                         <code>data/clean_fish_data/fish_data_clean.csv</code> into a Pandas DataFrame.</li>
@@ -485,7 +485,7 @@
                           </dd>
                           <h4>Example Usage</h4>
                           <pre class="highlight">
-<span class="k">from</span> <span class="nb">missing_data_dev.plot_path_dev.visualizer</span> <span class="k">import</span> <span class="nc">DaphniaAnimation</span>
+<span class="k">from</span> <span class="nb">src.data_visualization.plot_path_dev.visualizer</span> <span class="k">import</span> <span class="nc">DaphniaAnimation</span>
 <span class="k">from</span> <span class="nb">src.data_manipulation.NPZer</span> <span class="k">import</span> <span class="nc">NPZer</span>
                             
 <span class="n">pandasData</span> <span class="o">=</span> <span class="nc">NPZer</span>.<span class="nf">pandafy</span>(<span class="s1">'data/npz_file/single_7_9_fish1.MP4_fish0.npz'</span>, <span class="n">invertY</span><span class="o">=</span><span class="kc">True</span>, <span class="n">params</span><span class="o">=</span>[<span class="s1">'time'</span>, <span class="s1">'X'</span>, <span class="s1">'Y'</span>])

@@ -2,12 +2,6 @@ import pandas as pd
 import os
 import numpy as np
 
-# from data import table_data
-# directory containing csv table files
-relative_path = "../data/table_data"
-all_files = os.listdir(relative_path)
-dataframes = []
-
 def calc_velocity(point1, point2):
     """
     Calculates the velocity between two points based on their X, Y coordinates and time
@@ -32,7 +26,6 @@ def calc_velocity(point1, point2):
     delta_time = point2["time"] - point1["time"]
 
     velocity = displacement / delta_time
-    print(f"displacement {displacement} / dtime {delta_time} = velocity {velocity}")
     return velocity
 
 
@@ -101,8 +94,3 @@ def plot_histogram(data, bins=10):
     plt.title('Histogram of Velocities')
     plt.grid(True)
     plt.show()
-    
-for file in all_files:
-    file_path = os.path.join(relative_path, file)
-    df = pd.read_csv(file_path)
-    dataframes.append(df)

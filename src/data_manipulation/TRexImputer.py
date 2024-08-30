@@ -24,7 +24,7 @@ class TRexImputer:
     functions():
         Lists all available imputation strategies.
     """
-    def __init__(self, strategy_dir='imputation_strategies'):
+    def __init__(self, strategy_dir='src/data_manipulation/imputation_strategies'):
         """
         Initializes the TRexImputer class by loading imputation strategies.
 
@@ -48,15 +48,15 @@ class TRexImputer:
             If an error occurs while loading a module, the error is caught and printed, 
             but the imputer continues to load other available strategies.
         """
+        strategy_dir = os.path.abspath(strategy_dir)
         self.imputationStrategies = {}
-        strategy_dir_path = os.path.abspath(os.path.join('src', 'data_manipulation', strategy_dir))
-        if not os.path.exists(strategy_dir_path):
-            raise FileNotFoundError(f"Directory {strategy_dir_path} does not exist.")
+        if not os.path.exists(strategy_dir):
+            raise FileNotFoundError(f"Directory {strategy_dir} does not exist.")
         
-        for filename in os.listdir(strategy_dir_path):
+        for filename in os.listdir(strategy_dir):
             if filename.endswith('.py'):
                 function = filename[:-3]
-                file_path = os.path.join(strategy_dir_path, filename)
+                file_path = os.path.join(strategy_dir, filename)
                 
                 # Import the function from the file
                 spec = importlib.util.spec_from_file_location(function, file_path)
