@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_visualization package &mdash; TRexDataManipulation 1.0.0 documentation</title>
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+  <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+
+
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <style>
+    pre {
+      overflow-x: auto;
+    }
+  </style>
+
+  <script src="_static/jquery.js?v=5d32c60e"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="_static/documentation_options.js?v=8d563738"></script>
+  <script src="_static/doctools.js?v=9a2dae69"></script>
+  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="_static/js/theme.js"></script>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="prev" title="imputation_strategies" href="src.data_manipulation.imputation_strategies.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+          <a href="index.html" class="icon icon-home">
+            TRexDataManipulation
+          </a>
+          <div role="search">
+            <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+              <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+          <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+          <ul class="current">
+            <li class="toctree-l1 current"><a class="reference internal" href="modules.html">daphnia</a>
+              <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a>
+                  <ul class="current">
+                    <li class="toctree-l3 current"><a class="reference internal"
+                        href="src.html#subpackages">Subpackages</a>
+                      <ul class="current">
+                        <li class="toctree-l4"><a class="reference internal"
+                            href="src.data_manipulation.html">data_manipulation package</a></li>
+                        <li class="toctree-l4 current"><a class="current reference internal" href="#">data_visualization
+                            package</a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TRexDataManipulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+            <ul class="wy-breadcrumbs">
+              <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+              <li class="breadcrumb-item"><a href="modules.html">daphnia</a></li>
+              <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+              <li class="breadcrumb-item active">data_visualization package</li>
+              <li class="wy-breadcrumbs-aside">
+                <a href="_sources/src.data_visualization.rst.txt" rel="nofollow"> View page source</a>
+              </li>
+            </ul>
+            <hr />
+          </div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+
+              <section id="data-visualization-package">
+                <h1>data_visualization package<a class="headerlink" href="#data-visualization-package"
+                    title="Link to this heading"></a></h1>
+                <section id="submodules">
+                  <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+                </section>
+                <section id="module-src.data_visualization.avg_velocity">
+                  <span id="avg-velocity"></span>
+                  <h2>avg_velocity<a class="headerlink" href="#module-src.data_visualization.avg_velocity"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_visualization.avg_velocity.all_velocity">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.avg_velocity.</span></span><span
+                        class="sig-name descname"><span class="pre">all_velocity</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">df_list</span></span></em><span class="sig-paren">)</span><a
+                        class="reference internal"
+                        href="_modules/src/data_visualization/avg_velocity.html#all_velocity"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.avg_velocity.all_velocity" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Collects all velocities from a list of DataFrames and returns them as a single list</p>
+                      <section id="parameters">
+                        <h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>df_list<span class="classifier">list</span></dt>
+                          <dd>
+                            <p>A list of DataFrames, each containing ‘X’, ‘Y’, and ‘time’ columns</p>
+                          </dd>
+                        </dl>
+                      </section>
+                      <section id="returns">
+                        <h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>list</dt>
+                          <dd>
+                            <p>A list of all velocities calculated from the DataFrames</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                    <h4>Example Usage</h4>
+                    <pre class="highlight">
+<span class="kn">import</span> <span class="nb">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nb">os</span>
+<span class="kn">import</span> <span class="nb">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">src.data_visualization.avg_velocity</span> <span class="kn">import</span> <span class="nf">all_velocity</span>, <span class="nf">plot_histogram</span>
+                      
+<span class="c1"># directory containing csv table files</span> 
+<span class="nv">direct_path</span> <span class="o">=</span> <span class="s1">'data/table_data'</span>
+                      
+<span class="nv">all_files</span> <span class="o">=</span> <span class="nb">os</span>.<span class="nf">listdir</span>(<span class="nv">direct_path</span>) 
+<span class="nv">dataframes</span> <span class="o">=</span> <span class="p">[]</span>
+                      
+<span class="c1"># loop through csv files and read each one</span>
+<span class="kn">for</span> <span class="nv">file</span> <span class="kn">in</span> <span class="nv">all_files</span>: 
+  <span class="nv">file_path</span> <span class="o">=</span> <span class="nb">os</span>.<span class="nf">path.join</span>(<span class="nv">direct_path</span>, <span class="nv">file</span>) 
+  <span class="nv">df</span> <span class="o">=</span> <span class="nb">pd</span>.<span class="nf">read_csv</span>(<span class="nv">file_path</span>)
+  <span class="nv">dataframes</span>.<span class="nf">append</span>(<span class="nv">df</span>)
+<span class="c1"># calculates velocities of all tables</span>
+<span class="nv">all_velo</span> <span class="o">=</span> <span class="nf">all_velocity</span>(<span class="nv">dataframes</span>)
+                      
+<span class="c1"># plots histogram of all calculated velocities</span>
+<span class="nf">plot_histogram</span>(<span class="nv">all_velo</span>)
+                      </pre>
+
+
+
+                    <p>In this example:</p>
+                    <ul>
+                      <li>Necessary tools are imported, including <code>numpy</code>, <code>os</code>, and
+                        <code>pandas</code>, along with functions <code>all_velocity</code> and
+                        <code>plot_histogram</code> from the <code>src.data_visualization.avg_velocity</code>
+                        module.</li>
+                      <li>The directory containing CSV files is specified, and all files in this directory are listed.
+                      </li>
+                      <li>Each CSV file is read into a Pandas DataFrame and stored in a list called
+                        <code>dataframes</code>.</li>
+                      <li>The <code>all_velocity</code> function is called to calculate velocities from all DataFrames.
+                      </li>
+                      <li>The <code>plot_histogram</code> function is used to plot a histogram of the calculated
+                        velocities.</li>
+                    </ul>
+
+                  </dl>
+
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_visualization.avg_velocity.avg_velocity">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.avg_velocity.</span></span><span
+                        class="sig-name descname"><span class="pre">avg_velocity</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">df</span></span></em><span class="sig-paren">)</span><a
+                        class="reference internal"
+                        href="_modules/src/data_visualization/avg_velocity.html#avg_velocity"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.avg_velocity.avg_velocity" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Calculates the average velocity between consecutive points in a DataFrame</p>
+                      <section id="id1">
+                        <h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>df<span class="classifier">pd.DataFrame</span></dt>
+                          <dd>
+                            <p>A DataFrame containing ‘X’, ‘Y’, and ‘time’ columns</p>
+                          </dd>
+                        </dl>
+                      </section>
+                      <section id="id2">
+                        <h3>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>list</dt>
+                          <dd>
+                            <p>A list of velocities between consecutive points in the DataFrame</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                  </dl>
+
+
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_visualization.avg_velocity.plot_histogram">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.avg_velocity.</span></span><span
+                        class="sig-name descname"><span class="pre">plot_histogram</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span
+                            class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span
+                          class="default_value"><span class="pre">10</span></span></em><span
+                        class="sig-paren">)</span><a class="reference internal"
+                        href="_modules/src/data_visualization/avg_velocity.html#plot_histogram"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.avg_velocity.plot_histogram" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Plots a histogram of the given data, representing the distribution of velocities</p>
+                      <section id="id5">
+                        <h3>Parameters:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>data<span class="classifier">list</span></dt>
+                          <dd>
+                            <p>A list of velocity values to be plotted</p>
+                          </dd>
+                          <dt>bins<span class="classifier">int, optional</span></dt>
+                          <dd>
+                            <p>The number of bins to use in the histogram (default is 10)</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                  </dl>
+
+                </section>
+                <section id="module-src.data_visualization.split_table_dev">
+                  <span id="split-table-dev"></span>
+                  <h2>split_table_dev<a class="headerlink" href="#module-src.data_visualization.split_table_dev"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_visualization.split_table_dev.save_tables">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.split_table_dev.</span></span><span
+                        class="sig-name descname"><span class="pre">save_tables</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">tables</span></span></em>, <em class="sig-param"><span class="n"><span
+                            class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a
+                        class="reference internal"
+                        href="_modules/src/data_visualization/split_table_dev.html#save_tables"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.split_table_dev.save_tables" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Saves a list of dataframes as csv files</p>
+                      <section id="id6">
+                        <h3>Parameters:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>tables: list</dt>
+                          <dd>
+                            <p>A list of DataFrames to be saved</p>
+                          </dd>
+                          <dt>folder_path: str</dt>
+                          <dd>
+                            <p>The directory path where the CSV files will be saved</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                  </dl>
+
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_visualization.split_table_dev.split_table">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.split_table_dev.</span></span><span
+                        class="sig-name descname"><span class="pre">split_table</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span
+                            class="pre">save_to_folder</span></span><span class="o"><span
+                            class="pre">=</span></span><span class="default_value"><span
+                            class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span
+                            class="pre">folder_path</span></span><span class="o"><span class="pre">=</span></span><span
+                          class="default_value"><span class="pre">None</span></span></em><span
+                        class="sig-paren">)</span><a class="reference internal"
+                        href="_modules/src/data_visualization/split_table_dev.html#split_table"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.split_table_dev.split_table" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Splits valid data into tables</p>
+                      <section id="id7">
+                        <h3>Parameters:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>df: pd.dataframe</dt>
+                          <dd>
+                            <p>The input dataframe to be split</p>
+                          </dd>
+                          <dt>save_to_folder: bool, optional</dt>
+                          <dd>
+                            <p>If True, the resulting tables will be saved as CSV files in the specified folder (default
+                              is False)</p>
+                          </dd>
+                          <dt>folder_path: str, optional</dt>
+                          <dd>
+                            <p>The directory path where the CSV files will be saved, if save_to_folder is True</p>
+                          </dd>
+                        </dl>
+                      </section>
+                      <section id="id8">
+                        <h3>Returns:<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>List</dt>
+                          <dd>
+                            <p>A list of DataFrames, each representing a subset of the original DataFrame without
+                              infinite values</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                    <h4>Example Usage</h4>
+                    <pre class="highlight">
+<span class="k">from</span> <span class="nb">src.data_visualization.split_table_dev</span> <span class="k">import</span> <span class="nf">split_table</span>
+<span class="k">import</span> <span class="nb">pandas</span> <span class="k">as</span> <span class="nb">pd</span>
+                      
+<span class="n">clean_data</span> <span class="o">=</span> <span class="s1">'data/clean_fish_data/fish_data_clean.csv'</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span>.<span class="nf">read_csv</span>(<span class="n">clean_data</span>)
+                      
+<span class="c1"># set save_to_folder to True if you want to create a folder of tables in explorer</span>
+<span class="n">tables</span> <span class="o">=</span> <span class="nf">split_table</span>(<span class="n">df</span>, <span class="n">save_to_folder</span><span class="o">=</span><span class="kc">False</span>, <span class="n">folder_path</span><span class="o">=</span><span class="s1">'output_folder'</span>)
+                      
+<span class="c1"># can choose index of what table you want to access</span>
+<span class="n">first_table</span> <span class="o">=</span> <span class="n">tables</span>[<span class="mi">0</span>]
+<span class="nb">print</span>(<span class="n">first_table</span>)
+                      
+<span class="c1"># prints number of tables</span>
+<span class="n">num_tables</span> <span class="o">=</span> <span class="nb">len</span>(<span class="n">tables</span>)
+<span class="nb">print</span>(<span class="n">num_tables</span>)
+                      </pre>
+                      
+
+                    <p>In this example:</p>
+                    <ul>
+                      <li>The `split_table` function from the `src.data_visualization.split_table_dev` module is
+                        used to split a Pandas DataFrame into multiple tables based on certain criteria.</li>
+                      <li>The data is read from a CSV file located at
+                        <code>data/clean_fish_data/fish_data_clean.csv</code> into a Pandas DataFrame.</li>
+                      <li>The `split_table` function is called with the DataFrame, and the option
+                        <code>save_to_folder</code> is set to <code>False</code>, meaning the tables are not saved as
+                        files but are returned as a list.</li>
+                      <li>The first table in the list is accessed and printed, and the number of tables created is also
+                        printed.</li>
+                    </ul>
+                  </dl>
+
+                </section>
+                <section id="module-src.data_visualization.visualizer">
+                  <span id="visualizer"></span>
+                  <h2>visualizer<a class="headerlink" href="#module-src.data_visualization.visualizer"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py class">
+                    <dt class="sig sig-object py" id="src.data_visualization.visualizer.DaphniaAnimation">
+                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
+                        class="sig-prename descclassname"><span
+                          class="pre">src.data_visualization.visualizer.</span></span><span
+                        class="sig-name descname"><span class="pre">DaphniaAnimation</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span
+                            class="pre">start_index</span></span><span class="o"><span class="pre">=</span></span><span
+                          class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span
+                          class="n"><span class="pre">interval</span></span><span class="o"><span
+                            class="pre">=</span></span><span class="default_value"><span
+                            class="pre">50</span></span></em><span class="sig-paren">)</span><a
+                        class="reference internal"
+                        href="_modules/src/data_visualization/visualizer.html#DaphniaAnimation"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_visualization.visualizer.DaphniaAnimation" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Bases: <code
+                          class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>
+                      </p>
+                      <p>Animates the movement of a Daphnia using clean data from Pandas dataframe</p>
+                      <section id="functions">
+                        <h3>Functions:<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>__init__:</dt>
+                          <dd>
+                            <p>Initializes the DaphniaAnimation class with the given dataframe and start index</p>
+                          </dd>
+                          <dt>load_data:</dt>
+                          <dd>
+                            <p>Loads data from dataframe and removes missing data if needed</p>
+                          </dd>
+                          <dt>plot_detail:</dt>
+                          <dd>
+                            <p>Sets the title and labels for the plot</p>
+                          </dd>
+                          <dt>init_animation:</dt>
+                          <dd>
+                            <p>Initializes the animation by setting the line data to empty</p>
+                          </dd>
+                          <dt>animate:</dt>
+                          <dd>
+                            <p>Updates the animation frame by frame</p>
+                          </dd>
+                          <dt>create_animation:</dt>
+                          <dd>
+                            <p>Creates and displays the animation of the Daphnia’s movements</p>
+                          </dd>
+                        </dl>
+                        <dl class="py method">
+                          <dt class="sig sig-object py" id="src.data_visualization.visualizer.DaphniaAnimation.animate">
+                            <span class="sig-name descname"><span class="pre">animate</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">i</span></span></em><span class="sig-paren">)</span><a
+                              class="reference internal"
+                              href="_modules/src/data_visualization/visualizer.html#DaphniaAnimation.animate"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_visualization.visualizer.DaphniaAnimation.animate"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Updates the animation frame by frame</p>
+                            <section id="id9">
+                              <h4>Parameters:<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>i: int</dt>
+                                <dd>
+                                  <p>The current frame index</p>
+                                </dd>
+                              </dl>
+                            </section>
+                            <section id="id10">
+                              <h4>Returns:<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>tuple</dt>
+                                <dd>
+                                  <p>A tuple containing the updated line object</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt class="sig sig-object py"
+                            id="src.data_visualization.visualizer.DaphniaAnimation.create_animation">
+                            <span class="sig-name descname"><span class="pre">create_animation</span></span><span
+                              class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal"
+                              href="_modules/src/data_visualization/visualizer.html#DaphniaAnimation.create_animation"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_visualization.visualizer.DaphniaAnimation.create_animation"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Creates and displays the animation of the Daphnia’s movements</p>
+                            <p>The function sets up the plot, removes missing data if needed, adds plot details, and
+                              then runs the animation</p>
+                          </dd>
+                          <h4>Example Usage</h4>
+                          <pre class="highlight">
+<span class="k">from</span> <span class="nb">src.data_visualization.plot_path_dev.visualizer</span> <span class="k">import</span> <span class="nc">DaphniaAnimation</span>
+<span class="k">from</span> <span class="nb">src.data_manipulation.NPZer</span> <span class="k">import</span> <span class="nc">NPZer</span>
+                            
+<span class="n">pandasData</span> <span class="o">=</span> <span class="nc">NPZer</span>.<span class="nf">pandafy</span>(<span class="s1">'data/npz_file/single_7_9_fish1.MP4_fish0.npz'</span>, <span class="n">invertY</span><span class="o">=</span><span class="kc">True</span>, <span class="n">params</span><span class="o">=</span>[<span class="s1">'time'</span>, <span class="s1">'X'</span>, <span class="s1">'Y'</span>])
+                            
+<span class="n">animation</span> <span class="o">=</span> <span class="nc">DaphniaAnimation</span>(<span class="n">df</span><span class="o">=</span><span class="n">pandasData</span>, <span class="n">start_index</span><span class="o">=</span><span class="mi">3320</span>)
+<span class="n">animation</span>.<span class="nf">create_animation</span>()
+                            </pre>
+                            
+                          <p>In this example:</p>
+                          <ul>
+                            <li>A Pandas DataFrame is created from a .npz file, which includes columns tracking 'X',
+                              'Y', and 'time'.</li>
+                            <li>The <code>DaphniaAnimation</code> class is instantiated with the DataFrame and a
+                              starting index of 3320.</li>
+                            <li>The <code>create_animation</code> method is called on the <code>DaphniaAnimation</code>
+                              instance to generate an animation of the data.</li>
+                          </ul>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt class="sig sig-object py"
+                            id="src.data_visualization.visualizer.DaphniaAnimation.init_animation">
+                            <span class="sig-name descname"><span class="pre">init_animation</span></span><span
+                              class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal"
+                              href="_modules/src/data_visualization/visualizer.html#DaphniaAnimation.init_animation"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_visualization.visualizer.DaphniaAnimation.init_animation"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Initializes the animation by setting the line data to empty</p>
+                            <section id="id11">
+                              <h4>Returns:<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+                              <p>A tuple containing the line object to be animated</p>
+                            </section>
+                          </dd>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt class="sig sig-object py"
+                            id="src.data_visualization.visualizer.DaphniaAnimation.plot_detail">
+                            <span class="sig-name descname"><span class="pre">plot_detail</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">xlabel</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">ylabel</span></span></em><span class="sig-paren">)</span><a
+                              class="reference internal"
+                              href="_modules/src/data_visualization/visualizer.html#DaphniaAnimation.plot_detail"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_visualization.visualizer.DaphniaAnimation.plot_detail"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Sets the title and labels for the plot</p>
+                            <section id="id12">
+                              <h4>Parameters:<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>title: str</dt>
+                                <dd>
+                                  <p>Title of the plot</p>
+                                </dd>
+                                <dt>xlabel: str</dt>
+                                <dd>
+                                  <p>The label for the X-axis</p>
+                                </dd>
+                                <dt>ylabel: str</dt>
+                                <dd>
+                                  <p>The label for the Y-axis</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+                        </dl>
+
+                      </section>
+                    </dd>
+                  </dl>
+
+                </section>
+                <section id="module-src.data_visualization">
+                  <span id="module-contents"></span>
+                  <h2>Module contents<a class="headerlink" href="#module-src.data_visualization"
+                      title="Link to this heading"></a></h2>
+                </section>
+              </section>
+
+
+            </div>
+          </div>
+          <footer>
+            <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+              <a href="src.data_manipulation.imputation_strategies.html" class="btn btn-neutral float-left"
+                title="imputation_strategies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"
+                  aria-hidden="true"></span> Previous</a>
+            </div>
+
+            <hr />
+
+            <div role="contentinfo">
+              <p>&#169; Copyright 2024, Jack Wright, Giuliano, Ibrahim.</p>
+            </div>
+
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+            <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+            provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+          </footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+    });
+  </script>
+
+</body>
+
+</html>

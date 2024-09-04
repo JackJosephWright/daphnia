@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_manipulation package &mdash; TRexDataManipulation 1.0.0 documentation</title>
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+  <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+  <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+
+
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <style>
+    pre {
+      overflow-x: auto;
+    }
+  </style>
+
+  <script src="_static/jquery.js?v=5d32c60e"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="_static/documentation_options.js?v=8d563738"></script>
+  <script src="_static/doctools.js?v=9a2dae69"></script>
+  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="_static/js/theme.js"></script>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="imputation_strategies" href="src.data_manipulation.imputation_strategies.html" />
+  <link rel="prev" title="src package" href="src.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+          <a href="index.html" class="icon icon-home">
+            TRexDataManipulation
+          </a>
+          <div role="search">
+            <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+              <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+          <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+          <ul class="current">
+            <li class="toctree-l1 current"><a class="reference internal" href="modules.html">daphnia</a>
+              <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a>
+                  <ul class="current">
+                    <li class="toctree-l3 current"><a class="reference internal"
+                        href="src.html#subpackages">Subpackages</a>
+                      <ul class="current">
+                        <li class="toctree-l4 current"><a class="current reference internal" href="#">data_manipulation
+                            package</a></li>
+                        <li class="toctree-l4"><a class="reference internal"
+                            href="src.data_visualization.html">data_visualization package</a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" aria-label="Mobile navigation menu">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TRexDataManipulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+            <ul class="wy-breadcrumbs">
+              <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+              <li class="breadcrumb-item"><a href="modules.html">daphnia</a></li>
+              <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+              <li class="breadcrumb-item active">data_manipulation package</li>
+              <li class="wy-breadcrumbs-aside">
+                <a href="_sources/src.data_manipulation.rst.txt" rel="nofollow"> View page source</a>
+              </li>
+            </ul>
+            <hr />
+          </div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+
+              <section id="data-manipulation-package">
+                <h1>data_manipulation package<a class="headerlink" href="#data-manipulation-package"
+                    title="Link to this heading"></a></h1>
+                <section id="subpackages">
+                  <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+                  <div class="toctree-wrapper compound">
+                    <ul>
+                      <li class="toctree-l1"><a class="reference internal"
+                          href="src.data_manipulation.imputation_strategies.html">imputation_strategies</a>
+                        <ul>
+                          <li class="toctree-l2"><a class="reference internal"
+                              href="src.data_manipulation.imputation_strategies.html#submodules">Submodules</a></li>
+                          <li class="toctree-l2"><a class="reference internal"
+                              href="src.data_manipulation.imputation_strategies.html#module-src.data_manipulation.imputation_strategies.avgValue">imputation_strategies.avgValue</a>
+                            <ul>
+                              <li class="toctree-l3"><a class="reference internal"
+                                  href="src.data_manipulation.imputation_strategies.html#src.data_manipulation.imputation_strategies.avgValue.calculateVelocity"><code
+                                    class="docutils literal notranslate"><span class="pre">calculateVelocity()</span></code></a>
+                              </li>
+                              <li class="toctree-l3"><a class="reference internal"
+                                  href="src.data_manipulation.imputation_strategies.html#src.data_manipulation.imputation_strategies.avgValue.impute"><code
+                                    class="docutils literal notranslate"><span class="pre">impute()</span></code></a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="toctree-l2"><a class="reference internal"
+                              href="src.data_manipulation.imputation_strategies.html#module-src.data_manipulation.imputation_strategies.random">imputation_strategies.random</a>
+                            <ul>
+                              <li class="toctree-l3"><a class="reference internal"
+                                  href="src.data_manipulation.imputation_strategies.html#src.data_manipulation.imputation_strategies.random.impute"><code
+                                    class="docutils literal notranslate"><span class="pre">impute()</span></code></a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="toctree-l2"><a class="reference internal"
+                              href="src.data_manipulation.imputation_strategies.html#module-src.data_manipulation.imputation_strategies">Module
+                              contents</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+                <section id="submodules">
+                  <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+                </section>
+                <section id="module-src.data_manipulation.NPZer">
+                  <span id="npzer"></span>
+                  <h2>NPZer<a class="headerlink" href="#module-src.data_manipulation.NPZer"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py class">
+                    <dt class="sig sig-object py" id="src.data_manipulation.NPZer.NPZer">
+                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
+                        class="sig-prename descclassname"><span
+                          class="pre">src.data_manipulation.NPZer.</span></span><span class="sig-name descname"><span
+                          class="pre">NPZer</span></span><a class="reference internal"
+                        href="_modules/src/data_manipulation/NPZer.html#NPZer"><span class="viewcode-link"><span
+                            class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_manipulation.NPZer.NPZer" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Bases: <code
+                          class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>
+                      </p>
+                      <p>A utility class for handling Numpy .npz files and Pandas DataFrames.</p>
+                      <section id="functions">
+                        <h3>Functions:<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>npzip:</dt>
+                          <dd>
+                            <p>Converts a Pandas DataFrame or a Numpy matrix into a zipped .npz file.</p>
+                          </dd>
+                          <dt>unzipNpz:</dt>
+                          <dd>
+                            <p>Unzips a .npz file and returns its contents as a Numpy array.</p>
+                          </dd>
+                          <dt>pandafy:</dt>
+                          <dd>
+                            <p>Converts unzipped .npz data into a Pandas DataFrame.</p>
+                          </dd>
+                        </dl>
+                        <dl class="py method">
+                          <dt class="sig sig-object py" id="src.data_manipulation.NPZer.NPZer.npzip">
+                            <em class="property"><span class="pre">static</span><span class="w"> </span></em><span
+                              class="sig-name descname"><span class="pre">npzip</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w">
+                                </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span
+                                  class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">save_dir</span></span><span class="p"><span
+                                  class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span
+                                    class="pre">[</span></span><span class="pre">str</span><span class="p"><span
+                                    class="pre">]</span></span></span><span class="w"> </span><span class="o"><span
+                                  class="pre">=</span></span><span class="w"> </span><span class="default_value"><span
+                                  class="pre">[]</span></span></em><span class="sig-paren">)</span><a
+                              class="reference internal"
+                              href="_modules/src/data_manipulation/NPZer.html#NPZer.npzip"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.NPZer.NPZer.npzip" title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Converts a Pandas DataFrame or a Numpy matrix into a zipped .npz file.</p>
+                            <section id="parameters">
+                              <h4>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a>
+                              </h4>
+                              <dl class="simple">
+                                <dt>data<span class="classifier">Union[pd.DataFrame, np.ndarray]</span></dt>
+                                <dd>
+                                  <p>The data to be zipped.</p>
+                                </dd>
+                                <dt>save_dir<span class="classifier">str</span></dt>
+                                <dd>
+                                  <p>The file path where the zipped data will be saved.</p>
+                                </dd>
+                                <dt>params<span class="classifier">List[str], optional</span></dt>
+                                <dd>
+                                  <p>A list of parameters to zip. If not specified, all parameters will be zipped.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+
+                          <h4>Example Usage</h4>
+
+                          <pre class="highlight">
+  <span class="k">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+  <span class="k">from</span> <span class="nn">src.data_manipulation.NPZer</span> <span class="k">import</span> <span class="nn">NPZer</span>
+  
+  <span class="no">DATA</span> <span class="o">=</span> <span class="nn">pd</span><span class="o">.</span><span class="nf">DataFrame</span><span class="p">(</span><span class="p">{</span>
+  <span class="s">'X'</span><span class="o">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span>
+  <span class="s">'Y'</span><span class="o">:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span>
+  <span class="s">'time'</span><span class="o">:</span> <span class="p">[</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+  <span class="p">})</span>
+  
+  <span class="no">SAVE_DIR</span> <span class="o">=</span> <span class="s">'data/zipped.npz'</span>
+  <span class="no">PARAMS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'X'</span><span class="p">,</span> <span class="s">'Y'</span><span class="p">,</span> <span class="s">'time'</span><span class="p">]</span>
+  
+  <span class="no">npzer</span> <span class="o">=</span> <span class="nf">NPZer</span><span class="p">()</span>
+  <span class="no">npzer</span><span class="o">.</span><span class="nf">npzip</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="no">DATA</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="no">SAVE_DIR</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="no">PARAMS</span><span class="p">)</span>
+                          </pre>
+                          <p>In this example:</p>
+                          <ul>
+                            <li>A Pandas DataFrame is created with columns tracking 'X', 'Y', and 'time'.</li>
+                            <li>The data is then saved as a zipped <code>.npz</code> file at the specified directory
+                              using
+                              the <code>NPZer</code> <code>npzip</code> function.</li>
+                            <li>The optional <code>params</code> argument specifies which columns to include in the
+                              zipped
+                              file.</li>
+                          </ul>
+                        </dl>
+
+                        <dl class="py method">
+                          <dt class="sig sig-object py" id="src.data_manipulation.NPZer.NPZer.pandafy">
+                            <em class="property"><span class="pre">static</span><span class="w"> </span></em><span
+                              class="sig-name descname"><span class="pre">pandafy</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">ndarray</span></span><span
+                                class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w">
+                              </span><span class="default_value"><span class="pre">None</span></span></em>, <em
+                              class="sig-param"><span class="n"><span class="pre">source_dir</span></span><span
+                                class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">str</span></span><span class="w"> </span><span class="o"><span
+                                  class="pre">=</span></span><span class="w"> </span><span class="default_value"><span
+                                  class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">invertY</span></span><span class="p"><span
+                                  class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">bool</span></span><span class="w"> </span><span class="o"><span
+                                  class="pre">=</span></span><span class="w"> </span><span class="default_value"><span
+                                  class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span
+                                    class="pre">[</span></span><span class="pre">str</span><span class="p"><span
+                                    class="pre">]</span></span></span><span class="w"> </span><span class="o"><span
+                                  class="pre">=</span></span><span class="w"> </span><span class="default_value"><span
+                                  class="pre">[]</span></span></em><span class="sig-paren">)</span> <span
+                              class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                                class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a
+                              class="reference internal"
+                              href="_modules/src/data_manipulation/NPZer.html#NPZer.pandafy"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.NPZer.NPZer.pandafy" title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Converts unzipped .npz data or a Numpy array into a Pandas DataFrame.</p>
+                            <section id="id1">
+                              <h4>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>data<span class="classifier">np.ndarray, optional</span></dt>
+                                <dd>
+                                  <p>The Numpy array to be converted into a Pandas DataFrame.</p>
+                                </dd>
+                                <dt>source_dir<span class="classifier">str, optional</span></dt>
+                                <dd>
+                                  <p>The file path of the .npz file to be converted into a Pandas DataFrame.</p>
+                                </dd>
+                                <dt>invertY<span class="classifier">bool, optional</span></dt>
+                                <dd>
+                                  <p>If True, inverts the Y values in the DataFrame. Default is False.</p>
+                                </dd>
+                                <dt>params<span class="classifier">List[str], optional</span></dt>
+                                <dd>
+                                  <p>A list of parameters to extract. If not specified, all parameters will be
+                                    extracted.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                            <section id="returns">
+                              <h4>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>pd.DataFrame</dt>
+                                <dd>
+                                  <p>A Pandas DataFrame containing the extracted data.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+                          <h4>Example Usage</h4>
+
+                          <pre class="highlight">
+  <span class="no">SOURCE_DIR</span> <span class="o">=</span> <span class="s">'data/fish1.MP4_fish0.npz'</span>
+  <span class="no">PARAMS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'time'</span><span class="p">,</span> <span class="s">'X'</span><span class="p">,</span> <span class="s">'Y'</span><span class="p">]</span>
+  <span class="no">INVERT_Y</span> <span class="o">=</span> <span class="kc">True</span>
+  
+  <span class="no">npzer</span> <span class="o">=</span> <span class="nf">NPZer</span><span class="p">()</span>
+  <span class="no">unzippedData</span> <span class="o">=</span> <span class="no">npzer</span><span class="o">.</span><span class="nf">pandafy</span><span class="p">(</span><span class="n">source_dir</span><span class="o">=</span><span class="no">SOURCE_DIR</span><span class="p">,</span> <span class="n">invertY</span><span class="o">=</span><span class="no">INVERT_Y</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="no">PARAMS</span><span class="p">)</span>
+                    </pre>
+                          <p>In this example:</p>
+                          <ul>
+                            <li>An <code>.npz</code> file is stored in a specific directory</li>
+                            <li>The data is then unloaded to a pandas <code>DataFrame</code> using the
+                              <code>pandafy</code> function.
+                            </li>
+                            <li>The optional <code>params</code> argument specifies which columns to include in the
+                              unloaded <code>DataFrame</code>.</li>
+                          </ul>
+                        </dl>
+
+                      </section>
+                    </dd>
+                  </dl>
+                </section>
+
+
+                <section id="module-src.data_manipulation.TRexDataCleaner">
+                  <span id="trexdatacleaner"></span>
+                  <h2>TRexDataCleaner<a class="headerlink" href="#module-src.data_manipulation.TRexDataCleaner"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py class">
+                    <dt class="sig sig-object py" id="src.data_manipulation.TRexDataCleaner.TRexDataCleaner">
+                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
+                        class="sig-prename descclassname"><span
+                          class="pre">src.data_manipulation.TRexDataCleaner.</span></span><span
+                        class="sig-name descname"><span class="pre">TRexDataCleaner</span></span><a
+                        class="reference internal"
+                        href="_modules/src/data_manipulation/TRexDataCleaner.html#TRexDataCleaner"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_manipulation.TRexDataCleaner.TRexDataCleaner"
+                        title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Bases: <code
+                          class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>
+                      </p>
+                      <p>A class for cleaning TRex data by removing invalid data, such as sudden jumps or missing data
+                        points.</p>
+                      <section id="id2">
+                        <h3>Functions:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>renderDiscontinuities:</dt>
+                          <dd>
+                            <p>Identifies and removes discontinuities from TRex data, such as jumps or missing data, and
+                              marks them as ‘infinity’.</p>
+                          </dd>
+                          <dt>isDiscontinuity:</dt>
+                          <dd>
+                            <p>Checks if there is a discontinuity between two data points.</p>
+                          </dd>
+                        </dl>
+                        <dl class="py method">
+                          <dt class="sig sig-object py"
+                            id="src.data_manipulation.TRexDataCleaner.TRexDataCleaner.isDiscontinuity">
+                            <span class="sig-name descname"><span class="pre">isDiscontinuity</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">pi</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em
+                              class="sig-param"><span class="n"><span class="pre">pf</span></span><span class="p"><span
+                                  class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span
+                                  class="pre">vmax</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">float</span><span class="w">
+                                </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span
+                                  class="pre">floating</span></span></em><span class="sig-paren">)</span> <span
+                              class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                                class="sig-return-typehint"><span class="pre">bool</span></span></span><a
+                              class="reference internal"
+                              href="_modules/src/data_manipulation/TRexDataCleaner.html#TRexDataCleaner.isDiscontinuity"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.TRexDataCleaner.TRexDataCleaner.isDiscontinuity"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Determines if there is a discontinuity between two points based on their positions and
+                              the time interval.</p>
+                            <section id="id3">
+                              <h4>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>pi<span class="classifier">DataFrame</span></dt>
+                                <dd>
+                                  <p>The initial point of the entity, given as a section of a pandas DataFrame.</p>
+                                </dd>
+                                <dt>pf<span class="classifier">DataFrame</span></dt>
+                                <dd>
+                                  <p>The final position of the entity, given as a section of a pandas DataFrame.</p>
+                                </dd>
+                                <dt>vmax<span class="classifier">float or np.floating</span></dt>
+                                <dd>
+                                  <p>The maximum allowable velocity for the entity.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                            <section id="id4">
+                              <h4>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>bool</dt>
+                                <dd>
+                                  <p>True if there is a discontinuity, False otherwise.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+                          <h4>Example Usage</h4>
+                          <pre class="highlight">
+    <span class="kn">from</span> <span class="nn">src.data_manipulation.TRexDataCleaner</span> <span class="kn">import</span> <span class="nn">TRexDataCleaner</span>
+
+    <span class="nv">dataCleaner</span> <span class="o">=</span> <span class="nc">TRexDataCleaner</span><span class="p">()</span>
+    <span class="nv">VMAX</span> <span class="o">=</span> <span class="mi">15</span>
+
+    <span class="kn">if</span> <span class="nn">dataCleaner</span><span class="o">.</span><span class="nf">isDiscontinuity</span><span class="p">(</span><span class="nv">pi</span><span class="o">=</span><span class="nv">unzippedData</span><span class="o">.</span><span class="nf">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nv">pf</span><span class="o">=</span><span class="nv">unzippedData</span><span class="o">.</span><span class="nf">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nv">vmax</span><span class="o">=</span><span class="nv">VMAX</span><span class="p">):</span>
+        <span class="nv">unzippedData</span><span class="o">.</span><span class="nf">drop</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre>
+
+                          <p>In this example:</p>
+                          <ul>
+                            <li>A constant <code>VMAX</code> is defined, specifying the maximum allowed threshold for
+                              detecting discontinuities.</li>
+                            <li>The <code>isDiscontinuity</code> method of the <code>TRexDataCleaner</code> class is
+                              used to check if there is a discontinuity between two data points, <code>pi</code> and
+                              <code>pf</code>, at indices 2 and 3 in the <code>unzippedData</code> DataFrame. The method
+                              compares these points against the <code>VMAX</code> threshold.
+                            </li>
+                            <li>If a discontinuity is detected, the data point at index 3 is dropped from the
+                              <code>unzippedData</code> DataFrame.
+                            </li>
+                          </ul>
+                        </dl>
+
+
+                        <dl class="py method">
+                          <dt class="sig sig-object py"
+                            id="src.data_manipulation.TRexDataCleaner.TRexDataCleaner.renderDiscontinuities">
+                            <span class="sig-name descname"><span class="pre">renderDiscontinuities</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em
+                              class="sig-param"><span class="n"><span class="pre">vmax</span></span><span
+                                class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">float</span><span class="w"> </span><span class="p"><span
+                                    class="pre">|</span></span><span class="w"> </span><span
+                                  class="pre">floating</span></span></em><span class="sig-paren">)</span> <span
+                              class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                                class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span
+                                    class="pre">[</span></span><span class="pre">DataFrame</span><span class="p"><span
+                                    class="pre">,</span></span><span class="w"> </span><span
+                                  class="pre">DataFrame</span><span class="p"><span
+                                    class="pre">]</span></span></span></span><a class="reference internal"
+                              href="_modules/src/data_manipulation/TRexDataCleaner.html#TRexDataCleaner.renderDiscontinuities"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.TRexDataCleaner.TRexDataCleaner.renderDiscontinuities"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Removes discontinuities from the input data based on the specified maximum velocity
+                              (vmax).</p>
+                            <section id="id5">
+                              <h4>Parameters:<a class="headerlink" href="#id5" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>data<span class="classifier">pd.DataFrame</span></dt>
+                                <dd>
+                                  <p>The TRex data to clean. Must include ‘time’, ‘X’, and ‘Y’ columns.</p>
+                                </dd>
+                                <dt>vmax<span class="classifier">float or np.floating</span></dt>
+                                <dd>
+                                  <p>The maximum velocity considered valid for the entity.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                            <section id="id6">
+                              <h4>Returns:<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+                              <dl class="simple">
+                                <dt>Tuple[pd.DataFrame, pd.DataFrame]</dt>
+                                <dd>
+                                  <p>A tuple containing two DataFrames: the cleaned data and the data points identified
+                                    as faulty.</p>
+                                </dd>
+                              </dl>
+                            </section>
+                          </dd>
+                          <pre class="highlight">
+<span class="kn">from</span> <span class="nn">src.data_manipulation.TRexDataCleaner</span> <span class="kn">import</span> <span class="nn">TRexDataCleaner</span>
+                        
+<span class="nv">dataCleaner</span> <span class="o">=</span> <span class="nc">TRexDataCleaner</span><span class="p">()</span>
+                        
+<span class="nv">VMAX</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="nv">originalData</span> <span class="o">=</span> <span class="nv">unzippedData</span><span class="o">.</span><span class="nf">reset_index</span><span class="p">(</span><span class="nb">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                        
+<span class="nv">cleanedData</span><span class="p">,</span> <span class="nv">removedData</span> <span class="o">=</span> <span class="nv">dataCleaner</span><span class="o">.</span><span class="nf">renderDiscontinuities</span><span class="p">(</span><span class="nv">data</span><span class="o">=</span><span class="nv">originalData</span><span class="p">,</span> <span class="nv">vmax</span><span class="o">=</span><span class="nv">VMAX</span><span class="p">)</span>
+                        </pre>
+                          <p>In this example:</p>
+                          <ul>
+                            <li>The <code>VMAX</code> parameter is defined</li>
+                            <li>The original data is reset to a clean index</li>
+                            <li>The <code>renderDiscontinuities</code> method is used to clean the original data,
+                              applying the <code>VMAX</code> threshold. This method returns two datasets: the cleaned
+                              data and the data points that were removed during the cleaning process.</li>
+                          </ul>
+                        </dl>
+                      </section>
+                    </dd>
+                  </dl>
+                </section>
+
+
+                <section id="module-src.data_manipulation.TRexImputer">
+                  <span id="treximputer"></span>
+                  <h2>TRexImputer<a class="headerlink" href="#module-src.data_manipulation.TRexImputer"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py class">
+                    <dt class="sig sig-object py" id="src.data_manipulation.TRexImputer.TRexImputer">
+                      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span
+                        class="sig-prename descclassname"><span
+                          class="pre">src.data_manipulation.TRexImputer.</span></span><span
+                        class="sig-name descname"><span class="pre">TRexImputer</span></span><a
+                        class="reference internal"
+                        href="_modules/src/data_manipulation/TRexImputer.html#TRexImputer"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_manipulation.TRexImputer.TRexImputer" title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Bases: <code
+                          class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>
+                      </p>
+                      <p>Handles TRex data imputation by loading and applying imputation strategies to faulty values.
+                      </p>
+                      <section id="id9">
+                        <h3>Functions:<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>functions:</dt>
+                          <dd>
+                            <p>Lists all available imputation strategies.</p>
+                          </dd>
+                          <dt>impute:</dt>
+                          <dd>
+                            <p>Imputes faulty values in the provided data using the specified function.</p>
+                          </dd>
+                        </dl>
+                        <dl class="py method">
+                          <dt class="sig sig-object py" id="src.data_manipulation.TRexImputer.TRexImputer.functions">
+                            <span class="sig-name descname"><span class="pre">functions</span></span><span
+                              class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal"
+                              href="_modules/src/data_manipulation/TRexImputer.html#TRexImputer.functions"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.TRexImputer.TRexImputer.functions"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Prints a list of all available imputation strategies.</p>
+                          </dd>
+                        </dl>
+                        <dl class="py method">
+                          <dt class="sig sig-object py" id="src.data_manipulation.TRexImputer.TRexImputer.impute">
+                            <span class="sig-name descname"><span class="pre">impute</span></span><span
+                              class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                                  class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span
+                                class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em
+                              class="sig-param"><span class="n"><span class="pre">function</span></span><span
+                                class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                                  class="pre">str</span></span><span class="w"> </span><span class="o"><span
+                                  class="pre">=</span></span><span class="w"> </span><span class="default_value"><span
+                                  class="pre">'avgValue'</span></span></em><span class="sig-paren">)</span><span
+                              class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                                class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a
+                              class="reference internal"
+                              href="_modules/src/data_manipulation/TRexImputer.html#TRexImputer.impute"><span
+                                class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                              href="#src.data_manipulation.TRexImputer.TRexImputer.impute"
+                              title="Link to this definition"></a>
+                          </dt>
+                          <dd>
+                            <p>Imputes faulty values in the provided data.</p>
+                          </dd>
+                        </dl>
+                        <h4>Example Usage</h4>
+                        <pre class="highlight">
+<span class="kn">from</span> src.data_manipulation.TRexImputer <span class="kn">import</span> <span class="nc">TRexImputer</span>
+
+<span class="nv">imputer</span> <span class="o">=</span> <span class="nc">TRexImputer</span><span class="p">()</span>
+<span class="nv">DATA</span> <span class="o">=</span> <span class="nc">pd</span>.<span class="nf">DataFrame</span>({
+  <span class="s">'X'</span>: [<span class="mi">1.0</span>, <span class="mi">2.0</span>, <span class="gn">np.inf</span>, <span class="mi">4.0</span>],
+  <span class="s">'Y'</span>: [<span class="mi">1.0</span>, <span class="mi">2.0</span>, <span class="gn">np.inf</span>, <span class="mi">4.0</span>],
+  <span class="s">'time'</span>: [<span class="mi">0.0</span>, <span class="mi">1.0</span>, <span class="mi">2.0</span>, <span class="mi">3.0</span>]
+})
+
+<span class="nv">FUNCTION</span> <span class="o">=</span> <span class="s">'avgValue'</span>
+<span class="nv">imputedData</span> <span class="o">=</span> <span class="nv">imputer</span>.<span class="nf">impute</span>(<span class="o">data=</span><span class="nv">DATA</span>, <span class="o">function=</span><span class="nv">FUNCTION</span>)
+                        </pre>
+
+                        <p>In this example:</p>
+                        <ul>
+                          <li>A Pandas DataFrame named <code>DATA</code>, containing columns 'X', 'Y', and 'time' has
+                            some points as <code>np.inf</code>. This is faulty data that needs to be imputed.</li>
+                          <li>The <code>impute</code> method is called, using the specified <code>avgValue</code>
+                            function to replace faulty values in the <code>DATA</code> DataFrame.</li>
+                          <li>The imputed data is stored in the <code>imputedData</code> variable, with the faulty
+                            values replaced according to the selected imputation strategy.</li>
+                        </ul>
+                      </section>
+                    </dd>
+                  </dl>
+                </section>
+
+                <section id="module-src.data_manipulation.calculateVelocity">
+                  <span id="calculatevelocity"></span>
+                  <h2>data_manipulation.calculateVelocity<a class="headerlink" href="#module-src.data_manipulation.calculateVelocity"
+                      title="Link to this heading"></a></h2>
+                  <dl class="py function">
+                    <dt class="sig sig-object py" id="src.data_manipulation.calculateVelocity.calculateVelocity">
+                      <span class="sig-prename descclassname"><span
+                          class="pre">src.data_manipulation.calculateVelocity.</span></span><span
+                        class="sig-name descname"><span class="pre">calculateVelocity</span></span><span
+                        class="sig-paren">(</span><em class="sig-param"><span class="n"><span
+                            class="pre">pi</span></span><span class="p"><span class="pre">:</span></span><span
+                          class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em
+                        class="sig-param"><span class="n"><span class="pre">pf</span></span><span class="p"><span
+                            class="pre">:</span></span><span class="w"> </span><span class="n"><span
+                            class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span
+                        class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                          class="sig-return-typehint"><span class="pre">float</span></span></span><a
+                        class="reference internal"
+                        href="_modules/src/data_manipulation/calculateVelocity.html#calculateVelocity"><span
+                          class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink"
+                        href="#src.data_manipulation.calculateVelocity.calculateVelocity"
+                        title="Link to this definition"></a>
+                    </dt>
+                    <dd>
+                      <p>Calculates the velocity between two points.</p>
+                      <section id="id7">
+                        <h3>Parameters:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>pi<span class="classifier">DataFrame</span></dt>
+                          <dd>
+                            <p>The initial point of the entity, given as a section of a pandas DataFrame.</p>
+                          </dd>
+                          <dt>pf<span class="classifier">DataFrame</span></dt>
+                          <dd>
+                            <p>The final position of the entity, given as a section of a pandas DataFrame.</p>
+                          </dd>
+                        </dl>
+                      </section>
+                      <section id="id8">
+                        <h3>Returns:<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+                        <dl class="simple">
+                          <dt>float</dt>
+                          <dd>
+                            <p>The calculated velocity.</p>
+                          </dd>
+                        </dl>
+                      </section>
+                    </dd>
+                  </dl>
+                  <h4>Example Usage</h4>
+                  <pre class="highlight">
+<span class="kn">from</span> <span class="nn">src.data_manipulation.calculateVelocity</span> <span class="kn">import</span> <span class="nn">calculateVelocity</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="nv">data</span> <span class="o">=</span> <span class="nn">pd</span><span class="o">.</span><span class="nf">DataFrame</span><span class="p">({</span>
+  <span class="s1">'X'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+  <span class="s1">'Y'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+  <span class="s1">'time'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="nv">calculateVelocity</span><span class="p">(</span><span class="nv">pi</span><span class="o">=</span><span class="nv">data</span><span class="o">.</span><span class="nf">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nv">pf</span><span class="o">=</span><span class="nv">data</span><span class="o">.</span><span class="nf">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                  </pre>
+                  <p>In this example:</p>
+                  <ul>
+                    <li>The <code>calculateVelocity</code> function is imported from the
+                      <code>src.data_manipulation.calculateVelocity</code> module.
+                    </li>
+                    <li>A Pandas DataFrame named <code>data</code> is created, containing columns 'X', 'Y', and 'time'
+                      with sequential numerical values.</li>
+                    <li>The <code>calculateVelocity</code> function is called with two data points, <code>pi</code> and
+                      <code>pf</code>, taken from the first and second rows of the <code>data</code> DataFrame,
+                      respectively. The function calculates the velocity between these two points.
+                    </li>
+                  </ul>
+
+                </section>
+                <section id="module-src.data_manipulation">
+                  <span id="module-contents"></span>
+                  <h2>Module contents<a class="headerlink" href="#module-src.data_manipulation"
+                      title="Link to this heading"></a></h2>
+                </section>
+              </section>
+
+
+            </div>
+          </div>
+          <footer>
+            <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+              <a href="src.html" class="btn btn-neutral float-left" title="src package" accesskey="p" rel="prev"><span
+                  class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+              <a href="src.data_manipulation.imputation_strategies.html" class="btn btn-neutral float-right"
+                title="imputation_strategies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"
+                  aria-hidden="true"></span></a>
+            </div>
+
+            <hr />
+
+            <div role="contentinfo">
+              <p>&#169; Copyright 2024, Jack Wright, Giuliano, Ibrahim.</p>
+            </div>
+
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+            <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+            provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+          </footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+    });
+  </script>
+
+</body>
+
+</html>
