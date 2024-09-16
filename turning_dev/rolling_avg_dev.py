@@ -63,10 +63,6 @@ result = rolling_avg(cleanedData, window_size)
 plot_trajectory(result)
 
 
-
-
-import numpy as np
-
 import numpy as np
 
 def determine_turning_direction(df):
@@ -84,24 +80,31 @@ def determine_turning_direction(df):
     
     for i in range(1, len(df) - 1):
         # Vector from point n-1 to n
-        vector_1 = np.array([df['X'].iloc[i] - df['X'].iloc[i-1], 
-                             df['Y'].iloc[i] - df['Y'].iloc[i-1]])
-        
-        # Vector from point n to n+1
-        vector_2 = np.array([df['X'].iloc[i+1] - df['X'].iloc[i], 
-                             df['Y'].iloc[i+1] - df['Y'].iloc[i]])
-        
-        # Calculate the cross product (only the z-component is needed for 2D)
-        cross_product = np.cross(vector_1, vector_2)
-        
-        # Determine direction based on the sign of the cross product and update the count
-        if cross_product > 0:
-            turn_counts['Left'] += 1
-        elif cross_product < 0:
-            turn_counts['Right'] += 1
+        #check if vector is na
+     
+        #if any are NA skip
+        if np.isnan(df['X'].iloc[i]) or np.isnan(df['Y'].iloc[i]) or np.isnan(df['X'].iloc[i-1]) or np.isnan(df['Y'].iloc[i-1]) or np.isnan(df['X'].iloc[i+1]) or np.isnan(df['Y'].iloc[i+1]):
+            print('one vector is na')
+            continue
         else:
-            turn_counts['Straight'] += 1
-    
+            vector_1 = np.array([df['X'].iloc[i] - df['X'].iloc[i-1], 
+                                df['Y'].iloc[i] - df['Y'].iloc[i-1]])
+            
+            # Vector from point n to n+1
+            vector_2 = np.array([df['X'].iloc[i+1] - df['X'].iloc[i], 
+                                df['Y'].iloc[i+1] - df['Y'].iloc[i]])
+            
+            # Calculate the cross product (only the z-component is needed for 2D)
+            cross_product = np.cross(vector_1, vector_2)
+            
+            # Determine direction based on the sign of the cross product and update the count
+            if cross_product > 0:
+                turn_counts['Left'] += 1
+            elif cross_product < 0:
+                turn_counts['Right'] += 1
+            else:
+                turn_counts['Straight'] += 1
+        
     return turn_counts
 
 # Example usage (assuming 'cleaned_data' is your dataframe)
