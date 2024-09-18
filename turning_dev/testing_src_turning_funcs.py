@@ -2,6 +2,7 @@ from src.data_manipulation.NPZer import NPZer
 from src.data_manipulation.TRexDataCleaner import TRexDataCleaner
 from src.data_visualization.visualizer import DaphniaAnimation
 from src.turning_functions import turning_funcs
+
 dataCleaner = TRexDataCleaner()
 import pandas as pd
 import numpy as np

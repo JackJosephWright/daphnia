@@ -58,7 +58,7 @@ def plot_trajectory(df):
 
 
 # Example with a window size of 3
-window_size = 10
+window_size = 1
 result = rolling_avg(cleanedData, window_size)
 plot_trajectory(result)
 
@@ -87,6 +87,8 @@ def determine_turning_direction(df):
             print('one vector is na')
             continue
         else:
+
+            #make them all 3d and take z
             vector_1 = np.array([df['X'].iloc[i] - df['X'].iloc[i-1], 
                                 df['Y'].iloc[i] - df['Y'].iloc[i-1]])
             
