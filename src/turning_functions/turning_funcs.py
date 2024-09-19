@@ -1,6 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+
+
 
 def calculate_dtheta(vector1, vector2):
     cross_product = np.cross(vector1, vector2)
@@ -14,7 +18,7 @@ def calculate_dtheta(vector1, vector2):
 
 
 
-def running_sum(df):
+def running_theta_sum(df):
     print('runing sum')
     dtheta_list = []
     dtheta =  0
@@ -101,3 +105,93 @@ def plot_trajectory(df, pin_start = True, return_figure = False, title = None):
         return plt
     else:
         plt.show()
+
+
+
+
+
+def grab_window(theta_list, window_size, start_idx, second_scale = False):
+    window_list = []
+    if second_scale:
+        time_per_sample = 1/30
+        #this is here for when we switch to time as opposed to sample
+        chunk_size = window_size/time_per_sample
+    else:
+        chunk_size = window_size
+    n_chunks = len(theta_list) // chunk_size
+    chunk = 0
+    while (chunk < n_chunks):
+        theta_list_chunk = theta_list[chunk*chunk_size:(chunk+1)*chunk_size]
+        window_list.append(theta_list_chunk)
+        chunk += 1
+    return window_list
+
+
+
+def get_windowed_slope_sign(chunk_list):
+    X = np.arange(len(chunk_list)).reshape(-1, 1)
+    y = chunk_list
+    # Perform linear regression
+    model = LinearRegression()
+    model.fit(X, y)
+    
+    # Predict the values
+    y_pred = model.predict(X)
+    
+    # Calculate slope
+    slope = model.coef_[0]
+    
+    slope_sign = np.sign(slope)
+    return slope_sign
+
+
+
+def count_turns (theta_list, window_size):
+    window_list = grab_window(theta_list, window_size, start_idx=0)
+    slope_list = []
+    for window in window_list:
+        slope_list.append(get_windowed_slope_sign(window))
+    
+    #get the difference between each element and the next element in slope_sign
+    slope_diff = np.diff(slope_list)
+    print(slope_diff)
+    turns = np.count_nonzero(slope_diff)
+    turn_indexes = np.where(slope_diff != 0)
+    turn_index_list = []
+    for index in turn_indexes:
+        #multiply by window_size
+        turn_index_list.append((index*window_size))
+    print('turn index_list:')
+    print(turn_index_list)
+    return turns, turn_index_list
+        
+
+
+
+def plot_turns_and_path(segmented_data, turns, turn_index_list):
+    #makes a plot of the path and the location of the turns
+    # Create the plot
+    plt.plot(segmented_data['X'], segmented_data['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
+    # Add title
+    plt.title('Detailed Trajectory of Daphnia in a Dish')
+
+
+    # Add the text "Turns: {turns}" in the top-right corner (adjust x, y for placement)
+    plt.text(0.8, 0.9, f'Turns: {turns}', fontsize=12, color='red', transform=plt.gca().transAxes)
+
+
+    # find segmented_data['X'] and ['Y'] for each index in turn_index_list, put a mark there
+    for index in turn_index_list:
+        plt.scatter(segmented_data['X'][index], segmented_data['Y'][index], color='green', s=50, zorder=5)
+
+    # Invert Y-axis
+    plt.gca().invert_yaxis()
+
+    # Add legend
+    plt.legend()
+
+    # Add grid
+    plt.grid(True)
+
+    # Display the plot
+    plt.show()

@@ -19,7 +19,7 @@ segmented_data = smoothed[4060:4200]
 return_plot = turning_funcs.plot_trajectory(segmented_data, return_figure = True)
 
 
-sum_1 = turning_funcs.running_sum(segmented_data)
+sum_1 = turning_funcs.running_theta_sum(segmented_data)
 
 
 
