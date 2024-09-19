@@ -50,7 +50,9 @@ def split_on_nan(df, column_name):
             # If we hit a NaN, append the current segment to the list and start a new one
             if current_segment:
                 #reset index
-                segments.append(pd.DataFrame(current_segment).reset_index(drop=True))
+                df = pd.DataFrame(current_segment).dropna().reset_index(drop=True)
+                
+                segments.append(df)
                 
                 current_segment = []  # Reset the current segment
         else:
@@ -65,17 +67,19 @@ def split_on_nan(df, column_name):
 
 # Apply the function to split the data based on NaN in column 'X'
 segments = split_on_nan(faultyData, 'X')
+
 smoothing_window = 50
 turn_window  = 30
 
 
 for segment in segments:
-    if len(segment)>100:
+    if len(segment)>200:
         smoothed = turning_funcs.rolling_avg(segment, smoothing_window)
+        smoothed = smoothed.dropna().reset_index(drop=True)
         running_theta = turning_funcs.running_theta_sum(smoothed)
 
-        turns, turn_index_list =  turning_funcs.count_turns(running_theta, turn_window)
-        turning_funcs.plot_turns_and_path(smoothed, turns,turn_index_list)
+        turns, turn_index_list, slope_list =  turning_funcs.count_turns(running_theta, turn_window)
+        turning_funcs.plot_turns_and_path(smoothed, turns,turn_index_list, running_theta, turn_window, slope_list)
         # wait for input to close plot and continue
         input("Press Enter to continue...")
         plt.close()

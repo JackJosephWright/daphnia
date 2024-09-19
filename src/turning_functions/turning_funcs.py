@@ -154,44 +154,128 @@ def count_turns (theta_list, window_size):
     
     #get the difference between each element and the next element in slope_sign
     slope_diff = np.diff(slope_list)
+    print('slope diff')
     print(slope_diff)
     turns = np.count_nonzero(slope_diff)
     turn_indexes = np.where(slope_diff != 0)
     turn_index_list = []
     for index in turn_indexes:
         #multiply by window_size
-        turn_index_list.append((index*window_size))
+        turn_index_list.append(((index+1)*window_size))
     print('turn index_list:')
     print(turn_index_list)
-    return turns, turn_index_list
+    return turns, turn_index_list, slope_list
         
 
 
 
-def plot_turns_and_path(segmented_data, turns, turn_index_list):
+def plot_turns_and_path(segmented_data, turns, turn_index_list, running_theta, turn_window, slope_list):
+    
     #makes a plot of the path and the location of the turns
     # Create the plot
-    plt.plot(segmented_data['X'], segmented_data['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
+    fig, (ax1,ax2) = plt.subplots(2,1,figsize=(12, 8))
+    ax1.plot(segmented_data['X'], segmented_data['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
     # Add title
-    plt.title('Detailed Trajectory of Daphnia in a Dish')
+    #ax1.title('Detailed Trajectory of Daphnia in a Dish')
 
 
     # Add the text "Turns: {turns}" in the top-right corner (adjust x, y for placement)
     plt.text(0.8, 0.9, f'Turns: {turns}', fontsize=12, color='red', transform=plt.gca().transAxes)
 
-
+    ax2.plot(running_theta, label = 'normalized theta')
+ 
     # find segmented_data['X'] and ['Y'] for each index in turn_index_list, put a mark there
     for index in turn_index_list:
-        plt.scatter(segmented_data['X'][index], segmented_data['Y'][index], color='green', s=50, zorder=5)
+        print('index:', index)
+        print('x value: ', segmented_data['X'][index])
+        print('y value: ', segmented_data['Y'][index])
+        if isinstance(index, np.ndarray) or isinstance(index, list):
+            for idx in index:
+                ax1.scatter(segmented_data['X'][idx], segmented_data['Y'][idx], color = 'green', s = 50, zorder = 5)
+                ax2.axvline(x = idx, color = 'green')
+        else:
+            ax1.scatter(segmented_data['X'][index], segmented_data['Y'][index], color = 'green', s = 50, zorder = 5)
+            ax2.axvline(x = index, color = 'green')
+    for i in range(len(slope_list)):
+        idx = (i+1) * turn_window
+        if idx < len(segmented_data):
+            ax1.scatter(segmented_data['X'][idx], segmented_data['Y'][idx], color = 'red', s = 50)
+    # Add a star marker at the starting point and label it
+    #segmented_data = segmented_data.dropna().reset_index(drop = True)    
+    start_x = segmented_data['X'][0]
+    start_y = segmented_data['Y'][0]
 
-    # Invert Y-axis
-    plt.gca().invert_yaxis()
+    print('start_x val:', start_x)
+    print('start_y val:', start_y)
+    ax1.scatter(start_x, start_y, color='orange', marker='*', s=100, label='Start', zorder=10)
+    ax1.text(start_x, start_y, 'Start', fontsize=12, color='orange', verticalalignment='bottom', horizontalalignment='right')
 
     # Add legend
-    plt.legend()
+    ax1.legend()
 
     # Add grid
-    plt.grid(True)
+    ax1.grid(True)
+
+    
+    ax2.set_xticks(np.arange(0, len(running_theta), turn_window))
+   
+    ax2.set_xlabel('time')
+    ax2.set_ylabel('theta')
+
+    ax2.legend()
+    plt.tight_layout()
 
     # Display the plot
     plt.show()
+
+# def plot_turns_and_path(segmented_data, turns, turn_index_list, running_theta, turn_window, slope_list):
+#     # Create the plot
+#     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+#     ax1.plot(segmented_data['X'], segmented_data['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
+
+#     # Add the text "Turns: {turns}" in the top-right corner (adjust x, y for placement)
+#     plt.text(0.8, 0.9, f'Turns: {turns}', fontsize=12, color='red', transform=plt.gca().transAxes)
+
+#     # Plot running theta on ax2
+#     ax2.plot(running_theta, label='normalized theta')
+
+#     # Mark turns with green dots
+#     for index in turn_index_list:
+#         if isinstance(index, np.ndarray) or isinstance(index, list):
+#             for idx in index:
+#                 ax1.scatter(segmented_data['X'][idx], segmented_data['Y'][idx], color='green', s=50, zorder=5)
+#                 ax2.axvline(x=idx, color='green')
+#         else:
+#             ax1.scatter(segmented_data['X'][index], segmented_data['Y'][index], color='green', s=50, zorder=5)
+#             ax2.axvline(x=index, color='green')
+
+#     # Mark slope list points with red dots
+#     for i in range(len(slope_list)):
+#         idx = (i + 1) * turn_window
+#         if idx < len(segmented_data):
+#             ax1.scatter(segmented_data['X'][idx], segmented_data['Y'][idx], color='red', s=50)
+
+#     # Add a star marker at the starting point and label it
+#     start_x = segmented_data['X'].iloc[0]
+#     start_y = segmented_data['Y'].iloc[0]
+#     ax1.scatter(start_x, start_y, color='orange', marker='*', s=100, label='Start', zorder=10)
+#     ax1.text(start_x, start_y, 'Start', fontsize=12, color='orange', verticalalignment='bottom', horizontalalignment='right')
+
+#     # Add legend and grid to ax1
+#     ax1.legend()
+
+#     # Ensure the marker is visible by adjusting the axis limits if necessary
+#     ax1.set_xlim(min(segmented_data['X']) - 10, max(segmented_data['X']) + 10)
+#     ax1.set_ylim(min(segmented_data['Y']) - 10, max(segmented_data['Y']) + 10)
+
+#     ax1.grid(True)
+
+#     # Customize ax2 (theta plot)
+#     ax2.set_xlabel('time')
+#     ax2.set_ylabel('theta')
+#     ax2.legend()
+
+#     plt.tight_layout()
+
+#     # Display the plot
+#     plt.show()
