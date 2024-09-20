@@ -5,6 +5,8 @@ from sklearn.linear_model import LinearRegression
 
 
 
+
+
 def calculate_dtheta(vector1, vector2):
     """
     Calculate the angle between two vectors in the XY plane.
@@ -28,15 +30,13 @@ def calculate_dtheta(vector1, vector2):
     magB = magnitude(vector2)
     
     if magA == 0 or magB == 0:
-        return 0  # If magnitude is zero, no turning occurs
+        return 0.0  # If magnitude is zero, no turning occurs
     
     # Calculate the sine of the angle, ensuring values stay in the range [-1, 1]
     sin_theta = np.clip(cross_product[2] / (magA * magB), -1.0, 1.0)
     dtheta = np.arcsin(sin_theta)
     
     return dtheta
-
-
 
 def running_theta_sum(df):
     print('running sum')
@@ -78,7 +78,6 @@ def running_theta_sum(df):
                 # print('dtheta list:', dtheta_list)
         # print('theta list is now: ', dtheta_list)
         # input('press enter to continue')
-    # dtheta_list.append(float(0))
     dtheta_list.append(np.nan)
     return dtheta_list
 
@@ -291,6 +290,16 @@ def split_on_nan(df, column_name):
     return segments
 
 
+def plot_turns_and_path_from_turning_df(turning_df):
+
+    turns = turning_df['turn_id'].max()-1
+    print('turns:', turns)
+    print('unique vals in turn_id:', turning_df['turn_id'].unique())
+    fig, (ax1,ax2) = plt.subplots(2,1,figsize=(12, 8))
+    ax1.plot(turning_df['X'], turning_df['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
+    # Add title
+    #ax1.title('Detailed Trajectory of Daphnia in a Dish')
+    return None
 
 
 
