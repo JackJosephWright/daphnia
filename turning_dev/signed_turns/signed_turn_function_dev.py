@@ -1,3 +1,4 @@
+
 # this loads the smoothed data for testing dr kogans turn demarcation idea
 
 import pandas as pd
@@ -79,7 +80,8 @@ for segment in segments:
         running_theta = turning_funcs.running_theta_sum(smoothed)
 
         turns, turn_index_list, slope_list =  turning_funcs.count_turns(running_theta, turn_window)
-        turning_funcs.plot_turns_and_path(smoothed, turns,turn_index_list, running_theta, turn_window, slope_list)
+        turning_funcs.plot_turns_and_path(smoothed, turns,turn_index_list, running_theta, slope_list)
         # wait for input to close plot and continue
         input("Press Enter to continue...")
         plt.close()
+
