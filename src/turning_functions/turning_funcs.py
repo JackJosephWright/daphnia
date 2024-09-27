@@ -232,8 +232,8 @@ def count_turns (theta_list, window_size =30):
     
     #get the difference between each element and the next element in slope_sign
     slope_diff = np.diff(slope_list)
-    print('slope diff')
-    print(slope_diff)
+    #print('slope diff')
+    #print(slope_diff)
     turns = np.count_nonzero(slope_diff)
     turn_indexes = np.where(slope_diff != 0)[0]
     # turn_index_list = []
@@ -242,7 +242,7 @@ def count_turns (theta_list, window_size =30):
     #     turn_index_list.append(((index+1)*window_size))
     # print('turn index_list:')
     turn_index_list = (turn_indexes+1)*window_size
-    print(turn_index_list)
+    # print(turn_index_list)
     return turns, turn_index_list, slope_list
 
 
@@ -288,17 +288,73 @@ def split_on_nan(df, column_name):
         segments.append(pd.DataFrame(current_segment))
     
     return segments
+def sum_theta_for_turn(single_turn_df):
+    """
+    Calculate the difference between the last and first values of the 'running_theta' column.
 
+    Args:
+    single_turn_df (pd.DataFrame): A DataFrame containing data for a single turn.
+    
+    Returns:
+    float: The difference between the last and first value of the 'running_theta' column.
+    """
+    if 'running_theta' not in single_turn_df.columns:
+        raise ValueError("Column 'running_theta' not found in DataFrame")
+    
+    # Get 'running_theta' from the first row
+    first_theta = single_turn_df['running_theta'].iloc[0]
+    
+    # Get 'running_theta' from the last row
+    last_theta = single_turn_df['running_theta'].iloc[-1]
+    
+    # Calculate and return the difference
+    theta_diff = last_theta - first_theta
+    return theta_diff 
+def get_first_index_of_unique_values(df, column_name):
+    # Use groupby on the column to get the first index of each unique value
+    first_indices = df.groupby(column_name).apply(lambda x: x.index[0])
+    
+    # Convert the result to a dictionary or leave it as a Series
+    # remove the first first value in first_indices
+    first_indices = first_indices[1:]
+    return first_indices
+def plot_turns_and_path_from_turning_df(turning_df, turn_window = 30):
 
-def plot_turns_and_path_from_turning_df(turning_df):
-
-    turns = turning_df['turn_id'].max()-1
-    print('turns:', turns)
-    print('unique vals in turn_id:', turning_df['turn_id'].unique())
+    turns = turning_df['turn_id'].max()
+    # print('turns:', turns)
+    # print('unique vals in turn_id:', turning_df['turn_id'].unique())
     fig, (ax1,ax2) = plt.subplots(2,1,figsize=(12, 8))
     ax1.plot(turning_df['X'], turning_df['Y'], label='Trajectory', color='blue', linewidth=0.5, linestyle='-', alpha=0.8)
-    # Add title
-    #ax1.title('Detailed Trajectory of Daphnia in a Dish')
+    plt.text(0.8,0.9,f"Turns: {turns}", fontsize=12, color='red', transform=plt.gca().transAxes)
+    ax2.plot(turning_df['running_theta'], label = 'normalized theta')
+
+    first_indices = get_first_index_of_unique_values(turning_df, 'turn_id')
+    print('first indices:', first_indices)
+    print(type(first_indices))
+    for i in first_indices:
+    
+        ax1.scatter(turning_df['X'][i], turning_df['Y'][i], color = 'green', s = 50, zorder = 5)
+        ax2.axvline(x = i, color = 'green')
+    
+    start_x = turning_df['X'][0]
+    start_y = turning_df['Y'][0]
+
+    ax1.scatter(start_x, start_y, color = 'orange', marker = '*', s = 100, label = "Start", zorder = 10)
+    ax1.text(start_x, start_y, 'Start', fontsize=12, color='orange', verticalalignment='bottom', horizontalalignment='right')    
+
+    ax1.set_title('Daphnia Movement Trajectory with turning points')  # Title for ax1
+    ax2.set_title('Cumulative Theta Values with turning points')  # Title for ax2
+    ax1.legend()
+    ax1.grid(True)
+
+    ax2.set_xticks(np.arange(0,len(turning_df), turn_window))
+
+    ax2.set_xlabel('time')
+    ax2.set_ylabel('theta')
+
+    ax2.legend()
+    plt.tight_layout()
+    plt.show()
     return None
 
 
