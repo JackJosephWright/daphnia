@@ -260,10 +260,9 @@ def split_on_nan(df, column_name):
     # Create a list to store the continuous segments
 
     #replace any inf (empty output value from TRex) with nan
-    try:
-        df = df.replace([np.inf, -np.inf], np.nan)
-    except:
-        pass
+    
+    df = df.replace([np.inf, -np.inf], np.nan)
+    
     segments = []
     
     # Track the current segment
@@ -533,3 +532,43 @@ def generate_turning_df(df, smoothing_window = 50, turn_window = 30):
 
 #     # Display the plot
 #     plt.show()
+
+
+def turn_segment_visualizer(df, smoothing_window = 50, turn_window = 30, min_segment_length = 200):
+    """
+    Visualizes the trajectory of movement segments and highlights turns by processing the input data.
+
+    Parameters:
+    - df (DataFrame): The input dataframe containing 'X' and 'Y' positions along with other data.
+    - smoothing_window (int): The window size used for rolling average smoothing of the trajectory.
+    - turn_window (int): The window size used to detect turns based on the running sum of turning angles (dtheta).
+    - min_segment_length (int): The minimum length of a segment to be processed and visualized.
+
+    Function Workflow:
+    1. Splits the input data into separate segments based on NaN values in the 'X' column.
+    2. For each segment larger than the minimum length, it applies a rolling average to smooth the data.
+    3. Calculates the running sum of turning angles (dtheta) for each smoothed segment.
+    4. Identifies turn points in the data and visualizes the trajectory along with the running theta sum.
+    5. Waits for user input to close each plot before continuing to the next segment.
+    """
+    
+    # Split the input dataframe into segments based on NaN values in the 'X' column.
+    segments = split_on_nan(df, 'X')
+
+    # Loop through each segment of the data.
+    for segment in segments:
+        # Only process segments longer than the specified minimum length.
+        if len(segment) > min_segment_length:
+            # Apply a rolling average smoothing function to the segment.
+            smoothed = rolling_avg(segment, smoothing_window)
+            # Remove any remaining NaN values and reset the index.
+            smoothed = smoothed.dropna().reset_index(drop=True)
+            # Calculate the running sum of dtheta (turning angles) for the smoothed data.
+            running_theta = running_theta_sum(smoothed)
+            # Identify the turns in the trajectory by analyzing the running_theta data.
+            turns, turn_index_list, slope_list = count_turns(running_theta, turn_window)
+            # Plot the trajectory with turn points and the running_theta plot.
+            plot_turns_and_path(segment, turns, turn_index_list, running_theta, slope_list)
+            # Wait for the user to press Enter before closing the plot and continuing.
+            input("Press Enter to continue...")
+            plt.close()
